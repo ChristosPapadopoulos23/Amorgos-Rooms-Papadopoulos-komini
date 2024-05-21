@@ -1,15 +1,17 @@
+<!DOCTYPE html>
 <html>
 <head>
-
-
-<title> Amorgos-rooms</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name ="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="css_files/style_sign_in.css">
-<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Amorgos-rooms</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css_files/style_sign_in.css">
+    <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
@@ -26,7 +28,7 @@
             function myFunction(x) {
                 x.classList.toggle("change");
             }
-            
+
         </script>
         <label class="logo">Amorgos Rooms</label>
         <ul>
@@ -38,65 +40,68 @@
             <li><a class="active" href="sign-up.html">Sign in/Log in</a></li>
         </ul>
     </nav>
-    <section class="center"> 
+    <section class="center">
 
-        <div class="main">  	
+        <div class="main">
             <input type="checkbox" id="chk" aria-hidden="true">
-    
-                <div class="signup">
-                    <form action="./server/sing-up.php" method="POST" id="singup-form">
-                        <label class="form" for="chk" aria-hidden="true">Sign up</label>
-                        <div class="one">
-                            <input  type="text" id="name" name="name" placeholder="Όνομα" required="">
-                            <input type="text" id="lastname" name="lastname" placeholder="Επώνυμο" required="">
-                        </div>
-                        <div class="one">
-                            <input class="three" type="text" id="business_name" name="business_name" placeholder="Όνομα επιχείρησης" required="">
-                            <input class="four" type="text" id="phone" name="phone" placeholder="Τηλέφωνο επιχείρησης" required="">
-                        </div>
-                        <div class="one">
-                            <input type="text" id="username" name="username" placeholder="User name" required="">
-                            <input type="email" id="email" name="email" placeholder="Email" required="">
-                        </div>
-                        <div class="one">
-                            <input type="password" id="password" name="password" placeholder="Password" required="">
-                            <input type="password" id="cpassword" name="cpassword" placeholder="Confirm password" required="">
-                        </div>
-                        <button>Sign up</button>
-                    </form>
-                </div>
-    
-                <div class="login">
-                    <form action="./server/log-in.php" method="POST" id="login-form">
-                        <label class="form" for="chk" aria-hidden="true">Login</label>
-                        <input type="text" id="username" name="username" placeholder="Username" required="">
+
+            <div class="signup">
+                <form action="./server/sing-up.php" method="POST" id="singup-form">
+                    <label class="form" for="chk" aria-hidden="true">Sign up</label>
+                    <div class="one">
+                        <input type="text" id="name" name="name" placeholder="Όνομα" required="">
+                        <input type="text" id="lastname" name="lastname" placeholder="Επώνυμο" required="">
+                    </div>
+                    <div class="one">
+                        <input class="three" type="text" id="business_name" name="business_name"
+                            placeholder="Όνομα επιχείρησης" required="">
+                        <input class="four" type="text" id="phone" name="phone" placeholder="Τηλέφωνο επιχείρησης"
+                            required="">
+                    </div>
+                    <div class="one">
+                        <input type="text" id="username" name="username" placeholder="User name" required="">
+                        <input type="email" id="email" name="email" placeholder="Email" required="">
+                    </div>
+                    <div class="one">
                         <input type="password" id="password" name="password" placeholder="Password" required="">
-                        <button>Login</button>
-                    </form>
-                </div>
+                        <input type="password" id="cpassword" name="cpassword" placeholder="Confirm password"
+                            required="">
+                    </div>
+                    <button>Sign up</button>
+                </form>
+            </div>
+
+            <div class="login">
+                <form action="./server/log-in.php" method="POST" id="login-form">
+                    <label class="form" for="chk" aria-hidden="true">Login</label>
+                    <input type="text" id="username" name="username" placeholder="Username" required="">
+                    <input type="password" id="password" name="password" placeholder="Password" required="">
+                    <button>Login</button>
+                </form>
+            </div>
         </div>
 
-            <div class="wave" id="wave1" style="--i: 1;"></div>
-            <div class="wave" id="wave2" style="--i: 2;"></div>
-            <div class="wave" id="wave3" style="--i: 3;"></div>
-            <div class="wave" id="wave4" style="--i: 4;"></div>
-        
+        <div class="wave" id="wave1" style="--i: 1;"></div>
+        <div class="wave" id="wave2" style="--i: 2;"></div>
+        <div class="wave" id="wave3" style="--i: 3;"></div>
+        <div class="wave" id="wave4" style="--i: 4;"></div>
+
     </section>
 
 
     <div class="footer">
-        <hr>   
+        <hr>
         <h2 class="infohead">Contact Information</h2>
         <div class="info">
-           <i class='bx bx-mobile'></i>
-           <div>: 69xxxxxxxx</div>
-           <i class='bx bx-phone'></i>
-           <div>: 2xxxxxxxxx</div>
-           <i class='bx bxs-envelope'></i>
-           <div class="last">: amorgos@geemail.com</div>
-           <div class="tag">Χρήστος Παπαδόπουλος-2024</div>
-       </div>
-   </div>
+            <i class='bx bx-mobile'></i>
+            <div>: 69xxxxxxxx</div>
+            <i class='bx bx-phone'></i>
+            <div>: 2xxxxxxxxx</div>
+            <i class='bx bxs-envelope'></i>
+            <div class="last">: amorgos@geemail.com</div>
+            <div class="tag">Χρήστος Παπαδόπουλος-2024</div>
+        </div>
+    </div>
 </body>
 <script>
 
@@ -118,4 +123,5 @@
         }
     }
 </script>
+
 </html>

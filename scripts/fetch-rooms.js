@@ -6,9 +6,7 @@ let SearchName = '';
 
 // Function to fetch a batch of data from the server
 function fetchNextBatch() {
-    SearchLocation = document.getElementById('Location').value;
-    console.log(SearchLocation);
-    SearchName = document.getElementById('search-rooms').value;
+
     console.log(SearchName);
 
     if (SearchName !== '' && currentPage > 1) {
@@ -49,37 +47,43 @@ function renderRoomBatch(data) {
 
         // Create and append room content (customize based on your data structure)
         roomElement.innerHTML = `
-            <img src="${room.image}" alt="${room.name}">
+            
             <div class="room-info">
-                <h3>${room.name}</h3>
-                <p>Location: ${room.location}</p>
-                <p>Phone: ${room.phone}</p>
-                <p>Email: ${room.email}</p>
-                <a href="#">Contact Us</a>
+                <div class="room-name">${room.name}</div>
+                <i class='bx bx-phone'></i>
+                <div>${room.location}</div>
+                <i class='bx bx-mobile'></i>
+                <div>: ${room.phone}</div>
+                <i class='bx bxs-envelope'></i>
+                <div>: ${room.email}</div>
+                <div><a class="link" href="contact.html">Επικοινωνήστε απευθείας</a></div>
             </div>
+            <a href="Julia_Rooms.html">
+                <div class="room1-pic"></div>
+            </a>
         `;
 
         roomsContainer.appendChild(roomElement);
     });
 }
 
-document.getElementById('search-btn').addEventListener('click', function() {
-    // Reset current page to 1 when search button is clicked
-    currentPage = 1;
-    // Clear existing room elements
-    document.getElementById('roomsContainer').innerHTML = '';
-    // Fetch the first batch of data for the new search query
-    fetchNextBatch();
-});
+// document.getElementById('search-btn').addEventListener('click', function() {
+//     // Reset current page to 1 when search button is clicked
+//     currentPage = 1;
+//     // Clear existing room elements
+//     document.getElementById('roomsContainer').innerHTML = '';
+//     // Fetch the first batch of data for the new search query
+//     fetchNextBatch();
+// });
 
-document.getElementById('Location').addEventListener('change', function() {
-    // Reset current page to 1 when location selection changes
-    currentPage = 1;
-    // Clear existing room elements
-    document.getElementById('roomsContainer').innerHTML = '';
-    // Fetch the first batch of data for the new location
-    fetchNextBatch();
-});
+// document.getElementById('Location').addEventListener('change', function() {
+//     // Reset current page to 1 when location selection changes
+//     currentPage = 1;
+//     // Clear existing room elements
+//     document.getElementById('roomsContainer').innerHTML = '';
+//     // Fetch the first batch of data for the new location
+//     fetchNextBatch();
+// });
 
 fetchNextBatch();
 

@@ -1,15 +1,17 @@
-*{
-    padding: 0;
-    margin: 0;
-    text-decoration: none;
-    list-style: none;
-    box-sizing: border-box;
+* {
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
 }
-body{
+
+body {
   background-color: #0082e6;
-    
+
 }
-nav{
+
+nav {
   position: fixed;
   z-index: 100001;
   top: 0;
@@ -19,7 +21,7 @@ nav{
   width: 100%;
 }
 
-label.logo{
+label.logo {
   color: #0082e6;
   font-size: 35px;
   line-height: 80px;
@@ -27,12 +29,12 @@ label.logo{
   font-weight: bold;
 }
 
-nav ul{
+nav ul {
   float: right;
   margin-right: 20px
 }
 
-nav ul li{
+nav ul li {
   position: relative;
   float: left;
   display: inline-ecc 0;
@@ -40,30 +42,35 @@ nav ul li{
   margin: 0 5px;
 }
 
-nav ul li a{
-  font-size: 1vw; 
+nav ul li a {
+  font-size: 1vw;
   padding: 7px 13px;
   border-radius: 99px;
   text-transform: uppercase;
   position: relative;
   transition: all .5s
 }
-a{
-  color:#ffffff;
+
+a {
+  color: #ffffff;
   background: #0082e6;
 }
-a.active, a:hover{
+
+a.active,
+a:hover {
   background: #02406e;
   transition: .5s;
-   
+
 }
-a:hover{
-  
+
+a:hover {
+
   font-size: 1.2vw;
   transition: all .5s
 }
 
 @import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -77,13 +84,13 @@ a:hover{
   width: 100%;
   height: fit-content;
   background: #ffffff;
-  background: linear-gradient(to bottom, white 10%,rgb(0, 174, 255) );
+  background: linear-gradient(to bottom, white 10%, rgb(0, 174, 255));
   display: flex;
   align-items: center;
   justify-content: center;
   background-image: url(../media/ship.jpg);
   background-size: cover;
-  background-attachment:fixed;
+  background-attachment: fixed;
 }
 
 .wave {
@@ -94,8 +101,9 @@ a:hover{
   height: 100px;
   background-image: url(../media/waveb.png);
   background-size: 1000px 100px;
- 
+
 }
+
 .wave#wave1 {
   z-index: 1000;
   opacity: 1;
@@ -128,6 +136,7 @@ a:hover{
   0% {
     background-position-x: 1000px;
   }
+
   100% {
     background-positon-x: 0px;
   }
@@ -137,13 +146,14 @@ a:hover{
   0% {
     background-position-x: -1000px;
   }
+
   100% {
     background-positon-x: 0px;
   }
 }
 
-.checkbtn{
-  font-size: 30px;  
+.checkbtn {
+  font-size: 30px;
   color: #0082e6;
   float: right;
   line-height: 80px;
@@ -153,30 +163,33 @@ a:hover{
   display: none;
 }
 
-#check{
-    display: none;
+#check {
+  display: none;
 }
 
-@media(max-width: 1300px){
-  label.logo{
+@media(max-width: 1300px) {
+  label.logo {
     font-size: 28px;
     padding-left: 25px;
     padding-right: 0;
     margin-right: 0;
   }
 
-  .head{
+  .head {
     font-size: 25px;
   }
-  .center{
+
+  .center {
     height: fit-content;
     background-image: url(../media/ship.jpg);
     background-size: cover;
   }
-  .checkbtn{
-      display: block;
+
+  .checkbtn {
+    display: block;
   }
-  ul{
+
+  ul {
     position: fixed;
     width: 100%;
     height: 100vh;
@@ -186,42 +199,50 @@ a:hover{
     text-align: center;
     z-index: 1000001;
     backdrop-filter: blur(50px);
-    transition:all .5s;
+    transition: all .5s;
   }
-  nav ul li{
+
+  nav ul li {
     position: none;
     float: none;
     display: block;
     margin: 50px 0;
     line-height: 30px;
   }
-  nav ul li a{
-      font-size: 20px;
+
+  nav ul li a {
+    font-size: 20px;
   }
-  a{
-      background: none;
-      color: black;
+
+  a {
+    background: none;
+    color: black;
   }
-  a:hover,a.active{
-      background: none;
-      color: #ffffff;
+
+  a:hover,
+  a.active {
+    background: none;
+    color: #ffffff;
   }
-  a:hover{
+
+  a:hover {
     font-size: 25px;
     transition: .5s;
   }
-  #check:checked ~ ul{
-      left: 0;
+
+  #check:checked~ul {
+    left: 0;
   }
-  .footer .info{
+
+  .footer .info {
     margin-bottom: 120px;
   }
 
-  .center .main{
+  .center .main {
     height: fit-content;
   }
 
-  .center .main .one{
+  .center .main .one {
     display: flex;
     margin: 0;
     width: 90%;
@@ -229,10 +250,12 @@ a:hover{
     margin-left: auto;
     flex-direction: column;
   }
-  .center .main .one input{
+
+  .center .main .one input {
     margin-left: 0;
   }
-  .center .main .lbl{
+
+  .center .main .lbl {
     font-size: 20px;
   }
 }
@@ -242,7 +265,9 @@ a:hover{
   cursor: pointer;
 }
 
-.bar1, .bar2, .bar3 {
+.bar1,
+.bar2,
+.bar3 {
   width: 35px;
   height: 5px;
   background-color: #0082e6;
@@ -252,7 +277,7 @@ a:hover{
   transition: 0.4s;
 }
 
-.container:hover{
+.container:hover {
   opacity: calc(60%);
 }
 
@@ -260,16 +285,19 @@ a:hover{
   transform: translate(0, 11px) rotate(-45deg);
 }
 
-.change .bar2 {opacity: 0;}
+.change .bar2 {
+  opacity: 0;
+}
 
 .change .bar3 {
   transform: translate(0, -11px) rotate(45deg);
 }
 
-.information{
+.information {
   color: white;
 }
-h1{
+
+h1 {
   font-size: 60px;
   font-family: "STIX Two Text", serif;
   margin-top: 80px;
@@ -280,7 +308,7 @@ h1{
 }
 
 
-.text{
+.text {
   font-family: "STIX Two Text", serif;
   margin-right: 20px;
   color: #ffffff;
@@ -295,21 +323,22 @@ h1{
   box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.15);
 }
 
-.footer{
-  clear:both;
-  
+.footer {
+  clear: both;
+
   padding: 20px;
-  background: linear-gradient(to top,#044577,#0082e6);
+  background: linear-gradient(to top, #044577, #0082e6);
 }
 
-hr{
+hr {
   margin-top: 30px;
   margin-bottom: 30px;
   border: 3px solid rgba(255, 255, 255, 1.0);
   border-radius: 50px;
   box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.15);
 }
-.infohead{
+
+.infohead {
   font-size: 30px;
   font-family: "STIX Two Text", serif;
   text-align: left;
@@ -317,49 +346,56 @@ hr{
   padding-bottom: 10px;
   float: left;
 }
-.info{
+
+.info {
   text-align: left;
   margin-bottom: 20px;
   clear: both;
 }
-.footer .info div{
+
+.footer .info div {
   font-size: 20px;
   font-family: "STIX Two Text", serif;
   display: block;
   color: white;
 }
-.last{
+
+.last {
   float: left;
 }
-.footer .info .tag{
+
+.footer .info .tag {
   float: right;
   font-size: 30px;
 }
-.center.log:hover{
+
+.center.log:hover {
   background: rgba(255, 255, 255, 0.04);
 }
-.log{
+
+.log {
   background: rgba(255, 255, 255, 0.04);
   border-radius: 99px;
 }
-.log:hover{
+
+.log:hover {
   background: rgba(255, 255, 255, 0.02);
   backdrop-filter: blur(50px);
   border-radius: 99px;
   transition: all 0s;
 }
 
-i{
+i {
   float: left;
   transform: translateY(15%);
 }
 
-.footer i{
+.footer i {
   transform: translateY(25%);
   color: white;
 }
 
-.main{
+.main {
   width: 560px;
   height: fit-content;
   background: rgba(255, 255, 255, 0.15);
@@ -370,69 +406,74 @@ i{
   box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.15);
   margin-bottom: 150px;
   margin-top: 80px;
-  
-}
-.contact{
-	position: relative;
-	width:100%;
-	height: 100%;
-}
-.lbl{
-	color: #fff;
-	font-size: 1.7em;
-	justify-content: center;
-	display: flex;
-	margin: 60px;
-  margin-bottom: 30px;
-	font-weight: bold;
-}
-input{
-	width: 60%;
-	background: #e0dede;
-	justify-content: center;
-	display: flex;
-	margin: 20px auto;
-	padding: 10px;
-	border: none;
-	outline: none;
-	border-radius: 10px;
-  margin-bottom: 0px;
-}
-button{
-	width: 60%;
-	height: 40px;
-	margin: 10px auto;
-	justify-content: center;
-	display: block;
-	color: #fff;
-	background: #0c8cd6;
-	font-size: 1em;
-	font-weight: bold;
-	margin-top: 20px;
-	outline: none;
-	border: none;
-	border-radius: 10px;
-	transition: .2s ease-in;
-	cursor: pointer;
-}
-button:hover{
-	background: #00adf1;
+
 }
 
-.one{
+.contact {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.lbl {
+  color: #fff;
+  font-size: 1.7em;
+  justify-content: center;
+  display: flex;
+  margin: 60px;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+input {
+  width: 60%;
+  background: #e0dede;
+  justify-content: center;
+  display: flex;
+  margin: 20px auto;
+  padding: 10px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  margin-bottom: 0px;
+}
+
+button {
+  width: 60%;
+  height: 40px;
+  margin: 10px auto;
+  justify-content: center;
+  display: block;
+  color: #fff;
+  background: #0c8cd6;
+  font-size: 1em;
+  font-weight: bold;
+  margin-top: 20px;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  transition: .2s ease-in;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #00adf1;
+}
+
+.one {
   display: flex;
   align-items: center;
   justify-content: center;
-  width:60% ;
+  width: 60%;
   margin-right: auto;
   margin-left: auto;
 }
 
-.one input{
+.one input {
   margin-right: 5px;
 }
 
-.num{
+.num {
   margin: 0px;
   display: flex;
   align-items: center;
@@ -442,19 +483,20 @@ button:hover{
   flex-direction: column;
 }
 
-.num input{
+.num input {
+  width: 30%;
   margin: 0;
   width: fit-content;
 }
 
-.num label{
+.num label {
   color: white;
   font-size: 15px;
   margin-top: 10px;
   margin-bottom: 5px;
 }
 
-.date{
+.date {
   width: 60%;
   margin: 0px;
   display: flex;
@@ -465,23 +507,23 @@ button:hover{
   flex-direction: column;
 }
 
-.date label{
+.date label {
   color: white;
   font-size: 15px;
   margin-top: 10px;
   margin-bottom: 5px;
 }
 
-.date input{
+.date input {
   margin: 0;
   width: fit-content;
 }
 
-.one .date .chkbtn{
+.one .date .chkbtn {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  width: 20px; 
+  width: 20px;
   height: 20px;
   font-size: 17px;
   position: relative;
@@ -497,10 +539,11 @@ button:hover{
 }
 
 .one .date .chkbtn:checked {
-  background-color: #00d9ff; /* Change background color when checked */
+  background-color: #00d9ff;
+  /* Change background color when checked */
 }
 
-.pet{
+.pet {
   font-size: 17px;
   position: relative;
   clear: both;
@@ -514,21 +557,21 @@ button:hover{
   outline: none;
 }
 
-.pet option{
+.pet option {
   background-color: #0082e6;
   padding-bottom: 10px;
 }
 
-.txtfield{
+.txtfield {
   width: 60%;
-	background: #e0dede;
-	justify-content: center;
-	display: flex;
-	margin: 5px auto;
-	padding: 10px;
-	border: none;
-	outline: none;
-	border-radius: 10px;
+  background: #e0dede;
+  justify-content: center;
+  display: flex;
+  margin: 5px auto;
+  padding: 10px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
   margin-bottom: 0px;
 }
 
@@ -541,6 +584,6 @@ button:hover{
   display: inline-block;
 }
 
-form{
+form {
   padding-bottom: 20px;
 }
