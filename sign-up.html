@@ -44,33 +44,33 @@
             <input type="checkbox" id="chk" aria-hidden="true">
     
                 <div class="signup">
-                    <form>
+                    <form action="./server/sing-up.php" method="POST" id="singup-form">
                         <label class="form" for="chk" aria-hidden="true">Sign up</label>
                         <div class="one">
-                            <input  type="text" name="name" placeholder="Όνομα" required="">
-                            <input type="text" name="sname" placeholder="Επώνυμο" required="">
+                            <input  type="text" id="name" name="name" placeholder="Όνομα" required="">
+                            <input type="text" id="lastname" name="lastname" placeholder="Επώνυμο" required="">
                         </div>
                         <div class="one">
-                        <input class="three" type="text" name="bname" placeholder="Όνομα επιχείρησης" required="">
-                        <input class="four" type="text" name="phone" placeholder="Τηλέφωνο επιχείρησης" required="">
+                            <input class="three" type="text" id="business_name" name="business_name" placeholder="Όνομα επιχείρησης" required="">
+                            <input class="four" type="text" id="phone" name="phone" placeholder="Τηλέφωνο επιχείρησης" required="">
                         </div>
                         <div class="one">
-                        <input type="text" name="txt" placeholder="User name" required="">
-                        <input type="email" name="email" placeholder="Email" required="">
+                            <input type="text" id="username" name="username" placeholder="User name" required="">
+                            <input type="email" id="email" name="email" placeholder="Email" required="">
                         </div>
                         <div class="one">
-                        <input type="password" name="pswd" placeholder="Password" required="">
-                        <input type="password" name="pswd2" placeholder="Confirm password" required="">
+                            <input type="password" id="password" name="password" placeholder="Password" required="">
+                            <input type="password" id="cpassword" name="cpassword" placeholder="Confirm password" required="">
                         </div>
                         <button>Sign up</button>
                     </form>
                 </div>
     
                 <div class="login">
-                    <form>
+                    <form action="./server/log-in.php" method="POST" id="login-form">
                         <label class="form" for="chk" aria-hidden="true">Login</label>
-                        <input type="email" name="email" placeholder="Email" required="">
-                        <input type="password" name="pswd" placeholder="Password" required="">
+                        <input type="text" id="username" name="username" placeholder="Username" required="">
+                        <input type="password" id="password" name="password" placeholder="Password" required="">
                         <button>Login</button>
                     </form>
                 </div>
@@ -98,4 +98,24 @@
        </div>
    </div>
 </body>
+<script>
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        console.log('submit');
+        validateSingUp();
+    });
+
+    const validateSingUp = () => {
+        const password = document.getElementById('password');
+        const cpassword = document.getElementById('cpassword');
+        if (passwordValue.length < 8) {
+            document.getElementById('password').style.borderColor = 'red';
+        }
+
+        if (cpasswordValue !== passwordValue) {
+            document.getElementById('cpassword').style.borderColor = 'red';
+        }
+    }
+</script>
 </html>

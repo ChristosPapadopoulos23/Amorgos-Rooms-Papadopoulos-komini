@@ -18,6 +18,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $business_location = "Some Location";
     // $salt = rad2deg(random_bytes(0));
 
+    if($password!=$cpassword){
+        exit(0);
+    }
+
     $options = [
         'cost' => 12,
     ];
@@ -67,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmtBusinessSignup->bind_param("ssssis", $business_name, $phone, $email, $business_location, $user_id, $timestamp);
 
     if ($stmtBusinessSignup->execute() === TRUE) {
-        header("Location: ../create-page.html");
+        header("Location: ../create_page.html");
         exit();
     } else {
         echo "Error: " . $stmtBusinessSignup->error;
