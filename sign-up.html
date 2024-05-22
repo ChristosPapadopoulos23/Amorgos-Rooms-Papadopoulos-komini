@@ -32,11 +32,9 @@
         <label class="logo">Amorgos Rooms</label>
         <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="find-a-room.html">Rooms</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="create_page.html">Create Page</a></li>
+            <li><a href="find-a-room.html">Find Rooms</a></li>
             <li><a href="more.html">Information</a></li>
-            <li><a class="active" href="sign-up.html">Sign in/Log in</a></li>
+            <li><a class="active" href="sign-up.html">Sign Up/Log in</a></li>
         </ul>
     </nav>
     <section class="center">
@@ -45,7 +43,7 @@
             <input type="checkbox" id="chk" aria-hidden="true">
 
             <div class="signup">
-                <form action="./server/sing-up.php" method="POST" id="singup-form">
+                <form action="./server/sing-up.php" method="POST" onsubmit="return validateSignUp();" id="singup-form">
                     <label class="form" for="chk" aria-hidden="true">Sign up</label>
                     <div class="one">
                         <input type="text" id="name" name="name" placeholder="Όνομα" required="">
@@ -63,8 +61,8 @@
                     </div>
                     <div class="one">
                         <input type="password" id="password" name="password" placeholder="Password" required="">
-                        <input type="password" id="cpassword" name="cpassword" placeholder="Confirm password"
-                            required="">
+                        <input type="password" id="cpassword" name="cpassword" placeholder="Confirm password" required="">
+                        <div id="password-error" style="color: red; display: block; position: relative;"></div>
                     </div>
                     <button>Sign up</button>
                 </form>
@@ -102,25 +100,50 @@
         </div>
     </div>
 </body>
+
 <script>
+    function validateSignUp() {
+        const password = document.getElementById('password').value;
+        const cpassword = document.getElementById('cpassword').value;
+        const passwordError = document.getElementById('password-error');
+        const passwordInput = document.getElementById('password');
+        const cpasswordInput = document.getElementById('cpassword');
 
-    form.addEventListener('submit', e => {
-        e.preventDefault();
-        console.log('submit');
-        validateSingUp();
-    });
-
-    const validateSingUp = () => {
-        const password = document.getElementById('password');
-        const cpassword = document.getElementById('cpassword');
-        if (passwordValue.length < 8) {
-            document.getElementById('password').style.borderColor = 'red';
-        }
-
-        if (cpasswordValue !== passwordValue) {
-            document.getElementById('cpassword').style.borderColor = 'red';
+        if (password !== cpassword) {
+            
+            passwordError.textContent = "";
+            passwordInput.style.border = "1px solid red";
+            passwordInput.fontSize = ".5rem";
+            passwordInput.value = "";
+            passwordInput.placeholder = "Passwords do not match!";
+            cpasswordInput.style.border = "1px solid red";
+            cpasswordInput.value = "";
+            cpasswordInput.placeholder = "Passwords don't match!";
+            return false; // Prevent form submission
+        } else {
+            passwordError.textContent = ""; // Clear error message if passwords match
+            return true; // Allow form submission
         }
     }
+
+    function validateLogIn() {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        const loginError = document.getElementById('login-error');
+        const loginForm = document.getElementById('login-form');
+
+        if (username === '' || password === '') {
+            loginError.textContent = "Please enter both username and password.";
+            return false; // Prevent form submission
+        } else {
+            loginError.textContent = ""; // Clear error message
+            return true; // Allow form submission
+        }
+
+    }
 </script>
+
+
+
 
 </html>

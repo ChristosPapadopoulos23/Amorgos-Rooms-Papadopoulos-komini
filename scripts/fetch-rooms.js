@@ -87,16 +87,16 @@ function renderRoomBatch(data) {
 
 fetchNextBatch();
 
-document.getElementById('fetchNextBatchButton').addEventListener('click', function() {
-    fetchNextBatch();
-});
+// document.getElementById('fetchNextBatchButton').addEventListener('click', function() {
+//     fetchNextBatch();
+// });
 
 $(document).ready(function() {
     $(window).scroll(function() {
         // Check if user has scrolled to the bottom of the page
         if ($(window).scrollTop() + $(window).height() >= $(document).height() - 400) {
             // Send AJAX request to trigger function in Java backend
-            console.log('SEED DATA');
+            console.log('SEEDING DATA');
             fetchNextBatch();
         }
     });

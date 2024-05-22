@@ -21,11 +21,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['last_name'] = $row['last_name'];
         $_SESSION['id'] = $row['id'];
         $_SESSION['created_at'] = $row['created_at'];
-        header("Location: ../create-page.php");
+        header("Location: ../create_page.html");
         exit();
     } else {
-        // Invalid username or password
-        echo "Invalid username or password.";
+        header("Location: ../sign-up.html");
+        exit();
     }
     $conn->close();
 }

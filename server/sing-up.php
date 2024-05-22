@@ -1,6 +1,6 @@
 <?php
 require_once 'logs.php';
-require_once 'reCAPTCHA.php';
+// require_once 'reCAPTCHA.php';
 require_once 'db_connection.php';
 require_once 'user_data_validation.php';
 
@@ -19,12 +19,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // $salt = rad2deg(random_bytes(0));
 
     if($password!=$cpassword){
-        exit(0);
+        header("Location: ../sign-up.html?error=passwords_mismatch");
+        exit();
     }
 
     $options = [
         'cost' => 12,
     ];
+
     $hashedPassword = password_hash($password, PASSWORD_BCRYPT, $options);
 
 
