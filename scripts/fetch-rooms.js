@@ -6,7 +6,8 @@ let SearchName = '';
 
 // Function to fetch a batch of data from the server
 function fetchNextBatch() {
-
+    SearchName = document.getElementById('fname').value;
+    SearchName = document.getElementById('search-rooms').value;
     console.log(SearchName);
 
     if (SearchName !== '' && currentPage > 1) {
@@ -67,14 +68,14 @@ function renderRoomBatch(data) {
     });
 }
 
-// document.getElementById('search-btn').addEventListener('click', function() {
-//     // Reset current page to 1 when search button is clicked
-//     currentPage = 1;
-//     // Clear existing room elements
-//     document.getElementById('roomsContainer').innerHTML = '';
-//     // Fetch the first batch of data for the new search query
-//     fetchNextBatch();
-// });
+document.getElementById('search-btn').addEventListener('click', function() {
+    // Reset current page to 1 when search button is clicked
+    currentPage = 1;
+    // Clear existing room elements
+    document.getElementById('roomsContainer').innerHTML = '';
+    // Fetch the first batch of data for the new search query
+    fetchNextBatch();
+});
 
 // document.getElementById('Location').addEventListener('change', function() {
 //     // Reset current page to 1 when location selection changes

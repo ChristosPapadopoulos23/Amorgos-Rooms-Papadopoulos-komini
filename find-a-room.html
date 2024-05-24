@@ -13,7 +13,6 @@
     
     <link rel="stylesheet" href="css_files/style_rooms.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="./scripts/fetch-rooms.js"></script>
 </head>
 
 <body>
@@ -46,8 +45,9 @@
                 <div class="search">
                     <i class='bx bx-search-alt'></i>
                     <input class="txtfield" type="text" id="fname" name="fname" placeholder="Search...">
+                    <button class="search-btn" id="search-btn">Search</button>
                 </div>
-                <div class="custom-select">
+                <div class="custom-select" id="Location">
                     <select class="area">
                         <option value="0">Διαλέξτε περιοχή</option>
                         <option value="1">Χώρα Αμοργού</option>
@@ -55,6 +55,7 @@
                         <option value="3">Κατάπολα</option>
                     </select>
                 </div>
+                <!-- 
                 <div class="room">
                     <div class="room-info">
                         <div class="room-name">Julia Rooms</div>
@@ -71,7 +72,7 @@
                         <div class="room1-pic"></div>
                     </a>
                 </div>
-                <!-- <div class="room">
+                <div class="room">
                     <div class="room-info">
                         <div class="room-name">Pension Amorgos</div>
                         <div>Χώρα Αμοργού</div>
@@ -80,8 +81,7 @@
                         <i class='bx bx-mobile'></i>
                         <div>: 69xxxxxxxx</div>
                         <i class='bx bxs-envelope'></i>
-                        <div>: free-rooms@somewhere.com</div>
-                        <div><a class="link" href="contact.html">Επικοινωνήστε απευθείας</a></div>
+                        <div>: free-rooms@somewhere.com</div> <div><a class="link" href="contact.html">Επικοινωνήστε απευθείας</a></div>
                     </div>
                     <div class="room2-pic"></div>
                 </div>
