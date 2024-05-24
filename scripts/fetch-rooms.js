@@ -7,7 +7,6 @@ let SearchName = '';
 // Function to fetch a batch of data from the server
 function fetchNextBatch() {
     SearchName = document.getElementById('fname').value;
-    SearchName = document.getElementById('search-rooms').value;
     console.log(SearchName);
 
     if (SearchName !== '' && currentPage > 1) {
@@ -60,7 +59,7 @@ function renderRoomBatch(data) {
                 <div><a class="link" href="contact.html">Επικοινωνήστε απευθείας</a></div>
             </div>
             <a href="Julia_Rooms.html">
-                <div class="room1-pic"></div>
+                <img class="room1-pic" src="./media/room1.jpg">
             </a>
         `;
 

@@ -11,7 +11,7 @@ function checkAndUpdateRequestCount() {
 
     // Increment request count if it's been more than a minute since the last request
     $time_since_last_request = time() - $_SESSION['last_request_time'];
-    if ($time_since_last_request > 60) { // Limiting requests to 1 per minute
+    if ($time_since_last_request > 60) { // Limiting requests to 60 per minute
         $_SESSION['request_count'] = 0; // Reset request count
         $_SESSION['last_request_time'] = time(); // Update last request time
     }
