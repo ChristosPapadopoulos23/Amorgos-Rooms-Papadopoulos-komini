@@ -17,7 +17,7 @@ function checkAndUpdateRequestCount() {
     }
 
     // Check if request count exceeds the limit
-    $max_requests = 60; // Adjust this value as needed (e.g., 60 requests per minute)
+    $max_requests = 200; // Adjust this value as needed (e.g., 60 requests per minute)
     if ($_SESSION['request_count'] >= $max_requests) {
         // Handle rate limit exceeded
         http_response_code(429); // HTTP 429 Too Many Requests

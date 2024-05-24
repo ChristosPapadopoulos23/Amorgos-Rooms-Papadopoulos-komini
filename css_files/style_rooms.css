@@ -222,7 +222,7 @@ nav ul li .menu{
   .rooms .room{
     width: 90vw;
     display: block;
-    
+    top: 60px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -383,17 +383,17 @@ hr{
 }
 
 .rooms{
-  top: 100px;
-  position: absolute;
+  margin-top: 160px;
+  position: relative;
   display: block;
   clear:both;
-  margin-top: 100px;
   margin-bottom: 12vh;
   clear: both;
 }
 
 .room{
-  height: auto;
+  display: flex;
+  width: fit-content;
   background: rgba(255, 255, 255, 0.15);
   border: 3px solid rgba(255, 2255, 255, 0.3);
   backdrop-filter: blur(25px);
