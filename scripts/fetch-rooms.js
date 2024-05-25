@@ -2,11 +2,12 @@ let currentPage = 1;
 const batchSize = 6;
 let SearchLocation = "all";
 let SearchName = '';
-let isFetching = false; // To avoid duplicate requests
+let isFetching = false;
+let hasMore = true; // Flag to indicate if more data is available
 
 // Function to fetch a batch of data from the server
 function fetchNextBatch() {
-    if (isFetching) return; // Avoid duplicate requests
+    if (isFetching || !hasMore) return;
 
     isFetching = true;
     SearchName = document.getElementById('fname').value;
@@ -23,18 +24,21 @@ function fetchNextBatch() {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-            return response.json(); // Parse response as JSON
+            return response.json();
         })
         .then(data => {
-            renderRoomBatch(data);
+            renderRoomBatch(data.rooms);
+
+            // Update hasMore flag based on response
+            hasMore = data.hasMore;
 
             // Increment the current page for the next batch
             currentPage++;
-            isFetching = false; // Reset fetching flag
+            isFetching = false;
         })
         .catch(error => {
             console.error('Fetch request failed:', error);
-            isFetching = false; // Reset fetching flag on error
+            isFetching = false;
         });
 
     console.log('Fetching next batch...');
@@ -48,7 +52,6 @@ function renderRoomBatch(data) {
         const roomElement = document.createElement('div');
         roomElement.classList.add('room');
 
-        // Create and append room content (customize based on your data structure)
         roomElement.innerHTML = `
             <div class="room-info">
                 <div class="room-name">${room.name}</div>
@@ -70,11 +73,9 @@ function renderRoomBatch(data) {
 }
 
 document.getElementById('search-btn').addEventListener('click', function() {
-    // Reset current page to 1 when search button is clicked
     currentPage = 1;
-    // Clear existing room elements
     document.getElementById('roomsContainer').innerHTML = '';
-    // Fetch the first batch of data for the new search query
+    hasMore = true; // Reset the hasMore flag for new search
     fetchNextBatch();
 });
 
@@ -88,12 +89,10 @@ $(document).ready(function() {
     };
 
     $(window).scroll(debounce(function() {
-        // Check if user has scrolled to the bottom of the page
         if ($(window).scrollTop() + $(window).height() >= $(document).height() - 100) {
             fetchNextBatch();
         }
     }, 200));
 });
 
-// Initial fetch when page loads
 fetchNextBatch();
