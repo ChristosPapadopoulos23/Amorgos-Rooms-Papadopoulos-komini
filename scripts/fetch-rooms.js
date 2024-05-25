@@ -2,19 +2,21 @@ let currentPage = 1;
 const batchSize = 6;
 let SearchLocation = "all";
 let SearchName = '';
-
+let isFetching = false; // To avoid duplicate requests
 
 // Function to fetch a batch of data from the server
 function fetchNextBatch() {
+    if (isFetching) return; // Avoid duplicate requests
+
+    isFetching = true;
     SearchName = document.getElementById('fname').value;
-    console.log(SearchName);
 
     if (SearchName !== '' && currentPage > 1) {
+        isFetching = false;
         return;
     }
 
     const url = `./server/fetch-rooms.php?page=${currentPage}&batchSize=${batchSize}&location=${SearchLocation}&roomName=${SearchName}`;
-
 
     fetch(url)
         .then(response => {
@@ -24,14 +26,15 @@ function fetchNextBatch() {
             return response.json(); // Parse response as JSON
         })
         .then(data => {
-            console.log(data);
             renderRoomBatch(data);
 
             // Increment the current page for the next batch
             currentPage++;
+            isFetching = false; // Reset fetching flag
         })
         .catch(error => {
             console.error('Fetch request failed:', error);
+            isFetching = false; // Reset fetching flag on error
         });
 
     console.log('Fetching next batch...');
@@ -47,7 +50,6 @@ function renderRoomBatch(data) {
 
         // Create and append room content (customize based on your data structure)
         roomElement.innerHTML = `
-            
             <div class="room-info">
                 <div class="room-name">${room.name}</div>
                 <i class='bx bx-phone'></i>
@@ -76,28 +78,22 @@ document.getElementById('search-btn').addEventListener('click', function() {
     fetchNextBatch();
 });
 
-// document.getElementById('Location').addEventListener('change', function() {
-//     // Reset current page to 1 when location selection changes
-//     currentPage = 1;
-//     // Clear existing room elements
-//     document.getElementById('roomsContainer').innerHTML = '';
-//     // Fetch the first batch of data for the new location
-//     fetchNextBatch();
-// });
-
-fetchNextBatch();
-
-// document.getElementById('fetchNextBatchButton').addEventListener('click', function() {
-//     fetchNextBatch();
-// });
-
 $(document).ready(function() {
-    $(window).scroll(function() {
+    const debounce = (func, wait) => {
+        let timeout;
+        return function(...args) {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(this, args), wait);
+        };
+    };
+
+    $(window).scroll(debounce(function() {
         // Check if user has scrolled to the bottom of the page
-        if ($(window).scrollTop() + $(window).height() >= $(document).height() - 400) {
-            // Send AJAX request to trigger function in Java backend
-            console.log('SEEDING DATA');
+        if ($(window).scrollTop() + $(window).height() >= $(document).height() - 100) {
             fetchNextBatch();
         }
-    });
+    }, 200));
 });
+
+// Initial fetch when page loads
+fetchNextBatch();
