@@ -46,7 +46,7 @@
         <div class="main">
 
             <div class="contact">
-                <form>
+                <form action="./server/contact.php" method="POST">
                     <label class="lbl">Πληροφορίες Επικοινωνίας</label>
                     <div class="one">
                         <input type="text" id="name" name="name" placeholder="Όνομα" required="">
@@ -59,7 +59,7 @@
                     <div class="one">
                         <div class="num">
                             <label>Δωμάτια</label>
-                            <input name="rooms" id="room_number" type="number" min="1" max="100" value="1" step="1" required="">
+                            <input name="room" id="room_number" type="number" min="1" max="100" value="1" step="1" required="">
                         </div>
                         <div class="num">
                             <label>Ενήλικες</label>
@@ -83,11 +83,11 @@
                     <div class="one">
                         <div class="date">
                             <label>Ευέλικτες Ημερομηνίες;</label>
-                            <input class="chkbtn" type="checkbox" name="flexibility">
+                            <input class="chkbtn" type="checkbox" value="false" name="flexibility">
                         </div>
                         <div class="date">
                             <label>Κατοικίδιο;</label>
-                            <select class="pet">
+                            <select class="pet" name="pet">
                                 <option value="0">Όχι</option>
                                 <option value="1">Σκύλος</option>
                                 <option value="2">Γάτα</option>
