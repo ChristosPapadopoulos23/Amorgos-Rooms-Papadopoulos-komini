@@ -49,35 +49,35 @@
                 <form>
                     <label class="lbl">Πληροφορίες Επικοινωνίας</label>
                     <div class="one">
-                        <input type="text" name="name" placeholder="Όνομα" required="">
-                        <input type="text" name="sname" placeholder="Επίθετο" required="">
+                        <input type="text" id="name" name="name" placeholder="Όνομα" required="">
+                        <input type="text" id="sname" name="sname" placeholder="Επίθετο" required="">
                     </div>
                     <div class="one">
-                        <input type="email" name="email" placeholder="Email" required="">
-                        <input class="four" type="text" name="phone" placeholder="Τηλέφωνο επικοινωνίας" required="">
+                        <input type="email" id="email" name="email" placeholder="Email" required="">
+                        <input class="four" id="phone" type="text" name="phone" placeholder="Τηλέφωνο επικοινωνίας" required="">
                     </div>
                     <div class="one">
                         <div class="num">
                             <label>Δωμάτια</label>
-                            <input name="rooms" type="number" min="0" max="100" value="1" step="1" required="">
+                            <input name="rooms" id="room_number" type="number" min="1" max="100" value="1" step="1" required="">
                         </div>
                         <div class="num">
                             <label>Ενήλικες</label>
-                            <input name="adults" type="number" min="0" max="100" value="2" step="1" required="">
+                            <input name="adults" id="adults" type="number" min="1" max="100" value="2" step="1" required="">
                         </div>
                         <div class="num">
                             <label>Παιδιά</label>
-                            <input name="kids" type="number" min="0" max="100" value="0" step="1" required="">
+                            <input name="kids" id="kids" type="number" min="0" max="100" value="0" step="1" required="">
                         </div>
                     </div>
                     <div class="one">
                         <div class="date">
                             <label>Άφιξη</label>
-                            <input name="arrival" class="date-input" type="date" value="2024-06-20" required="">
+                            <input name="arrival" id="arrival" class="date-input" type="date" required="">
                         </div>
                         <div class="date">
                             <label>Αναχώριση</label>
-                            <input name="return" class="date-input" type="date" value="2024-07-20" required="">
+                            <input name="return" id="return" class="date-input" type="date" required="">
                         </div>
                     </div>
                     <div class="one">
@@ -130,5 +130,5 @@
         </div>
     </div>
 </body>
-
+<script src="./scripts/contact.js"></script>
 </html>

@@ -61,7 +61,7 @@ function renderRoomBatch(data) {
                 <div>: ${room.phone}</div>
                 <i class='bx bxs-envelope'></i>
                 <div>: ${room.email}</div>
-                <div><a class="link" href="contact.html">Επικοινωνήστε απευθείας</a></div>
+                <div><a class="link" href="contact.html?value=${room.email}">Επικοινωνήστε απευθείας</a></div>
             </div>
             <a href="Julia_Rooms.html">
                 <img class="room1-pic" src="./media/room1.jpg">
