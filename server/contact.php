@@ -4,7 +4,7 @@ require_once 'logs.php';
 require_once 'db_connection.php';
 
 if(isset($_GET['value']))
-        $email = $_GET['value'];
+    $email = $_GET['value'];
         
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
@@ -22,6 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pet=$conn->real_escape_string($_POST['pet']);
     $comments=$conn->real_escape_string($_POST['comments']);
     $today = date("Y-m-d");
+
     if(strlen($name)<2 || strlen($sname)<2)
         exit(0);
 
@@ -71,12 +72,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Email sending failed.";
     }
 
-   if (mail($amorg_email, "Ευχαριστούμε για την επικοινωνία σας με την Amorgos Rooms", $user_message)) {
+    if (mail($amorg_email, "Ευχαριστούμε για την επικοινωνία σας με την Amorgos Rooms", $user_message)) {
         echo "Email sent successfully!";
     } else {
         echo "Email sending failed.";
     }
-
-    
 
 }
