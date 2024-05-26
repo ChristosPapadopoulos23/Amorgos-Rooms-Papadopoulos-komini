@@ -57,14 +57,23 @@
                         <input class="four" type="text" name="phone" placeholder="Τηλέφωνο.." required="">
                     </div>
                     <input class="four" type="text" name="mobile" placeholder="Κινητό τηλέφωνο.." required="">
-                    <div class="num">
-                        <label for="poster">Φωτογραφία δωματίου:</label>
-                        <label class="pic">
-                            <input class="pic_input" type="file" id="room_pic" name="pic" accept="image/png, image/*"
-                                multiple />
-                            Επιλογή αρχείου
-                        </label>
-                    </div>
+                        <div class="num">
+                            <label for="poster">Φωτογραφία δωματίου:</label>
+                            <label class="pic">
+                                <input class="pic_input" type="file" id="room_pic" name="pic" accept="image/png, image/*"
+                                    multiple />
+                                Επιλογή αρχείου
+                            </label>
+                            <label for="poster">Επιλογή τοποθεσίας:</label>
+                            <select class="area" id="area">
+                                <option value="0">Διαλέξτε περιοχή</option>
+                                <option value="Χώρα Αμοργού">Χώρα Αμοργού</option>
+                                <option value="Αιγιάλη">Αιγιάλη</option>
+                                <option value="Κατάπολα">Κατάπολα</option>
+                                <option value="Άλλος">Άλλο</option>
+                            </select>
+                        </div>
+                    
                     <div class="text-xs-center">
                         <div class="g-recaptcha" data-sitekey="6LfbXNIpAAAAABFh4_XvMajKo0wEkQIS1JCyhQfJ"></div>
                     </div>

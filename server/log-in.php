@@ -2,9 +2,7 @@
 session_start();
 session_create_id();
 
-// Include necessary files
-require_once 'logs.php';
-require_once 'reCAPTCHA.php';
+// Include necessary files  
 require_once 'db_connection.php';
 require_once 'authentication.php';
 
@@ -21,7 +19,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['last_name'] = $row['last_name'];
         $_SESSION['id'] = $row['id'];
         $_SESSION['created_at'] = $row['created_at'];
-        header("Location: ../create_page.html");
+        if($row['location'] != "Some Location"){
+            header("Location: ../create_page.html");
+            exit();
+        }
+        header("Location: ../index.html");
         exit();
     } else {
         header("Location: ../sign-up.html");

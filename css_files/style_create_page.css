@@ -218,7 +218,7 @@ a:hover{
 
   .center .main{
     margin-top: 10px;
-    height: 950px;
+    height: 1050px;
   }
 
   .center .main .one{
@@ -374,6 +374,7 @@ i{
 }
 
 .main{
+  height: 1000px;
   background: rgba(255, 255, 255, 0.15);
   border: 3px solid rgba(255, 2255, 255, 0.3);
   backdrop-filter: blur(25px);
@@ -613,4 +614,23 @@ form{
 
 .url .email{
   width: fit-content;
+}
+
+.area{
+  font-size: 17px;
+  position: relative;
+  clear: both;
+  background: rgba(255, 255, 255, 0.15);
+  border: 3px solid rgba(255, 2255, 255, 0.3);
+  backdrop-filter: blur(25px);
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.15);
+  color: white;
+  outline: none;
+}
+
+.area option{
+  background-color: #0082e6;
+  padding-bottom: 10px;
 }

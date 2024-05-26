@@ -73,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmtBusinessSignup->bind_param("ssssis", $business_name, $phone, $email, $business_location, $user_id, $timestamp);
 
     if ($stmtBusinessSignup->execute() === TRUE) {
-        header("Location: ../create_page.html");
+        header("Location: ../index.html");
         exit();
     } else {
         echo "Error: " . $stmtBusinessSignup->error;
