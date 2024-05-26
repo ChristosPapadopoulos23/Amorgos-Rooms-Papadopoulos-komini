@@ -5,6 +5,9 @@
   list-style: none;
   box-sizing: border-box;
 }
+body{
+  background: linear-gradient(to top,#0082e6,#044577); 
+}
 nav{
   position: fixed;
   z-index: 100001;

@@ -6,8 +6,7 @@
     box-sizing: border-box;
 }
 body{
-  background-color: #0082e6;
-    
+  background: linear-gradient(to top,#0082e6,#044577); 
 }
 nav{
     position: fixed;
