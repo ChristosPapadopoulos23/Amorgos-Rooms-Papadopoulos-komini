@@ -224,13 +224,9 @@ a:hover{
   .center .main .one{
     display: flex;
     margin: 0;
-    width: 90%;
     margin-right: auto;
     margin-left: auto;
     flex-direction: column;
-  }
-  .center .main .one input{
-    margin-left: 0;
   }
   .center .main .contact{
     font-size: 20px;
@@ -246,6 +242,11 @@ a:hover{
   .center .main .contact .url .one .chkbtn{
     margin-right: 0px;
     margin-bottom: 0px;
+  }
+
+  .center .main .one input{
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
@@ -404,7 +405,9 @@ input{
 	background: #e0dede;
 	justify-content: center;
 	display: flex;
-	margin: 20px auto;
+	margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
 	padding: 10px;
 	border: none;
 	outline: none;

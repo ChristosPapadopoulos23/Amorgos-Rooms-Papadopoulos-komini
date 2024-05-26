@@ -219,7 +219,7 @@ nav ul li .menu{
   }
 
   .rooms .room{
-    width: 90vw;
+    width: 95%;
     display: block;
     top: 60px;
     margin-left: auto;
@@ -236,7 +236,6 @@ nav ul li .menu{
     max-width: 80vw;
     width: 100%;
     height: 80vw;
-    max-height: 600px;
   }
 
   .center .search{
@@ -251,7 +250,7 @@ nav ul li .menu{
   }
   .center .area{
     clear: both;
-    width: 345px;
+    width: 320px;
     float: none;
     margin-bottom: 10px;
     transform: translateY(0%);
@@ -357,9 +356,7 @@ hr{
 
 .rooms{
   margin-top: 160px;
-  position: relative;
-  display: block;
-  clear:both;
+  clear:both; 
   margin-bottom: 200px;
   clear: both;
 }
