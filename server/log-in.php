@@ -19,11 +19,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['last_name'] = $row['last_name'];
         $_SESSION['id'] = $row['id'];
         $_SESSION['created_at'] = $row['created_at'];
-        if($row['location'] != "Some Location"){
-            header("Location: ../create_page.html");
+
+        $id = $_SESSION['id'];
+        $sql_business = "SELECT * FROM businessTable WHERE owner_id = $id";
+        $result_bus = $conn->query($sql_business);
+        $row_bus = $result_bus->fetch_assoc();
+        if($row_bus['location'] != "Some Location"){
+            header("Location: ../create_page.html");    ;
             exit();
         }
-        header("Location: ../index.html");
+        header("Location: ../index.html");//custom page incumming
         exit();
     } else {
         header("Location: ../sign-up.html");
