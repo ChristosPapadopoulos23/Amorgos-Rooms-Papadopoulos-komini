@@ -7,6 +7,7 @@
 }
 body{
   background-color: #0082e6;
+  
     
 }
 nav{
@@ -169,7 +170,7 @@ a:hover{
     font-size: 25px;
   }
   .center{
-    height: 120vh;
+    height: fit-content;
     background-image: url(../media/ship.jpg);
     background-size: cover;
   }
@@ -218,7 +219,9 @@ a:hover{
   }
 
   .center .main{
+    margin-bottom: 120px;
     height: 700px;
+    max-width: 98vw;
   }
 
   .center .main .one{
@@ -368,6 +371,7 @@ i{
 }
 
 .main{
+  margin-top: 10px;
 	width: 550px;
 	height: 500px;
   background: rgba(255, 255, 255, 0.15);
