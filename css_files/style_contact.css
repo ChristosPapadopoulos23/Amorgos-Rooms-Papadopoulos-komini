@@ -415,11 +415,12 @@ i {
 }
 
 .lbl {
+  width: 100%;
   color: #fff;
   font-size: 1.7em;
   justify-content: center;
   display: flex;
-  margin: 60px;
+  margin-top: 30px;
   margin-bottom: 30px;
   font-weight: bold;
 }
@@ -430,7 +431,8 @@ input {
   justify-content: center;
   display: flex;
   margin: 20px auto;
-  padding: 10px;
+  padding: 14px;
+  font-size: 15px;
   border: none;
   outline: none;
   border-radius: 10px;

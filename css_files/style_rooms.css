@@ -227,44 +227,18 @@ nav ul li .menu{
   }
 
   .rooms .room .room1-pic{
-    clear: both;
     transform: translateY(40px);
     margin-bottom: 40px;
     margin-left: auto;
     margin-right: auto;
-    display: block;
+    display: flex;
     float: none;
     max-width: 80vw;
-    width: auto;
+    width: 100%;
     height: 80vw;
     max-height: 600px;
   }
-  .rooms .room .room2-pic{
-    clear: both;
-    margin-top: 200px;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    float: none;
-    width: auto;
-    height: 80vw;
-    max-height: 600px;
-  }
-  .rooms .room .room3-pic{
-    clear: both;
-    margin-top: 200px;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    float: none;
-    max-width: 80vw;
-    width: auto;
-    height: 80vw;
-    max-height: 600px;
-  }
-  .rooms .room .room4-pic{
-    margin-top: 100px;
-  }
+
   .center .search{
    display: flex;
     float: none;
@@ -386,7 +360,7 @@ hr{
   position: relative;
   display: block;
   clear:both;
-  margin-bottom: 12vh;
+  margin-bottom: 200px;
   clear: both;
 }
 

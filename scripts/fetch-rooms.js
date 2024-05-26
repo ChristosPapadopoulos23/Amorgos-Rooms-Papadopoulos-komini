@@ -72,12 +72,15 @@ function renderRoomBatch(data) {
     });
 }
 
-document.getElementById('search-btn').addEventListener('click', function() {
-    currentPage = 1;
-    document.getElementById('roomsContainer').innerHTML = '';
-    hasMore = true; // Reset the hasMore flag for new search
-    fetchNextBatch();
+document.getElementById('fname').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        currentPage = 1;
+        document.getElementById('roomsContainer').innerHTML = '';
+        hasMore = true; // Reset the hasMore flag for new search
+        fetchNextBatch();
+    }
 });
+
 
 $(document).ready(function() {
     const debounce = (func, wait) => {
