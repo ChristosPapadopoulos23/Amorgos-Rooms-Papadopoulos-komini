@@ -66,7 +66,7 @@
 
 .btn {
     display: flex;
-    justify-content: right;
+    justify-content: left;
     margin-top: 20px;
     
 }

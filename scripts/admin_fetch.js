@@ -1,26 +1,24 @@
 let currentPage = 1;
 const batchSize = 6;
-let SearchLocation = "all";
-let SearchName = 'all';
-let State = 'all';
+let searchLocation = "all";
+let searchName = 'all';
+let state = 'all';
 let isFetching = false;
-let hasMore = true; // Flag to indicate if more data is available
-
+let hasMore = true;
 
 function fetchNextBatch() {
     if (isFetching || !hasMore) return;
-
     isFetching = true;
-    SearchName = document.getElementById('search').value;
-    SearchLocation = document.getElementById('Location').value;
-    State = document.getElementById('State').value;
-
-    if (SearchName !== '' && currentPage > 1) {
+    searchName = document.getElementById('search').value;
+    searchLocation = document.getElementById('Location').value;
+    state = document.getElementById('State').value;
+    
+    if (searchName !== '' && currentPage > 1) {
         isFetching = false;
         return;
     }
 
-    const url = `./server/admin.php?page=${currentPage}&batchSize=${batchSize}&location=${SearchLocation}&roomName=${SearchName}&state=${State}`;
+    const url = `./server/admin.php?page=${currentPage}&batchSize=${batchSize}&location=${searchLocation}&roomName=${searchName}&state=${state}`;
 
     fetch(url)
         .then(response => {
@@ -50,42 +48,59 @@ function renderRoomBatch(data) {
     const roomsContainer = document.getElementById('roomsContainer');
 
     data.forEach(room => {
-        const roomElement = document.createElement('div');
-        roomElement.classList.add('room');
-
-        roomElement.innerHTML = `
-            <img src="media/church.jpg" alt="room1">
-            <div class="room-info">
-                <h3>${room.name}</h3>
-                <p><b>Location:</b> ${room.location}</p>
-                <p><b>Phone:</b> ${room.phone}</p>
-                <p><b>Email:</b> ${room.email}</p>
-                <p id="Description"><b>Description:</b><br>TODO HELLO</p>
-                <div class="btn">
-                    <button class="approve">
-                        <i class="fa-solid fa-check"></i>
-                    </button>
-                    <button class="edit">
-                        <i class="fa-solid fa-edit"></i>
-                    </button>
-                    <button class="delete">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
-                </div>
-            </div>
-        `;
-
+        const roomElement = createRoomElement(room);
         roomsContainer.appendChild(roomElement);
     });
+}
+
+function createRoomElement(room) {
+    const roomElement = document.createElement('div');
+    roomElement.classList.add('room');
+    roomElement.innerHTML = `
+        <img src="media/church.jpg" alt="room1">
+        <div class="room-info">
+            <h3>${room.name}</h3>
+            <p><b>Location:</b> ${room.location}</p>
+            <p><b>Phone:</b> ${room.phone}</p>
+            <p><b>Email:</b> ${room.email}</p>
+            <p id="Description"><b>Description:</b><br>TODO HELLO</p>
+            <div class="btn">
+                <button class="approve">
+                    <i class="fa-solid fa-check"></i>
+                </button>
+                <button class="edit">
+                    <i class="fa-solid fa-edit"></i>
+                </button>
+                <button class="delete">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+            </div>
+        </div>
+    `;
+    return roomElement;
 }
 
 document.getElementById('search').addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {
         currentPage = 1;
         document.getElementById('roomsContainer').innerHTML = '';
-        hasMore = true; // Reset the hasMore flag for new search
+        hasMore = true;
         fetchNextBatch();
     }
+});
+
+document.getElementById('Location').addEventListener('change', function() {
+    currentPage = 1;
+    document.getElementById('roomsContainer').innerHTML = '';
+    hasMore = true;
+    fetchNextBatch();
+});
+
+document.getElementById('State').addEventListener('change', function() {
+    currentPage = 1;
+    document.getElementById('roomsContainer').innerHTML = '';
+    hasMore = true;
+    fetchNextBatch();
 });
 
 $(document).ready(function() {

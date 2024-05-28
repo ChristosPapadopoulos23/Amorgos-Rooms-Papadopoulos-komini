@@ -48,8 +48,10 @@ if ($user_state == 'unapproved') {
     $sql .= " AND location = 'Some Location'";
     $countSql .= " AND location = 'Some Location'";
 } else if ($user_state == 'approved') {
-    $sql .= " AND location != 'Some Location'";
-    $countSql .= " AND location != 'Some Location'";
+    if ($location != 'all') {
+        $sql .= " AND location = '$location'";
+        $countSql .= " AND location = '$location'";
+    }
 } else if ($user_state == 'rejected') {
     $sql .= " AND location = 'rejected'";
     $countSql .= " AND location = 'rejected'";
