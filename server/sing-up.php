@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Username or email already exists!";
         $response['success'] = true;
         echo json_encode($response);
-        header("Location: ../sign-up.html");
+        header("Location: ../sing-up.html");
        
         exit();
     } 
@@ -83,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($stmtBusinessSignup->execute() === TRUE) {
         $response['success'] = false;
         echo json_encode($response);
-        header("Location: ../sign_up.html");
+        header("Location: ./sign_up.html");
         exit();
     } else {
         echo "Error: " . $stmtBusinessSignup->error;

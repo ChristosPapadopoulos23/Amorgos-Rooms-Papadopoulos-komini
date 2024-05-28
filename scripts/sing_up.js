@@ -50,11 +50,13 @@ document.getElementById('singup-form').addEventListener('submit', function(event
 
     const formData = new FormData(this);
 
-    fetch('./server/log-in.php', {
-        method: 'POST',
-        body: formData
+    fetch('./server/sing-up.php')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
     })
-    .then(response => response.json())
     .then(data => {
         if (data.success) {
             document.getElementById('loginMessage').innerHTML = 'Login successful!';
@@ -65,7 +67,7 @@ document.getElementById('singup-form').addEventListener('submit', function(event
         }
     })
     .catch(error => {
-        console.error('Error:', error);
+        console.error('Fetch request failed:', error);
         document.getElementById('loginMessage').innerHTML = 'An unexpected error occurred. Please try again later.';
     });
 });
