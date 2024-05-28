@@ -160,6 +160,8 @@ nav ul li .menu{
   display: none;
 }
 
+
+
 @media(max-width: 972px){
   label.logo{
     font-size: 28px;
@@ -215,7 +217,7 @@ nav ul li .menu{
       left: 0;
   }
   .big_logo{
-    font-size: 30px;
+    font-size: 66px;
   }
 
   .rooms .room{

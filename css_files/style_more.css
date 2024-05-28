@@ -405,7 +405,7 @@
   }
   
   .text {
-    width: 70vw;
+    width: 85vw;
     background: rgba(255, 255, 255, 0.15);
     border: 3px solid rgba(255, 2255, 255, 0.3);
     backdrop-filter: blur(25px);
@@ -423,7 +423,7 @@
   
   .title{
     font-size: 60px;
-    margin-bottom: 30px;
+    margin: 25px;
     color: #003699;
   }
   
