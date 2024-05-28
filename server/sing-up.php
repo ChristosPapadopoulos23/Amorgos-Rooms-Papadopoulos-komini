@@ -77,14 +77,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmtBusinessSignup = $conn->prepare($sqlBusinessSignup);
         $stmtBusinessSignup->bind_param("ssssis", $business_name, $phone, $email, $business_location, $user_id, $timestamp);
 
-        if ($stmtBusinessSignup->execute() === TRUE) {
-            header("Location: ../sign_up.html");
-            exit();
-        } else {
-            header("Location: ../sign-up.html?error=database_error");
-            exit();
-        }
-        $stmtBusinessSignup->close();
+    if ($stmtBusinessSignup->execute() === TRUE) {
+        $response['success'] = false;
+        echo json_encode($response);
+        header("Location: ../sign_up.html");
+        exit();
     } else {
         header("Location: ../sign-up.html?error=database_error");
         exit();
