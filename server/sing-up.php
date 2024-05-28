@@ -1,4 +1,7 @@
 <?php
+session_start();
+session_create_id();
+
 require_once 'logs.php';
 // require_once 'reCAPTCHA.php';
 require_once 'db_connection.php';
@@ -43,6 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($checkResult->num_rows > 0) {
         echo "Username or email already exists!";
+        header("Location: ../sign-up.php");
         exit();
     } 
 
@@ -73,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmtBusinessSignup->bind_param("ssssis", $business_name, $phone, $email, $business_location, $user_id, $timestamp);
 
     if ($stmtBusinessSignup->execute() === TRUE) {
-        header("Location: ../index.html");
+        header("Location: ../pop-up.html");
         exit();
     } else {
         echo "Error: " . $stmtBusinessSignup->error;

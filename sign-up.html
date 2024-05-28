@@ -43,7 +43,7 @@
             <input type="checkbox" id="chk" aria-hidden="true">
 
             <div class="signup">
-                <form action="./server/sing-up.php" method="POST" onsubmit="return validateSignUp();" id="singup-form">
+                <form  method="POST" onsubmit="return validateSignUp();" id="singup-form">
                     <label class="form" for="chk" aria-hidden="true">Sign up</label>
                     <div class="one">
                         <input type="text" id="name" name="name" placeholder="Όνομα" required="">
@@ -64,9 +64,20 @@
                         <input type="password" id="cpassword" name="cpassword" placeholder="Confirm password" required="">
                         <div id="password-error" style="color: red; display: block; position: relative;"></div>
                     </div>
-                    <button>Sign up</button>
-                </form>
-            </div>
+                    <div class="box">
+                        <a class="button" href="#popup1">Sign up</a>
+                    </div>
+                    
+                    <div id="popup1" class="overlay">
+                        <div class="popup">
+                            <h2>Here i am</h2>
+                            <a class="close" href="#">&times;</a>
+                            <div class="content">
+                                Thank to pop me out of that button, but now i'm done so you can close this window.
+                            </div>
+                        </div>
+                    </div>
+                </div>    
 
             <div class="login">
                 <form action="./server/log-in.php" method="POST" id="login-form">
@@ -100,50 +111,5 @@
         </div>
     </div>
 </body>
-
-<script>
-    function validateSignUp() {
-        const password = document.getElementById('password').value;
-        const cpassword = document.getElementById('cpassword').value;
-        const passwordError = document.getElementById('password-error');
-        const passwordInput = document.getElementById('password');
-        const cpasswordInput = document.getElementById('cpassword');
-
-        if (password !== cpassword) {
-            
-            passwordError.textContent = "";
-            passwordInput.style.border = "1px solid red";
-            passwordInput.fontSize = ".5rem";
-            passwordInput.value = "";
-            passwordInput.placeholder = "Passwords do not match!";
-            cpasswordInput.style.border = "1px solid red";
-            cpasswordInput.value = "";
-            cpasswordInput.placeholder = "Passwords don't match!";
-            return false; // Prevent form submission
-        } else {
-            passwordError.textContent = ""; // Clear error message if passwords match
-            return true; // Allow form submission
-        }
-    }
-
-    function validateLogIn() {
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
-        const loginError = document.getElementById('login-error');
-        const loginForm = document.getElementById('login-form');
-
-        if (username === '' || password === '') {
-            loginError.textContent = "Please enter both username and password.";
-            return false; // Prevent form submission
-        } else {
-            loginError.textContent = ""; // Clear error message
-            return true; // Allow form submission
-        }
-
-    }
-</script>
-
-
-
-
+<script src="sign_up.js"></script>
 </html>
