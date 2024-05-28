@@ -219,7 +219,7 @@ a:hover{
   .center .main{
     margin-top: 10px;
     margin-bottom: 120px;
-    height: 705px;
+    height: 800px;
     max-width: 98vw;
   }
 
@@ -401,11 +401,11 @@ i{
 	transition: .5s ease-in-out;
 }
 input{
-	width: 60%;
+	width: 66%;
 	background: #e0dede;
 	justify-content: center;
 	display: flex;
-	margin: 20px auto;
+	margin: 20px;
 	padding: 14px;
   font-size: 15px;
 	border: none;
