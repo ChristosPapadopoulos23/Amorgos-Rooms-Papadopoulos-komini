@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,20 +61,18 @@
             <input type="checkbox" id="chk" aria-hidden="true">
 
             <div class="signup">
-                <form action="./server/sign-up.php" method="POST" onsubmit="return validateSignUp();" id="singup-form">
+                <form action="./server/sing-up.php" method="POST">
                     <label class="form" for="chk" aria-hidden="true">Sign up</label>
                     <div class="one">
                         <input type="text" id="name" name="name" placeholder="Όνομα" required="">
                         <input type="text" id="lastname" name="lastname" placeholder="Επώνυμο" required="">
                     </div>
                     <div class="one">
-                        <input class="three" type="text" id="business_name" name="business_name"
-                            placeholder="Όνομα επιχείρησης" required="">
-                        <input class="four" type="text" id="phone" name="phone" placeholder="Τηλέφωνο επιχείρησης"
-                            required="">
+                        <input class="three" type="text" id="business_name" name="business_name" placeholder="Όνομα επιχείρησης" required="">
+                        <input class="four" type="text" id="phone" name="phone" placeholder="Τηλέφωνο επιχείρησης" required="">
                     </div>
                     <div class="one">
-                        <input type="text" id="username" name="username" placeholder="User name" required="">
+                        <input type="text" id="username" name="username" placeholder="Username" required="">
                         <input type="email" id="email" name="email" placeholder="Email" required="">
                     </div>
                     <div class="one">
@@ -81,14 +80,14 @@
                         <input type="password" id="cpassword" name="cpassword" placeholder="Confirm password" required="">
                         <div id="password-error" style="color: red; display: block; position: relative;"></div>
                     </div>
-                    <div id="loginMessage"></div>
+                    <div id="signup-message"></div>
                     <button type="submit">Sign up</button>  
-
                 </form>
             </div>
+            
 
             <div class="login">
-                <form action="./server/log-in.php" method="POST" id="login-form">
+                <form action="./server/log-in.php" method="POST" id="login-form" onsubmit="return validateLogIn();">
                     <label class="form" for="chk" aria-hidden="true">Login</label>
                     <input type="text" id="username" name="username" placeholder="Username" required="">
                     <input type="password" id="password" name="password" placeholder="Password" required="">
@@ -119,5 +118,5 @@
         </div>
     </div>
 </body>
-<script src="./scripts/sing_up.js"></script>
+<script src="./scripts/sing-up.js"></script>
 </html>

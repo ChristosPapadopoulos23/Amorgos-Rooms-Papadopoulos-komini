@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Validate input (e.g., check if fields are not empty)
     if (empty($username) || empty($password)) {
-        header("Location: ../sign-up.html?error=empty_fields");
+        echo json_encode(['success' => false, 'error' => 'Please fill in all fields']);
         exit();
     }
 
@@ -57,20 +57,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $row_business = $result_business->fetch_assoc();
             $stmt_business->close();
 
-            // Redirect based on location
+            // Set success and redirect based on location
             if ($row_business && $row_business['location'] != "Some Location") {
-                header("Location: ../create_page.html");
+                header("Location: ../create-page.php");
                 exit();
             } else {
-                header("Location: ../index.html");//custom page incoming
+                header("Location: ../index.html");
                 exit();
             }
+
         } else {
-            header("Location: ../sign-up.html?error=user_not_found");
+            echo json_encode(['success' => false, 'error' => 'User not found']);
             exit();
         }
     } else {
-        header("Location: ../sign-up.html?error=invalid_credentials");
+        echo json_encode(['success' => false, 'error' => 'Invalid credentials']);
         exit();
     }
     $conn->close();
