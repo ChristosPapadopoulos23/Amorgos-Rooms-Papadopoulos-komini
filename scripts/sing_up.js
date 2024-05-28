@@ -50,18 +50,23 @@ document.getElementById('singup-form').addEventListener('submit', function(event
 
     const formData = new FormData(this);
 
-    fetch('./server/log-in.php', {
+    fetch('./server/sing_up.php', {
         method: 'POST',
         body: formData
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
     .then(data => {
+        console.log(data); // Log the response to inspect it
         if (data.success) {
-            document.getElementById('loginMessage').innerHTML = 'Login successful!';
+            document.getElementById('loginMessage').innerHTML = 'Sign up successful!';
             openPopup();
         } else {
-            document.getElementById('loginMessage').innerHTML = 'Login failed. Please try again.';
-            
+            document.getElementById('loginMessage').innerHTML = 'Sign up failed. Please try again.';
         }
     })
     .catch(error => {

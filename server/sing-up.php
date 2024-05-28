@@ -1,95 +1,94 @@
 <?php
 session_start();
-session_create_id();
+session_create_id(true);
 
 require_once 'logs.php';
 // require_once 'reCAPTCHA.php';
 require_once 'db_connection.php';
 require_once 'user_data_validation.php';
 
+// Function to sanitize user input
+function sanitizeInput($input) {
+    global $conn;
+    if(isset($conn)) {
+        return $conn->real_escape_string($input);
+    } else {
+        return htmlspecialchars(trim($input));
+    }
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Escape and validate form data
-    $name = $conn->real_escape_string($_POST['name']);
-    $lastname = $conn->real_escape_string($_POST['lastname']);
-    $business_name = $conn->real_escape_string($_POST['business_name']);
-    $phone = $conn->real_escape_string($_POST['phone']);
-    $email = $conn->real_escape_string($_POST['email']);
-    $username = $conn->real_escape_string($_POST['username']);
-    $password = $conn->real_escape_string($_POST['password']);
-    $cpassword = $conn->real_escape_string($_POST['cpassword']);
+    // Sanitize and validate form data
+    $name = sanitizeInput($_POST['name']);
+    $lastname = sanitizeInput($_POST['lastname']);
+    $business_name = sanitizeInput($_POST['business_name']);
+    $phone = sanitizeInput($_POST['phone']);
+    $email = sanitizeInput($_POST['email']);
+    $username = sanitizeInput($_POST['username']);
+    $password = sanitizeInput($_POST['password']);
+    $cpassword = sanitizeInput($_POST['cpassword']);
     $timestamp = date("Y-m-d H:i:s");
     $business_location = "Some Location";
-    // $salt = rad2deg(random_bytes(0));
-    $response = array();
 
-    if($password!=$cpassword){
+    // Check if passwords match
+    if($password != $cpassword) {
         header("Location: ../sign-up.html?error=passwords_mismatch");
         exit();
     }
 
-    $options = [
-        'cost' => 12,
-    ];
-
-    $hashedPassword = password_hash($password, PASSWORD_BCRYPT, $options);
-
-
-    // Validate form data
-    $error = validateFormData($formData);
-    if ($error) {
-        echo $error;
+    // Validate form data (you need to implement this function)
+    $error = validateFormData($_POST);
+    if (!empty($error)) {
+        header("Location: ../sign-up.html?error=$error");
         exit();
     }
     
     // Check if username or email already exists
-    $checkQuery = "SELECT * FROM UsersTable WHERE username='$username' LIMIT 1";
-    $checkResult = $conn->query($checkQuery);
+    $checkQuery = "SELECT * FROM UsersTable WHERE username=?";
+    $stmt = $conn->prepare($checkQuery);
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-    if ($checkResult->num_rows > 0) {
-        echo "Username or email already exists!";
-        $response['success'] = true;
-        echo json_encode($response);
-        header("Location: ../sign-up.html");
-       
+    if ($result->num_rows > 0) {
+        header("Location: ../sign-up.html?error=username_exists");
         exit();
     } 
+
+    // Hash the password
+    $options = [
+        'cost' => 12,
+    ];
+    $hashedPassword = password_hash($password, PASSWORD_BCRYPT, $options);
 
     // Insert user data into UsersTable
     $sqlUserSignup = "INSERT INTO UsersTable (first_name, last_name, username, password, created_at)
                         VALUES (?, ?, ?, ?, ?)";
-
     $stmtUserSignup = $conn->prepare($sqlUserSignup);
-
     $stmtUserSignup->bind_param("sssss", $name, $lastname, $username, $hashedPassword, $timestamp);
 
     if ($stmtUserSignup->execute() === TRUE) {
-        echo "User signed up successfully!<br>";
+        $user_id = $stmtUserSignup->insert_id;
+        $stmtUserSignup->close();
+
+        // Insert business data into BusinessTable
+        $sqlBusinessSignup = "INSERT INTO BusinessTable (business_name, business_phone, business_email, location, owner_id, created_at)
+                                VALUES (?, ?, ?, ?, ?, ?)";
+        $stmtBusinessSignup = $conn->prepare($sqlBusinessSignup);
+        $stmtBusinessSignup->bind_param("ssssis", $business_name, $phone, $email, $business_location, $user_id, $timestamp);
+
+        if ($stmtBusinessSignup->execute() === TRUE) {
+            header("Location: ../sign_up.html");
+            exit();
+        } else {
+            header("Location: ../sign-up.html?error=database_error");
+            exit();
+        }
+        $stmtBusinessSignup->close();
     } else {
-        echo "Error: " . $stmtUserSignup->error;
-    }
-
-    $user_id = mysqli_insert_id($conn);
-
-    $stmtUserSignup->close();
-
-    // Insert business data into BusinessTable
-    $sqlBusinessSignup = "INSERT INTO BusinessTable (business_name, business_phone, business_email, location, owner_id, created_at)
-                            VALUES (?, ?, ?, ?, ?, ?)";
-
-    $stmtBusinessSignup = $conn->prepare($sqlBusinessSignup);
-
-    $stmtBusinessSignup->bind_param("ssssis", $business_name, $phone, $email, $business_location, $user_id, $timestamp);
-
-    if ($stmtBusinessSignup->execute() === TRUE) {
-        $response['success'] = false;
-        echo json_encode($response);
-        header("Location: ../sign_up.html");
+        header("Location: ../sign-up.html?error=database_error");
         exit();
-    } else {
-        echo "Error: " . $stmtBusinessSignup->error;
     }
-    $stmtBusinessSignup->close();
-
-    $checkResult->close();
 }
 $conn->close();
+?>
