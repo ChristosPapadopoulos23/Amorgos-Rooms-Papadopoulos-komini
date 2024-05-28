@@ -47,11 +47,20 @@
                 </div>
             </div>
         </div>
+        <div id="popup2" class="overlay">
+            <div class="popup">
+                <h2>Here i am</h2>
+                <a class="close" href="#">&times;</a>
+                <div class="content">
+                    Thank to pop me out of that button, but now i'm done so you can close this window.
+                </div>
+            </div>
+        </div>
         <div class="main">
             <input type="checkbox" id="chk" aria-hidden="true">
 
             <div class="signup">
-                <form  method="POST" onsubmit="return validateSignUp();" id="singup-form">
+                <form  method="POST" action="./server/sign-up.php" onsubmit="return validateSignUp();" id="singup-form">
                     <label class="form" for="chk" aria-hidden="true">Sign up</label>
                     <div class="one">
                         <input type="text" id="name" name="name" placeholder="Όνομα" required="">
@@ -72,12 +81,11 @@
                         <input type="password" id="cpassword" name="cpassword" placeholder="Confirm password" required="">
                         <div id="password-error" style="color: red; display: block; position: relative;"></div>
                     </div>
-                    <div class="box">
-                        <button><a class="button" href="#popup1">Sign up</a></button>
-                    </div>
-                    
+                    <div id="loginMessage"></div>
+                    <button type="submit">Sign up</button>  
 
-                </div>    
+                </form>
+            </div>
 
             <div class="login">
                 <form action="./server/log-in.php" method="POST" id="login-form">
@@ -111,5 +119,5 @@
         </div>
     </div>
 </body>
-<script src="sign_up.js"></script>
+<script src="./scripts/sing_up.js"></script>
 </html>

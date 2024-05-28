@@ -20,6 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $timestamp = date("Y-m-d H:i:s");
     $business_location = "Some Location";
     // $salt = rad2deg(random_bytes(0));
+    $response = array();
 
     if($password!=$cpassword){
         header("Location: ../sign-up.html?error=passwords_mismatch");
@@ -46,7 +47,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($checkResult->num_rows > 0) {
         echo "Username or email already exists!";
-        header("Location: ../sign-up.php");
+        $response['success'] = true;
+        echo json_encode($response);
+        header("Location: ../sign-up.html");
+       
         exit();
     } 
 
@@ -77,7 +81,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmtBusinessSignup->bind_param("ssssis", $business_name, $phone, $email, $business_location, $user_id, $timestamp);
 
     if ($stmtBusinessSignup->execute() === TRUE) {
-        header("Location: ../pop-up.html");
+        $response['success'] = false;
+        echo json_encode($response);
+        header("Location: ../sign_up.html");
         exit();
     } else {
         echo "Error: " . $stmtBusinessSignup->error;
@@ -86,6 +92,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $checkResult->close();
 }
-
-// Close database connection
 $conn->close();

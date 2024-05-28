@@ -37,3 +37,35 @@ function validateLogIn() {
     }
 
 }
+
+function openPopup() {
+    document.getElementById('popup1').style.visibility = 'visible';
+    document.getElementById('popup1').style.opacity = '100';
+}
+
+
+
+document.getElementById('singup-form').addEventListener('submit', function(event) {
+    event.preventDefault(); 
+
+    const formData = new FormData(this);
+
+    fetch('./server/log-in.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            document.getElementById('loginMessage').innerHTML = 'Login successful!';
+            openPopup();
+        } else {
+            document.getElementById('loginMessage').innerHTML = 'Login failed. Please try again.';
+            
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        document.getElementById('loginMessage').innerHTML = 'An unexpected error occurred. Please try again later.';
+    });
+});

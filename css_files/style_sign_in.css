@@ -488,10 +488,6 @@ button:hover{
   visibility: hidden;
   opacity: 0;
 }
-.overlay:target {
-  visibility: visible;
-  opacity: 1;
-}
 
 .popup {
   margin: 270px auto;
@@ -527,6 +523,11 @@ button:hover{
 .popup .content {
   max-height: 30%;
   overflow: auto;
+}
+
+.overlay.active {
+  visibility: visible;
+  opacity: 1;
 }
 
 
