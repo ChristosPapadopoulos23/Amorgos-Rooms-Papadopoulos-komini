@@ -401,17 +401,17 @@ i{
 	transition: .5s ease-in-out;
 }
 input{
-	width: 66%;
-	background: #e0dede;
-	justify-content: center;
-	display: flex;
-	margin: 20px;
-  margin-left: 5px;
-	padding: 14px;
+  width: 60%;
+  background: #e0dede;
+  justify-content: center;
+  display: flex;
+  margin: 20px auto;
+  margin-bottom: 20px;
+  padding: 14px;
   font-size: 15px;
-	border: none;
-	outline: none;
-	border-radius: 10px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
   margin-bottom: 0px;
 }
 button{

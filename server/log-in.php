@@ -1,10 +1,13 @@
 <?php
 session_start();
-session_create_id();
+session_create_id(true);
 
 // Include necessary files  
 require_once 'db_connection.php';
 require_once 'authentication.php';
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$username = $_POST['username'];
@@ -21,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['created_at'] = $row['created_at'];
 
         $id = $_SESSION['id'];
-        $sql_business = "SELECT * FROM businessTable WHERE owner_id = $id";
+        $sql_business = "SELECT * FROM BusinessTable WHERE owner_id = $id";
         $result_bus = $conn->query($sql_business);
         $row_bus = $result_bus->fetch_assoc();
         if($row_bus['location'] != "Some Location"){
@@ -36,3 +39,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     $conn->close();
 }
+?>
