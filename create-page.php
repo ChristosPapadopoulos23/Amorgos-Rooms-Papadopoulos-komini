@@ -43,6 +43,7 @@ if (!isset($_SESSION['user_id'])) {
             <li><a href="more.php">Information</a></li>
 
             <?php if (isset($_SESSION['user_id'])) { ?>
+                <li><a class="menu" href="control-panel.html">Control Panel</a></li>
                 <li><a class="menu" href="./server/log-out.php">Log out</a></li>
             <?php } else { ?>
                 <li><a class="menu" href="sign-up.php">Sign Up/Log in</a></li>

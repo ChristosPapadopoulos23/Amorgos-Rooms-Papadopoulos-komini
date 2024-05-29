@@ -38,10 +38,7 @@ session_start();
             <li><a href="more.html">Information</a></li>
 
             <?php if (isset($_SESSION['user_id'])) { ?>
-                <li><a class="menu" href="control-panel.html">Create Page</a></li>
-            <?php } ?>
-
-            <?php if (isset($_SESSION['user_id'])) { ?>
+                <li><a class="menu" href="control-panel.html">Control Panel</a></li>
                 <li><a class="menu" href="./server/log-out.php">Log out</a></li>
             <?php } else { ?>
                 <li><a class="menu" href="sign-up.php">Sign Up/Log in</a></li>
