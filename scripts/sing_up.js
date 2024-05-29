@@ -4,11 +4,13 @@ function validateSignUp() {
     const passwordError = document.getElementById('password-error');
     const passwordInput = document.getElementById('password');
     const cpasswordInput = document.getElementById('cpassword');
-    const number=document.getElementById('phone');
+    const number = document.getElementById('phone');
+    numberValue = document.getElementById('phone').value.trim();
 
-    if(/^\d+$/.test(number.value)==false){
+    if (!/^\d+$/.test(numberValue)) {
         number.style.border = "1px solid red";
-        number.textContent="";
+        number.value = ""; 
+        number.placeholder = "Only numbers are allowed";
         return false;
     }
 

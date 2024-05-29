@@ -34,7 +34,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cpassword = sanitizeInput($_POST['cpassword']);
     $timestamp = date("Y-m-d H:i:s");
     $business_location = "Some Location";
-
+    
+    if (ctype_digit($phone)) {
+        header("Location: ../sign-up.html?error=database_error");
+        exit();
+    }
     // Check if passwords match
     if($password != $cpassword) {
         header("Location: ../sign-up.html?error=passwords_mismatch");
