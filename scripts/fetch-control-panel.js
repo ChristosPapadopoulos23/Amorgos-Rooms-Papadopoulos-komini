@@ -1,10 +1,6 @@
-
 const user_id = 23;
 
-
 function fetchUsersRooms() {
-
-
     const url = `./server/fetch-panel.php?user_id=${user_id}`;
 
     fetch(url)
@@ -15,31 +11,36 @@ function fetchUsersRooms() {
             return response.json();
         })
         .then(data => {
-            createRoomElement(data.rooms);
+            renderRoomBatch(data.rooms);
         })
         .catch(error => {
             console.error('Fetch request failed:', error);
-            isFetching = false;
         });
 
+    console.log('Fetching next batch...');
 }
 
-
-function createRoomElement(data) {
+function renderRoomBatch(data) {
     const roomsContainer = document.getElementById('roomsContainer');
+    roomsContainer.innerHTML = ''; // Clear the container before appending new elements
 
     data.forEach(room => {
-        const roomElement = document.createElement('div');
-        roomElement.classList.add('room');
+        const roomElement = createRoomElement(room);
+        roomsContainer.appendChild(roomElement);
+    });
+}
 
-        roomElement.innerHTML = `
+function createRoomElement(room) {
+    const roomElement = document.createElement('div');
+    roomElement.classList.add('room');
+    roomElement.innerHTML = `
         <img src="media/church.jpg" alt="room1">
         <div class="room-info">
             <h3>${room.name}</h3>
             <p><b>Location:</b> ${room.location}</p>
             <p><b>Phone:</b> ${room.phone}</p>
             <p><b>Email:</b> ${room.email}</p>
-            <p id="Description"><b>Description:</b><br>TODO HELLO</p>
+            <p id="Description"><b>Description:</b><br>${room.description || 'TODO HELLO'}</p>
             <div class="btn">
                 <button class="approve">
                     <i class="fa-solid fa-check"></i>
@@ -52,10 +53,8 @@ function createRoomElement(data) {
                 </button>
             </div>
         </div>
-        `;
-
-        roomsContainer.appendChild(roomElement);
-    });
+    `;
+    return roomElement;
 }
 
-fetchUsersRooms()
+fetchUsersRooms();

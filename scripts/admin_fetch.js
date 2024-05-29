@@ -81,7 +81,7 @@ function createRoomElement(room) {
 }
 
 document.getElementById('search').addEventListener('keydown', function(event) {
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter' || event.keyCode === 13) {
         currentPage = 1;
         document.getElementById('roomsContainer').innerHTML = '';
         hasMore = true;
