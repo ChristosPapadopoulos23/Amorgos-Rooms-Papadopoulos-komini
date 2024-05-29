@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
-        header("Location: ../sign-up.html?error=username_exists");
+        header("Location: ../sign-up.html?error=username_exists&success=false");
         exit();
     } 
 
@@ -77,14 +77,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmtBusinessSignup = $conn->prepare($sqlBusinessSignup);
         $stmtBusinessSignup->bind_param("ssssis", $business_name, $phone, $email, $business_location, $user_id, $timestamp);
 
-    if ($stmtBusinessSignup->execute() === TRUE) {
-        $response['success'] = false;
-        echo json_encode($response);
-        header("Location: ../sign_up.html");
-        exit();
-    } else {
-        header("Location: ../sign-up.html?error=database_error");
-        exit();
+        if ($stmtBusinessSignup->execute() === TRUE) {
+            header("Location: ../sign-up.html?error=succesfull&success=true");
+            exit();
+        } else {
+            header("Location: ../sign-up.html?error=database_error");
+            exit();
+        }
     }
 }
 $conn->close();

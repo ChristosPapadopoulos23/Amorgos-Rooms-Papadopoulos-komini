@@ -525,9 +525,3 @@ button:hover{
   overflow: auto;
 }
 
-.overlay.active {
-  visibility: visible;
-  opacity: 1;
-}
-
-

@@ -38,34 +38,41 @@ function validateLogIn() {
 
 }
 
-function openPopup() {
+function openPopup1() {
     document.getElementById('popup1').style.visibility = 'visible';
     document.getElementById('popup1').style.opacity = '100';
 }
 
+function openPopup2() {
+    document.getElementById('popup2').style.visibility = 'visible';
+    document.getElementById('popup2').style.opacity = '100';
+}
+const closeAnchor = document.querySelector('.close');
+closeAnchor.addEventListener('click', closePopup);
+
+function closePopup() {
+    document.getElementById('popup1').style.visibility = 'hidden';
+    document.getElementById('popup1').style.opacity = '0';
+    document.getElementById('popup2').style.visibility = 'hidden';
+    document.getElementById('popup2').style.opacity = '0';
+}
 
 
-document.getElementById('singup-form').addEventListener('submit', function(event) {
-    event.preventDefault(); 
+function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+}
+const success = getQueryParam('success');
+const error = getQueryParam('error');
 
-    const formData = new FormData(this);
-
-    fetch('./server/log-in.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log(data); // Log the response to inspect it
-        if (data.success) {
-            document.getElementById('loginMessage').innerHTML = 'Sign up successful!';
-            openPopup();
-        } else {
-            document.getElementById('loginMessage').innerHTML = 'Sign up failed. Please try again.';
-        }
-    })
-    .catch(error => {
-        console.error('Fetch request failed:', error);
-        document.getElementById('loginMessage').innerHTML = 'An unexpected error occurred. Please try again later.';
-    });
-});
+window.onload = function() {
+    if (success === "true") {
+        document.getElementById('loginMessage').innerHTML = 'Sign up successful!';
+        openPopup1();
+    } else if (success === "false") {
+        document.getElementById('loginMessage').innerHTML = 'Sign up failed. Please try again.';
+        openPopup2();
+    }
+    console.log(success);
+};
+    
