@@ -35,20 +35,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $timestamp = date("Y-m-d H:i:s");
     $business_location = "Some Location";
     
-    if (ctype_digit($phone)) {
-        header("Location: ../sign-up.html?error=database_error");
-        exit();
-    }
+    // if (ctype_digit($phone)) {
+    //     header("Location: ../sign-up.php?error=database_error");
+    //     exit();
+    // }
     // Check if passwords match
     if($password != $cpassword) {
-        header("Location: ../sign-up.html?error=passwords_mismatch");
+        header("Location: ../sign-up.php?error=passwords_mismatch");
         exit();
     }
 
     // Validate form data
     $error = validateFormData($_POST);
     if (!empty($error)) {
-        header("Location: ../sign-up.html?error=$error");
+        header("Location: ../sign-up.php?error=$error");
         exit();
     }
     
@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
-        header("Location: ../sign-up.html?error=username_exists");
+        header("Location: ../sign-up.php?error=username_exists");
         exit();
     } 
 
@@ -87,10 +87,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmtBusinessSignup->bind_param("ssssis", $business_name, $phone, $email, $business_location, $user_id, $timestamp);
 
         if ($stmtBusinessSignup->execute() === TRUE) {
-            header("Location: ../sign-up.html?success=true");
+            header("Location: ../sign-up.php?success=true");
             exit();
         } else {
-            header("Location: ../sign-up.html?error=database_error");
+            header("Location: ../sign-up.php?error=database_error");
             exit();
         }
     }
