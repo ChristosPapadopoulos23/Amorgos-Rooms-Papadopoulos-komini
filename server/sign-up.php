@@ -2,6 +2,11 @@
 session_start();
 session_create_id(true);
 
+// Enable error reporting
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 require_once 'logs.php';
 // require_once 'reCAPTCHA.php';
 require_once 'db_connection.php';
@@ -36,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
-    // Validate form data (you need to implement this function)
+    // Validate form data
     $error = validateFormData($_POST);
     if (!empty($error)) {
         header("Location: ../sign-up.html?error=$error");
@@ -77,11 +82,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmtBusinessSignup = $conn->prepare($sqlBusinessSignup);
         $stmtBusinessSignup->bind_param("ssssis", $business_name, $phone, $email, $business_location, $user_id, $timestamp);
 
-    if ($stmtBusinessSignup->execute() === TRUE) {
-        $response['success'] = false;
-        echo json_encode($response);
-        header("Location: ../sign_up.html");
-        exit();
+        if ($stmtBusinessSignup->execute() === TRUE) {
+            header("Location: ../sign-up.html?success=1");
+            exit();
+        } else {
+            header("Location: ../sign-up.html?error=database_error");
+            exit();
+        }
     } else {
         header("Location: ../sign-up.html?error=database_error");
         exit();

@@ -42,30 +42,4 @@ function openPopup() {
     document.getElementById('popup1').style.visibility = 'visible';
     document.getElementById('popup1').style.opacity = '100';
 }
-
-
-
-document.getElementById('singup-form').addEventListener('submit', function(event) {
-    event.preventDefault(); 
-
-    const formData = new FormData(this);
-
-    fetch('./server/log-in.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log(data); // Log the response to inspect it
-        if (data.success) {
-            document.getElementById('loginMessage').innerHTML = 'Sign up successful!';
-            openPopup();
-        } else {
-            document.getElementById('loginMessage').innerHTML = 'Sign up failed. Please try again.';
-        }
-    })
-    .catch(error => {
-        console.error('Fetch request failed:', error);
-        document.getElementById('loginMessage').innerHTML = 'An unexpected error occurred. Please try again later.';
-    });
-});
+ 
