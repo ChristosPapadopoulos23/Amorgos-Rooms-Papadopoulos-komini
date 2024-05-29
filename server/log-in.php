@@ -58,11 +58,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt_business->close();
 
             // Redirect based on location
-            if ($row_business && $row_business['location'] != "Some Location") {
+            if ($row_business && $row_business['location'] != "Some Location" && $row_business['location'] != "rejected") {
                 header("Location: ../create_page.html");
                 exit();
             } else {
-                header("Location: ../index.html");//custom page incoming
+                header("Location: ../sign-up.html?error=user_not_accepted"); //custom page incoming
                 exit();
             }
         } else {

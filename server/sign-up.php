@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
-        header("Location: ../sign-up.html?error=username_exists&success=false");
+        header("Location: ../sign-up.html?error=username_exists");
         exit();
     } 
 
@@ -83,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmtBusinessSignup->bind_param("ssssis", $business_name, $phone, $email, $business_location, $user_id, $timestamp);
 
         if ($stmtBusinessSignup->execute() === TRUE) {
-            header("Location: ../sign-up.html?error=succesfull&success=true");
+            header("Location: ../sign-up.html?success=true");
             exit();
         } else {
             header("Location: ../sign-up.html?error=database_error");
