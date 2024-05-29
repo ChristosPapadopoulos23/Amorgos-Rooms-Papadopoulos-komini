@@ -1,11 +1,16 @@
 <?php
+session_start();
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     header("Location: ../index.html");
     die();
 }
 
-require_once 'config.php';
+// require_once 'config.php';
+require_once 'db_connection.php';
 require_once 'user_data_validation.php';
 
 function sanitizeInput($input) {
@@ -111,6 +116,7 @@ try {
     $conn->close();
 
 } catch (Exception $e) {
+    error_log('Query failed: ' . $e->getMessage());
     die('Query failed: ' . $e->getMessage());
 }
 

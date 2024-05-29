@@ -24,12 +24,6 @@
                 <div class="bar3"></div>
             </div>
         </label>
-        <script>
-            function myFunction(x) {
-                x.classList.toggle("change");
-            }
-
-        </script>
         <label class="logo">Amorgos Rooms</label>
         <ul>
             <li><a href="index.html">Home</a></li>
@@ -61,7 +55,7 @@
             <input type="checkbox" id="chk" aria-hidden="true">
 
             <div class="signup">
-                <form action="./server/sing-up.php" method="POST">
+                <form action="./server/sign-up.php" method="POST">
                     <label class="form" for="chk" aria-hidden="true">Sign up</label>
                     <div class="one">
                         <input type="text" id="name" name="name" placeholder="Όνομα" required="">
@@ -78,7 +72,6 @@
                     <div class="one">
                         <input type="password" id="password" name="password" placeholder="Password" required="">
                         <input type="password" id="cpassword" name="cpassword" placeholder="Confirm password" required="">
-                        <div id="password-error" style="color: red; display: block; position: relative;"></div>
                     </div>
                     <div id="signup-message"></div>
                     <button type="submit">Sign up</button>  
@@ -119,4 +112,9 @@
     </div>
 </body>
 <script src="./scripts/sing-up.js"></script>
+<script>
+    function myFunction(x) {
+        x.classList.toggle("change");
+    }
+</script>
 </html>

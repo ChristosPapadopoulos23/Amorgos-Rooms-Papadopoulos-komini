@@ -22,7 +22,7 @@ function validateSignUp() {
     // If passwords match, proceed with form submission
     const formData = new FormData(document.getElementById('signup-form'));
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', './server/sing-up.php', true);
+    xhr.open('POST', './server/sign-up.php', true);
     xhr.onload = function () {
         const response = JSON.parse(this.responseText);
         if (response.success) {
