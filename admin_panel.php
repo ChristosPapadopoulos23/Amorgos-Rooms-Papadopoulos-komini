@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['username'])) {  // TODO will check if the user is an admin now this is not the case
+    header("Location: ./sign-up.php");  //Feature is not implemented yet
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

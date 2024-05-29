@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,10 +35,17 @@
         </script>
         <label class="logo">Amorgos Rooms</label>
         <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="find-a-room.html">Find Rooms</a></li>
-            <li><a href="more.html">Information</a></li>
-            <li><a class="active" href="sign-up.html">Sign Up/Log in</a></li>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="find-a-room.php">Find Rooms</a></li>
+            <li><a href="more.php">Information</a></li>
+
+        
+
+            <?php if (isset($_SESSION['user_id'])) { ?>
+                <li><a class="menu" href="./server/log-out.php">Log out</a></li>
+            <?php } else { ?>
+                <li><a class="menu" href="sign-up.php">Sign Up/Log in</a></li>
+            <?php } ?>
         </ul>
     </nav>
     <section class="center">
@@ -98,7 +109,6 @@
                     <div class="one">
                         <input type="password" id="password" name="password" placeholder="Password" required="">
                         <input type="password" id="cpassword" name="cpassword" placeholder="Confirm password" required="">
-                        <div id="password-error" style="color: red; display: block; position: relative;"></div>
                     </div>
                     <div id="loginMessage"></div>
                     <button type="submit">Sign up</button>  

@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,18 +28,13 @@
                 <div class="bar3"></div>
             </div>
         </label>
-        <script>
-            function myFunction(x) {
-                x.classList.toggle("change");
-            }
 
-        </script>
         <label class="logo">Amorgos Rooms</label>
         <ul>
-            <li><a class="menu" href="index.html">Home</a></li>
-            <li><a class="menu" href="find-a-room.html">Rooms</a></li>
-            <li><a class="menu" href="more.html">Information</a></li>
-            <li><a class="menu" href="sign-up.html">Sign Up/Log in</a></li>
+            <li><a class="menu" href="index.php">Home</a></li>
+            <li><a class="menu" href="find-a-room.php">Rooms</a></li>
+            <li><a class="menu" href="more.php">Information</a></li>
+            <li><a class="menu" href="sign-up.php">Sign Up/Log in</a></li>
         </ul>
     </nav>
 
@@ -98,5 +97,11 @@
         </div>
     </div>
 </body>
+<script>
+    function myFunction(x) {
+        x.classList.toggle("change");
+    }
+
+</script>
 
 </html>

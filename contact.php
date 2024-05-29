@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,18 +31,21 @@
                 <div class="bar3"></div>
             </div>
         </label>
-        <script>
-            function myFunction(x) {
-                x.classList.toggle("change");
-            }
-
-        </script>
         <label class="logo">Amorgos Rooms</label>
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="find-a-room.html">Rooms</a></li>
             <li><a href="more.html">Information</a></li>
-            <li><a href="sign-up.html">Sign Up/Log in</a></li>
+
+            <?php if (isset($_SESSION['user_id'])) { ?>
+                <li><a class="menu" href="control-panel.html">Create Page</a></li>
+            <?php } ?>
+
+            <?php if (isset($_SESSION['user_id'])) { ?>
+                <li><a class="menu" href="./server/log-out.php">Log out</a></li>
+            <?php } else { ?>
+                <li><a class="menu" href="sign-up.php">Sign Up/Log in</a></li>
+            <?php } ?>
         </ul>
     </nav>
     <section class="center">
@@ -131,4 +138,9 @@
     </div>
 </body>
 <script src="./scripts/contact.js"></script>
+<script>
+    function myFunction(x) {
+        x.classList.toggle("change");
+    }
+</script>
 </html>

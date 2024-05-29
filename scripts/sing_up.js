@@ -76,8 +76,8 @@ function closePopup() {
     document.getElementById('user-exists').style.opacity = '0';
     document.getElementById('wrong-data').style.visibility = 'hidden';
     document.getElementById('wrong-data').style.opacity = '0';
-    document.getElementById('password-mismatch').style.visibility = 'hidden';
-    document.getElementById('password-mismatch').style.opacity = '0';
+    document.getElementById('Not-accepted').style.visibility = 'hidden';
+    document.getElementById('Not-accepted').style.opacity = '0';
 }
 
 document.querySelectorAll('.close').forEach(closeAnchor => {
@@ -98,9 +98,6 @@ window.onload = function() {
     }
     if (error === "username_exists") {
         openUserExists();
-    }
-    if (error === "passwords_mismatch") {
-        openPassMismatch();
     }
     if (error === "invalid_credentials") {
         openWrongData();

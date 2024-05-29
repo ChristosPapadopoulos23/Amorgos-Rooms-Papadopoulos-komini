@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,7 +43,7 @@
             <div class="room-list">
 
                 <div class="create-room">
-                    <a href="./create_page.html"><button><i class="fa-solid fa-plus"></i></button></a>
+                    <a href="./create-page.php"><button><i class="fa-solid fa-plus"></i></button></a>
                 </div>
 
                 <div class="room">

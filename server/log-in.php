@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Validate input (e.g., check if fields are not empty)
     if (empty($username) || empty($password)) {
-        header("Location: ../sign-up.html?error=empty_fields");
+        header("Location: ../sign-up.php?error=empty_fields");
         exit();
     }
 
@@ -42,11 +42,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['username'] = $user['username'];
         $_SESSION['first_name'] = $user['first_name'];
         $_SESSION['last_name'] = $user['last_name'];
-        $_SESSION['id'] = $user['id'];
+        $_SESSION['user_id'] = $user['id'];
         $_SESSION['created_at'] = $user['created_at'];
 
         // Check if the user has a specific location
-        $id = $_SESSION['id'];
+        $id = $_SESSION['user_id'];
         $sql_business = "SELECT * FROM BusinessTable WHERE owner_id = ?";
         $stmt_business = $conn->prepare($sql_business);
         $stmt_business->bind_param("i", $id);
@@ -56,15 +56,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt_business->close();
 
         // Redirect based on location
-        if ($row_business && $row_business['location'] != "Some Location") {
-            header("Location: ../create_page.html");
+        if ($row_business['location'] != "Some Location") {
+            header("Location: ../control-panel.php");
             exit();
         } else {
-            header("Location: ../sign-up.html?error=user_not_accepted"); //custom page incoming
+            header("Location: ../sign-up.php?error=user_not_accepted"); //custom page incoming
             exit();
         }
     } else {
-        header("Location: ../sign-up.html?error=invalid_credentials");
+        header("Location: ../sign-up.php?error=invalid_credentials");
         exit();
     }
     $conn->close();
