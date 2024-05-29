@@ -13,8 +13,6 @@ session_start();
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link rel="stylesheet" href="./styles/nav-bar.css">
-    <link rel="stylesheet" href="./styles/find-rooms.css">
     <link rel="stylesheet" href="./css_files/panels.css">
 
 </head>
@@ -28,6 +26,7 @@ session_start();
                 <p>Name: <?php echo $_SESSION['first_name'] . ' ' . $_SESSION['last_name']; ?></p>
                 <p>Email: <?php echo $_SESSION['email']; ?></p>
                 <p>Created At: <?php echo $_SESSION['created_at']; ?></p>
+                <p>User ID: <?php echo $_SESSION['user_id']; ?> </p>
 
                     <?php if ($_SESSION['username'] == 'HASH') { ?>
                         <li><a href="admin_panel.php">Admin Panel</a></li>
@@ -49,7 +48,10 @@ session_start();
                     <a href="./create-page.php"><button><i class="fa-solid fa-plus"></i></button></a>
                 </div>
 
-                <div class="room">
+                <div id="roomsContainer" class="rooms"></div>
+
+
+                <!-- <div class="room">
                     <img src="media/church.jpg" alt="room1">
                     <div class="room-info">
                         <h3>Rooms Julia</h3>
@@ -70,7 +72,7 @@ session_start();
                             </button>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
             </div>
 
@@ -80,7 +82,6 @@ session_start();
 
 
 </body>
-<script src="./scripts/mobile-nav.js"></script>
 <script src="./scripts/fetch-control-panel.js"></script>
 
 
