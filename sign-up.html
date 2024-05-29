@@ -61,19 +61,20 @@
                 <h2>Λάθος Στοιχεια!</h2>
                 <a class="close" href="#">&times;</a>
                 <div class="content">
-                    Λαθσός κωδικός πρόσβασης η λάθος όνομα χρήστη!
+                    Λάθoς κωδικός πρόσβασης η λάθος όνομα χρήστη!
                 </div>
             </div>
         </div>
-        <div id="password-mismatch" class="overlay">
+        <div id="Not-accepted" class="overlay">
             <div class="popup">
                 <h2>Λάθος Κωδικός!</h2>
                 <a class="close" href="#">&times;</a>
                 <div class="content">
-                    Οι κωδικοί πρόσβασης δεν ταιριάζουν!
+                    Αυτός ο χρήστης δεν έχει αποδεχτεί απο τον διαχειριστή!
                 </div>
             </div>
         </div>
+
         <div class="main">
             <input type="checkbox" id="chk" aria-hidden="true">
 
@@ -87,7 +88,7 @@
                     <div class="one">
                         <input class="three" type="text" id="business_name" name="business_name"
                             placeholder="Όνομα επιχείρησης" required="">
-                        <input class="four" type="text" id="phone" name="phone" placeholder="Τηλέφωνο επιχείρησης"
+                        <input class="four" type="text" id="phone" name="phone" maxlength="15" minlength="10" placeholder="Τηλέφωνο επιχείρησης"
                             required="">
                     </div>
                     <div class="one">

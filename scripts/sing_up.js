@@ -4,6 +4,13 @@ function validateSignUp() {
     const passwordError = document.getElementById('password-error');
     const passwordInput = document.getElementById('password');
     const cpasswordInput = document.getElementById('cpassword');
+    const number=document.getElementById('phone');
+
+    if(/^\d+$/.test(number.value)==false){
+        number.style.border = "1px solid red";
+        number.textContent="";
+        return false;
+    }
 
     if (password !== cpassword) {
         passwordError.textContent = "";
@@ -51,9 +58,9 @@ function openWrongData() {
     document.getElementById('wrong-data').style.opacity = '100';
 }
 
-function openPassMismatch() {
-    document.getElementById('password-mismatch').style.visibility = 'visible';
-    document.getElementById('password-mismatch').style.opacity = '100';
+function openNotAccepted() {
+    document.getElementById('Not-accepted').style.visibility = 'visible';
+    document.getElementById('Not-accepted').style.opacity = '100';
 }
 
 function closePopup() {
@@ -97,5 +104,8 @@ window.onload = function() {
     }
     if (error === "invalid_credentials") {
         openWrongData();
+    }
+    if (error === "user_not_accepted") {
+        openNotAccepted();
     }
 };

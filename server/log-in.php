@@ -38,35 +38,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user = $result->fetch_assoc();
         $stmt->close();
 
-        // If user exists
-        if ($user) {
-            // Set session variables
-            $_SESSION['username'] = $user['username'];
-            $_SESSION['first_name'] = $user['first_name'];
-            $_SESSION['last_name'] = $user['last_name'];
-            $_SESSION['id'] = $user['id'];
-            $_SESSION['created_at'] = $user['created_at'];
+        // Set session variables
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['first_name'] = $user['first_name'];
+        $_SESSION['last_name'] = $user['last_name'];
+        $_SESSION['id'] = $user['id'];
+        $_SESSION['created_at'] = $user['created_at'];
 
-            // Check if the user has a specific location
-            $id = $_SESSION['id'];
-            $sql_business = "SELECT * FROM BusinessTable WHERE owner_id = ?";
-            $stmt_business = $conn->prepare($sql_business);
-            $stmt_business->bind_param("i", $id);
-            $stmt_business->execute();
-            $result_business = $stmt_business->get_result();
-            $row_business = $result_business->fetch_assoc();
-            $stmt_business->close();
+        // Check if the user has a specific location
+        $id = $_SESSION['id'];
+        $sql_business = "SELECT * FROM BusinessTable WHERE owner_id = ?";
+        $stmt_business = $conn->prepare($sql_business);
+        $stmt_business->bind_param("i", $id);
+        $stmt_business->execute();
+        $result_business = $stmt_business->get_result();
+        $row_business = $result_business->fetch_assoc();
+        $stmt_business->close();
 
-            // Redirect based on location
-            if ($row_business && $row_business['location'] != "Some Location" && $row_business['location'] != "rejected") {
-                header("Location: ../create_page.html");
-                exit();
-            } else {
-                header("Location: ../sign-up.html?error=user_not_accepted"); //custom page incoming
-                exit();
-            }
+        // Redirect based on location
+        if ($row_business && $row_business['location'] != "Some Location") {
+            header("Location: ../create_page.html");
+            exit();
         } else {
-            header("Location: ../sign-up.html?error=user_not_found");
+            header("Location: ../sign-up.html?error=user_not_accepted"); //custom page incoming
             exit();
         }
     } else {
