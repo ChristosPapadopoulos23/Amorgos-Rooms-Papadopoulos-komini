@@ -25,11 +25,14 @@ session_start();
         <div class="panel">
             <div class="profile">
                 <div class="profile__info">
-                    <h3>Name: Paul Komini</h3>
-                    <p>Email: ex@gad.com</p>
-                    <p>Phone: 1234567890</p>
-                    <p>Location: Athens, Greece</p>
-                    <p>Time : 2020/2/2</p>
+                <p>Name: <?php echo $_SESSION['first_name'] . ' ' . $_SESSION['last_name']; ?></p>
+                <p>Email: <?php echo $_SESSION['email']; ?></p>
+                <p>Created At: <?php echo $_SESSION['created_at']; ?></p>
+
+                    <?php if ($_SESSION['username'] == 'HASH') { ?>
+                        <li><a href="admin_panel.php">Admin Panel</a></li>
+                    <?php } ?>
+
                     <div class="btn">
                         <button class="edit">
                             <i class="fa-solid fa-edit"></i>

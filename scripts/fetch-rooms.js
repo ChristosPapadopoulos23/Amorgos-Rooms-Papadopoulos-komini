@@ -92,7 +92,7 @@ $(document).ready(function() {
     };
 
     $(window).scroll(debounce(function() {
-        if ($(window).scrollTop() + $(window).height() >= $(document).height() - 100) {
+        if ($(window).scrollTop() + $(window).height() >= $(document).height() - 500) {
             fetchNextBatch();
         }
     }, 200));
