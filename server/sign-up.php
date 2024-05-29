@@ -2,6 +2,11 @@
 session_start();
 session_create_id(true);
 
+// Enable error reporting
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 require_once 'logs.php';
 // require_once 'reCAPTCHA.php';
 require_once 'db_connection.php';
@@ -36,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
-    // Validate form data (you need to implement this function)
+    // Validate form data
     $error = validateFormData($_POST);
     if (!empty($error)) {
         header("Location: ../sign-up.html?error=$error");
