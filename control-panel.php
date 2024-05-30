@@ -18,8 +18,31 @@ session_start();
 </head>
 
 <body>
-    <main>
+    <nav>
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+            <div class="container" onclick="myFunction(this)">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+        </label>
+        <label class="logo">Amorgos Rooms</label>
+        <ul>
+            <li><a class="menu" href="index.php">Home</a></li>
+            <li><a class="menu" href="find-a-room.php">Rooms</a></li>
+            <li><a class="menu" href="more.php">Information</a></li>
 
+            <?php if (isset($_SESSION['user_id'])) { ?>
+                <li><a class="menu" href="control-panel.php">Control Panel</a></li>
+                <li><a class="menu" href="./server/log-out.php">Log out</a></li>
+            <?php } else { ?>
+                <li><a class="menu" href="sign-up.php">Sign Up/Log in</a></li>
+            <?php } ?>
+        </ul>
+    </nav>
+    <main>
+    <section class="center">       
         <div class="panel">
             <div class="profile">
                 <div class="profile__info">
@@ -32,13 +55,17 @@ session_start();
                         <li><a href="admin_panel.php">Admin Panel</a></li>
                     <?php } ?>
 
-                    <div class="btn">
-                        <button class="edit">
-                            <i class="fa-solid fa-edit"></i>
-                        </button>
-                        <button class="delete">
-                            <i class="fa-solid fa-trash"></i>
-                        </button>
+                    <div class="btn_container">
+                        <div class="btn">
+                            <button class="edit">
+                                <i class="fa-solid fa-edit"></i>
+                            </button>
+                        </div>
+                        <div class="btn">
+                            <button class="delete">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -50,39 +77,19 @@ session_start();
 
                 <div id="roomsContainer" class="rooms"></div>
 
-
-                <!-- <div class="room">
-                    <img src="media/church.jpg" alt="room1">
-                    <div class="room-info">
-                        <h3>Rooms Julia</h3>
-                        <p>Location: Xwra Amorgou</p>
-                        <p>Phone: 2324234234</p>
-                        <p>Email: info@gmail.com</p>
-                        <p id="Description"> Description:<br>Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
-                            Quo obcaecati perferendis laborum quas deserunt sed reprehenderit architecto 
-                            nisi incidunt et facilis numquam mollitia, sint libero nemo hic molestiae, eum ipsam.
-                        </p>
-
-                        <div class="btn">
-                            <button class="edit">
-                                <i class="fa-solid fa-edit"></i>
-                            </button>
-                            <button class="delete">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div> -->
-
             </div>
 
         </div>
 
     </main>
-
+    </section>
 
 </body>
 <script src="./scripts/fetch-control-panel.js"></script>
-
+<script>
+        function myFunction(x) {
+            x.classList.toggle("change");
+        }
+    </script>
 
 </html>
