@@ -87,7 +87,7 @@ session_start();
                     <div class="one">
                         <div class="date">
                             <label>Ευέλικτες Ημερομηνίες;</label>
-                            <input class="chkbtn" type="checkbox" value="false" name="flexibility">
+                            <input class="chkbtn" type="checkbox" value="yes" name="flexibility">
                         </div>
                         <div class="date">
                             <label>Κατοικίδιο;</label>

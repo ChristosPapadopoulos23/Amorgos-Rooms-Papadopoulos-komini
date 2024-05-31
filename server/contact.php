@@ -8,7 +8,7 @@ if(isset($_GET['value']))
         
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
-    $amorg_email="kominipaul@gmail.com";
+    $amorg_email="christoszita@gmail.com";
     $name=$conn->real_escape_string($_POST['name']);
     $sname=$conn->real_escape_string($_POST['sname']);
     $adults=$conn->real_escape_string($_POST['adults']);
@@ -18,10 +18,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $arrival=$conn->real_escape_string($_POST['arrival']);
     $return=$conn->real_escape_string($_POST['return']);
     $room_number=$conn->real_escape_string($_POST['room']);
-    //$flexibility=$_POST['flexibility'];
+    $flexibility=$_POST['flexibility'];
     $pet=$conn->real_escape_string($_POST['pet']);
     $comments=$conn->real_escape_string($_POST['comments']);
     $today = date("Y-m-d");
+
+    if($flexibility!='yes'){
+        $flexibility='Όχι';
+    }
+    else{
+        $flexibility='Ναί';
+    }
+    echo"$flexibility";
 
     if(strlen($name)<2 || strlen($sname)<2)
         exit(0);
@@ -47,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     Ώρα άφιξης: $arrival
     Ώρα αναχώρησης: $return
     Κατοικίδια: $pet
-    Ευελιξία: 
+    Ευελιξία: $flexibility
     Σχόλια: $comments
 
 Παρακαλούμε εξετάστε την κράτηση αυτή και επικοινωνήστε με τον πελάτη σύντομα για επιπλέον πληροφορίες ή για την επιβεβαίωση της κράτησης.
