@@ -244,6 +244,18 @@ a:hover{
   .center .main .signup .form{
     margin-bottom: 10px;
   }
+  .center .popup {
+    width: 90%;
+    font-size: 20px;
+  }
+
+  .center .popup h2{
+    width: 90%;
+  }
+  
+  .center .popup .close{
+    font-size: 30px;
+  }
 }
 
 .container {
@@ -497,7 +509,6 @@ button:hover{
   min-height:200px ;
   width: 30%;
   position: relative;
-  transition: all 5s ease-in-out;
 }
 
 .popup h2 {
