@@ -33,9 +33,9 @@ session_start();
         </label>
         <label class="logo">Amorgos Rooms</label>
         <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="find-a-room.html">Rooms</a></li>
-            <li><a href="more.html">Information</a></li>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="find-a-room.php">Rooms</a></li>
+            <li><a href="more.php">Information</a></li>
 
             <?php if (isset($_SESSION['user_id'])) { ?>
                 <li><a class="menu" href="control-panel.php">Control Panel</a></li>
