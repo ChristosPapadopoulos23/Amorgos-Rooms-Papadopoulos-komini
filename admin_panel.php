@@ -25,8 +25,31 @@ if (!isset($_SESSION['username'])) {  // TODO will check if the user is an admin
 </head>
 
 <body>
-    <main>
+    <nav>
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+            <div class="container" onclick="myFunction(this)">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+        </label>
+        <label class="logo">Amorgos Rooms</label>
+        <ul>
+            <li><a class="menu" href="index.php">Home</a></li>
+            <li><a class="menu" href="find-a-room.php">Rooms</a></li>
+            <li><a class="menu" href="more.php">Information</a></li>
 
+            <?php if (isset($_SESSION['user_id'])) { ?>
+                <li><a class="menu" href="control-panel.php">Control Panel</a></li>
+                <li><a class="menu" href="./server/log-out.php">Log out</a></li>
+            <?php } else { ?>
+                <li><a class="menu" href="sign-up.php">Sign Up/Log in</a></li>
+            <?php } ?>
+        </ul>
+    </nav>
+<section class="center">      
+    <main>
         <div class="panel">
             <div class="profile">
                 <div class="profile__info">
@@ -48,7 +71,6 @@ if (!isset($_SESSION['username'])) {  // TODO will check if the user is an admin
                             <select class="area" id="State">
                                 <option value="unapproved">Un-Approved</option>
                                 <option value="approved">Approved</option>
-                                <option value="rejected">Rejected</option>
                                 <option value="all">All</option>
                             </select>
                         </div>
@@ -95,7 +117,7 @@ if (!isset($_SESSION['username'])) {  // TODO will check if the user is an admin
         </div>
 
     </main>
-
+</section>
 
 </body>
 <script src="./scripts/admin_fetch.js"></script>
