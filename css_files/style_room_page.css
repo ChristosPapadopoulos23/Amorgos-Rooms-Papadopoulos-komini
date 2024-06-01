@@ -462,7 +462,7 @@ button .right{
   white-space: nowrap;
   font-size: 0;
   position: relative;
-  width: 580px;
+  width: 600px;
   height: fit-content;
   display: flex;
   float: left;

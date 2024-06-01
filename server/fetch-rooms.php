@@ -64,6 +64,7 @@ if ($result->num_rows > 0) {
             'location' => $row['location'],
             'phone' => $row['business_phone'],
             'email' => $row['business_email'],
+            'id' => $row['id'],
             'image' => 'images/island.jpg' // Example image URL
         );
     }
