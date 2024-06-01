@@ -457,3 +457,27 @@ button .right{
   transform: translateX(2px);
 }
 
+.image-slideshow {
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 0;
+  position: relative;
+  width: 580px;
+  height: fit-content;
+  display: flex;
+  float: left;
+  margin: 0 0 10px 10px;
+  margin-right: 20px;
+  border-radius: 50px;
+}
+.image-slideshow > div {
+	width: 600px;
+  height: 300px;
+	animation: move 15s ease-in-out 2s infinite alternate;
+  display:inline-block;
+}
+@keyframes move {
+	0%,30% { transform: translateX(0); }
+  40%,70% { transform: translateX(-600px); }
+  80%,100% { transform: translateX(-1200px); }
+}

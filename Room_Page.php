@@ -44,16 +44,28 @@ session_start();
         </ul>
     </nav>
 
+    
     <section class="center">
         <label class="room_name">Julia Rooms</label>
         <div class="text">
 
-            <div class="image-container">
+           <!-- <div class="image-container">
                 <button onclick="previousImage()"><i class='bx bxs-left-arrow left'></i></button>
                 <button onclick="nextImage()"><i class='bx bxs-right-arrow right'></i></button>
                 <img src="./media/room1.jpg" class="visible room1">
                 <img class="room1 invisible" src="./media/room2.jpg">
-                <img class="room1 invisible" src="./media/room3.jpg">
+                <img class="room1 invisible" src="./media/room2.jpg">
+            </div>-->
+            <div class="image-slideshow">
+                <div>
+                    <img src="./media/room1.jpg" width="600" height="300" alt="">
+                </div>
+                <div>
+                    <img src="./media/room2.jpg" width="600" height="300" alt="">
+                </div>
+                <div>
+                    <img src="./media/room3.jpg" width="600" height="300" alt="">
+                </div>
             </div>
             <p>
                 Τα Julia Rooms είναι μια εταιρία δωματίων που προσφέρει μια μοναδική εμπειρία φιλοξενίας στην όμορφη
