@@ -74,7 +74,7 @@ a:hover{
   margin-top: 80px;
   position: relative;
   width: 100%;
-  height: 80vh;
+  height: 100vh;
   background: #ffffff;
   background: linear-gradient(to bottom, white 10%,rgb(0, 174, 255) );
   display: flex;
@@ -243,6 +243,18 @@ a:hover{
   }
   .center .main .signup .form{
     margin-bottom: 10px;
+  }
+  .center .popup {
+    width: 90%;
+    font-size: 20px;
+  }
+
+  .center .popup h2{
+    width: 90%;
+  }
+  
+  .center .popup .close{
+    font-size: 30px;
   }
 }
 
@@ -497,7 +509,6 @@ button:hover{
   min-height:200px ;
   width: 30%;
   position: relative;
-  transition: all 5s ease-in-out;
 }
 
 .popup h2 {

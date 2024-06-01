@@ -48,8 +48,8 @@ if (!isset($_SESSION['username'])) {  // TODO will check if the user is an admin
             <?php } ?>
         </ul>
     </nav>
+<section class="center">      
     <main>
-
         <div class="panel">
             <div class="profile">
                 <div class="profile__info">
@@ -71,7 +71,6 @@ if (!isset($_SESSION['username'])) {  // TODO will check if the user is an admin
                             <select class="area" id="State">
                                 <option value="unapproved">Un-Approved</option>
                                 <option value="approved">Approved</option>
-                                <option value="rejected">Rejected</option>
                                 <option value="all">All</option>
                             </select>
                         </div>
@@ -92,7 +91,7 @@ if (!isset($_SESSION['username'])) {  // TODO will check if the user is an admin
         </div>
 
     </main>
-
+</section>
 
 </body>
 <script src="./scripts/admin_fetch.js"></script>

@@ -117,7 +117,7 @@ nav ul li{
 
 .panel {
     margin-top: 50px;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
     background: rgba(255, 255, 255, 0.15);
     border: 3px solid rgba(255, 2255, 255, 0.3);
     backdrop-filter: blur(25px);
@@ -150,12 +150,14 @@ nav ul li{
 
 .search {
     border-radius: 99px;
-    outline: 3px solid transparent;
     padding: 5px;
     transition: 0.3s;
     font-size: 17px;
     margin-bottom: 10px;
     width: 94%;
+    outline: none;
+    border: none;
+    box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.15);
 }
 
 .area {
@@ -187,10 +189,17 @@ nav ul li{
     height: 80px;
 }
 
+.btn_container2{
+    display: flex;
+    height: 80px;
+    float: left;
+}
+
 .btn {
     margin-left: auto;
     margin-right: auto;
     margin-top: 20px;
+    padding-right: 5px;
 }
 
 .btn button {
@@ -202,7 +211,7 @@ nav ul li{
     color: #06418f;
     background: rgba(255, 255, 255, 0.15);
     border: 3px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
     transition: padding .5s;
 }
 
@@ -226,6 +235,11 @@ nav ul li{
     transition: padding .5s;
 }
 
+.approve:hover{
+    padding: 15px;
+    transition: padding .5s;
+}
+
 .delete:active {
     outline: 2px solid black;
     background-color: red;
@@ -240,6 +254,7 @@ nav ul li{
     border-radius: 30px;
     padding: 20px;
     margin: 10px;
+    height: 310px;
     display: flex;
 }
 
@@ -286,6 +301,37 @@ nav ul li{
     background-size: cover;
     background-attachment:fixed;
 }
+
+.area{
+  
+    margin-right: 10px;
+    font-size: 17px;
+    position: relative;
+    clear: both;
+    background: rgba(255, 255, 255, 0.15);
+    border: 3px solid rgba(255, 2255, 255, 0.3);
+    backdrop-filter: blur(25px);
+    border-radius: 20px;
+    padding: 10px;
+    box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.15);
+    color: white;
+    outline: none;
+}
+
+.area option{
+    background-color: #00c4e6;
+    padding-bottom: 10px;
+}
+
+.profile__info{
+    color: white;
+}
+
+.profile__info h2{
+    margin-bottom: 10px;
+}
+
+
 @keyframes animateWaves {
 0% {
     background-position-x: 1000px;
@@ -305,6 +351,9 @@ nav ul li{
 }
 
 @media (max-width: 1080px) {
+    .room{
+        height: fit-content;
+    }
     .panel {
         flex-direction: column;
         margin: 10px;
@@ -331,6 +380,9 @@ nav ul li{
         padding: 10px;
     }
 
+    .search{
+        width: 60%;
+    }
     .btn button {
         width: 50px;
     }
@@ -395,6 +447,9 @@ nav ul li{
 
 @media (max-width: 670px) {
 
+    .room{
+        height: fit-content;
+    }
     .panel {
         flex-direction: column;
         margin: 5px;

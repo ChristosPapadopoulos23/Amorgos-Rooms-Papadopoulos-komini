@@ -64,18 +64,23 @@ function createRoomElement(room) {
             <p><b>Phone:</b> ${room.phone}</p>
             <p><b>Email:</b> ${room.email}</p>
             <p id="Description"><b>Description:</b><br>TODO HELLO</p>
-            <div class="btn">
-                <button class="approve">
-                    <i class="fa-solid fa-check"></i>
-                </button>
-                <button class="edit">
-                    <i class="fa-solid fa-edit"></i>
-                </button>
-                <button class="delete">
-                    <i class="fa-solid fa-trash"></i>
-                </button>
+            <div class="btn_container2">
+                <div class="btn">
+                    <button class="approve">
+                        <i class="fa-solid fa-check"></i>
+                    </button>
+                </div>
+                <div class="btn">
+                    <button class="edit">
+                        <i class="fa-solid fa-edit"></i>
+                    </button>
+                </div>
+                <div class="btn">
+                    <button class="delete">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
             </div>
-        </div>
     `;
     return roomElement;
 }
