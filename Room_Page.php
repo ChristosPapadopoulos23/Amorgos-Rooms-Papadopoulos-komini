@@ -46,7 +46,7 @@ session_start();
 
     
     <section class="center">
-        <label class="room_name">Julia Rooms</label>
+        <label class="room_name"></label>
         <div class="text">
 
            <!-- <div class="image-container">
@@ -125,11 +125,21 @@ session_start();
         </div>
     </div>
     <script src="scripts/picture_change.js"></script>
-    <script>
+    <script src="./scripts/Room_page.js">
         function myFunction(x) {
             x.classList.toggle("change");
         }
     </script>
 </body>
+<?php
+require_once 'logs.php';
+
+require_once 'db_connection.php';
+
+if(isset($_GET['id'])&& isset($_GET['name'])){
+    $id = $_GET['id'];
+    $business_name=$_GET['name'];
+}
+?>
 
 </html>
