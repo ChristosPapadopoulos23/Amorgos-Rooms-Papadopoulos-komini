@@ -4,6 +4,7 @@
     last_name VARCHAR(255) NOT NULL,
     username VARCHAR(255) NOT NULL,
     PASSWORD VARCHAR(255) NOT NULL,
+    role ENUM('admin', 'user') DEFAULT 'user',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ); CREATE TABLE BusinessTable(
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -11,6 +12,7 @@
     business_phone VARCHAR(20) NOT NULL,
     business_email VARCHAR(255) NOT NULL,
     location VARCHAR(255) NOT NULL,
+    url VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     owner_id INT NOT NULL,
     FOREIGN KEY(owner_id) REFERENCES UsersTable(id) ON DELETE CASCADE

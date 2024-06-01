@@ -87,9 +87,9 @@ session_start();
 </body>
 <script src="./scripts/fetch-control-panel.js"></script>
 <script>
-        function myFunction(x) {
-            x.classList.toggle("change");
-        }
-    </script>
+    function myFunction(x) {
+        x.classList.toggle("change");
+    }
+</script>
 
 </html>

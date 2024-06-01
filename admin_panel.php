@@ -25,6 +25,29 @@ if (!isset($_SESSION['username'])) {  // TODO will check if the user is an admin
 </head>
 
 <body>
+    <nav>
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+            <div class="container" onclick="myFunction(this)">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+        </label>
+        <label class="logo">Amorgos Rooms</label>
+        <ul>
+            <li><a class="menu" href="index.php">Home</a></li>
+            <li><a class="menu" href="find-a-room.php">Rooms</a></li>
+            <li><a class="menu" href="more.php">Information</a></li>
+
+            <?php if (isset($_SESSION['user_id'])) { ?>
+                <li><a class="menu" href="control-panel.php">Control Panel</a></li>
+                <li><a class="menu" href="./server/log-out.php">Log out</a></li>
+            <?php } else { ?>
+                <li><a class="menu" href="sign-up.php">Sign Up/Log in</a></li>
+            <?php } ?>
+        </ul>
+    </nav>
     <main>
 
         <div class="panel">
@@ -61,34 +84,8 @@ if (!isset($_SESSION['username'])) {  // TODO will check if the user is an admin
                 <!-- <div class="create-room">
                     <a href="./create_page.html"><button><i class="fa-solid fa-plus"></i></button></a>
                 </div> -->
+
                 <div id="roomsContainer" class="rooms"></div>
-
-                <!-- <div class="room">
-                    <img src="media/church.jpg" alt="room1">
-                    <div class="room-info">
-                        <h3>Rooms Julia</h3>
-                        <p><b>Location:</b> Xwra Amorgou</p>
-                        <p><b>Phone:</b> 2324234234</p>
-                        <p><b>Email:</b> info@gmail.com</p>
-                        <p id="Description"><b>Description:</b><br>Lorem ipsum dolor, sit amet consectetur adipisicing
-                            elit.
-                            Quo obcaecati perferendis laborum quas deserunt sed reprehenderit architecto
-                            nisi incidunt et facilis numquam mollitia, sint libero nemo hic molestiae, eum ipsam.
-                        </p>
-
-                        <div class="btn">
-                            <button class="approve">
-                                <i class="fa-solid fa-check"></i>
-                            </button>
-                            <button class="edit">
-                                <i class="fa-solid fa-edit"></i>
-                            </button>
-                            <button class="delete">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div> -->
 
             </div>
 
@@ -99,5 +96,10 @@ if (!isset($_SESSION['username'])) {  // TODO will check if the user is an admin
 
 </body>
 <script src="./scripts/admin_fetch.js"></script>
+<script>
+    function myFunction(x) {
+        x.classList.toggle("change");
+    }
+</script>
 
 </html>

@@ -54,7 +54,7 @@ if (!isset($_SESSION['user_id'])) {
 
         <div class="main">
             <div class="contact">
-                <form>
+                <form action="./server/create.php" method="POST" enctype="multipart/form-data"> 
                     <label class="form" for="chk" aria-hidden="true"> Δημιουργία σελίδας</label>
 
                     <input type="text" name="name" placeholder="Επωνυμία επιχείρησης..." required="">
