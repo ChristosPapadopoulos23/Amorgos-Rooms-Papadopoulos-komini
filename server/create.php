@@ -32,6 +32,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $area = sanitizeInput($_POST['area']);
 
     // $url = sanitizeInput($_POST['url']);
+    
+    $created_at = date("Y-m-d H:i:s");
+    $owner_id = $_SESSION['user_id'];
+
+    $query = "INSERT INTO BusinessTable (business_name, business_phone,business_mobile, business_email, location, created_at, owner_id, description)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($query);
+
+    if ($stmt === false) {
+        die('Prepare failed: ' . htmlspecialchars($conn->error));
+    }
+    $stmt->bind_param("ssssssis", $b_name, $phone, $mobile, $email, $area, $created_at, $owner_id, $comments);
+    $stmt->execute();
+
+    if ($stmt->affected_rows > 0) {
+        header("Location: ../control-panel.php?success=created");
+        $b_id = $conn->insert_id;
+    
 
     $files = $_FILES['pic'];
     $fileName = $_FILES['pic']['name'];
@@ -51,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($fileError === 0) {
             if ($fileSize < $MAX_FILE_SIZE) {
                 $fileNameNew = uniqid('', true) . "." . $fileActualExt;
-                $directory = '../uploads/' . $_SESSION['username'] . '/' . $b_name;
+                $directory = '../uploads/' . $_SESSION['username'] . '/' . $b_id;
                 if (!file_exists($directory)) {
                     if (!mkdir($directory, 0777, true)) {
                         die('Failed to create folders...');
@@ -70,31 +88,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: ../create-page.php?error=upload_error");
             exit();
         }
-    } else {
-        header("Location: ../create-page.php?error=wrong_file_type");
-        exit();
-    }
-    
-    $created_at = date("Y-m-d H:i:s");
-    $owner_id = $_SESSION['user_id'];
+        } else {
+            header("Location: ../create-page.php?error=wrong_file_type");
+            exit();
+        }
 
-    $query = "INSERT INTO BusinessTable (business_name, business_phone,business_mobile, business_email, location, created_at, owner_id, description)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-    $stmt = $conn->prepare($query);
-
-    if ($stmt === false) {
-        die('Prepare failed: ' . htmlspecialchars($conn->error));
-    }
-    $stmt->bind_param("ssssssis", $b_name, $phone, $mobile, $email, $area, $created_at, $owner_id, $comments);
-    $stmt->execute();
-
-    if ($stmt->affected_rows > 0) {
-        header("Location: ../control-panel.php?success=created");
         exit();
     } else {
         header("Location: ../create-page.php?error=database_error");
         exit();
     }
+
 
     $stmt->close();
     $conn->close();
