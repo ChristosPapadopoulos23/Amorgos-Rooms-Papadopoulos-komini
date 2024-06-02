@@ -16,6 +16,7 @@ if ($user_id > 0) {
 
     $image = "/uploads/" . $_SESSION['username'] . "/" . $row['business_name'];
 
+
     if ($result) {
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
