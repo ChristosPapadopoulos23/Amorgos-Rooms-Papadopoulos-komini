@@ -14,6 +14,8 @@ if ($user_id > 0) {
 
     $data = array();
 
+    $image = "/uploads/" . $_SESSION['username'] . "/" . $row['business_name'];
+
     if ($result) {
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
@@ -22,7 +24,7 @@ if ($user_id > 0) {
                     'location' => $row['location'],
                     'phone' => $row['business_phone'],
                     'email' => $row['business_email'],
-                    'image' => 'images/island.jpg' // Example image URL
+                    'image' => $image
                 );
             }
         }

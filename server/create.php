@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = sanitizeInput($_POST['email']);
     $phone = sanitizeInput($_POST['phone']);
     $mobile = sanitizeInput($_POST['mobile']);
-    $area = "tst";
+    $area = sanitizeInput($_POST['area']);
 
     // $url = sanitizeInput($_POST['url']);
 
@@ -78,16 +78,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $created_at = date("Y-m-d H:i:s");
     $owner_id = $_SESSION['user_id'];
 
-    $query = "INSERT INTO BusinessTable (business_name, business_phone, business_email, location, created_at, owner_id, business_mobile, discription) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    $query = "INSERT INTO BusinessTable (business_name, business_phone,business_mobile, business_email, location, created_at, owner_id, description)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($query);
+
     if ($stmt === false) {
         die('Prepare failed: ' . htmlspecialchars($conn->error));
     }
-    $stmt->bind_param("ssssssss", $b_name, $phone, $email, $area, $created_at, $owner_id, $mobile, $comments);
+    $stmt->bind_param("ssssssis", $b_name, $phone, $mobile, $email, $area, $created_at, $owner_id, $comments);
     $stmt->execute();
 
     if ($stmt->affected_rows > 0) {
-        header("Location: ../create-page.php?success=created");
+        header("Location: ../control-panel.php?success=created");
         exit();
     } else {
         header("Location: ../create-page.php?error=database_error");

@@ -39,11 +39,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->close();
 
         // Set session variables
-        $_SESSION['username'] = $user['username'];
+        $_SESSION['user_id'] = $user['id'];
         $_SESSION['first_name'] = $user['first_name'];
         $_SESSION['last_name'] = $user['last_name'];
-        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['role'] = $user['role'];
         $_SESSION['created_at'] = $user['created_at'];
+        $_SESSION['status'] = $user['status_code'];
 
         // Check if the user has a specific location
         $id = $_SESSION['user_id'];
@@ -55,8 +57,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $row_business = $result_business->fetch_assoc();
         $stmt_business->close();
 
-        // Redirect based on location
-        if ($row_business['location'] != "Some Location") {
+        if ($_SESSION['status'] == 'rejected') {
+            header("Location: ../sign-up.php?error=user_not_accepted");
+            exit();
+        } else if ($_SESSION['status'] == 'approved') {
             header("Location: ../control-panel.php");
             exit();
         } else {

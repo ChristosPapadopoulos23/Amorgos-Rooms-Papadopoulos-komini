@@ -6,8 +6,7 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-?>  
-
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -76,7 +75,7 @@ if (!isset($_SESSION['user_id'])) {
                                 Επιλογή αρχείου
                             </label>
                             <label for="poster">Επιλογή τοποθεσίας:</label>
-                            <select class="area" id="area">
+                            <select class="area" id="area" name='area'>
                                 <option value="0">Διαλέξτε περιοχή</option>
                                 <option value="Χώρα Αμοργού">Χώρα Αμοργού</option>
                                 <option value="Αιγιάλη">Αιγιάλη</option>

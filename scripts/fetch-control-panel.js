@@ -1,4 +1,4 @@
-const user_id = 23;
+const user_id = document.getElementById('userID').textContent;
 
 function fetchUsersRooms() {
     const url = `./server/fetch-panel.php?user_id=${user_id}`;

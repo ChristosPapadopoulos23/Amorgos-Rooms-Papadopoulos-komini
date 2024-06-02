@@ -1,4 +1,6 @@
-<!-- CREATE TABLE UsersTable(
+<!-- 
+
+CREATE TABLE UsersTable(
     id INT PRIMARY KEY AUTO_INCREMENT,
     first_name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL,
@@ -10,13 +12,18 @@
     id INT PRIMARY KEY AUTO_INCREMENT,
     business_name VARCHAR(255) NOT NULL,
     business_phone VARCHAR(20) NOT NULL,
+    business_mobile VARCHAR(20), -- New field for business mobile
     business_email VARCHAR(255) NOT NULL,
-    location VARCHAR(255) NOT NULL,
-    url VARCHAR(255) NOT NULL,
+    location VARCHAR(30) NOT NULL,
+    url VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     owner_id INT NOT NULL,
     FOREIGN KEY(owner_id) REFERENCES UsersTable(id) ON DELETE CASCADE
-); -->
+);
+
+ -->
+
+
 <!-- 
 Use this site key in the HTML code your site serves to users.
 6Lc7LsYpAAAAAGNIhe0rmkSrx4in2MXSIN5_GOEG

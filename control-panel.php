@@ -1,5 +1,9 @@
 <?php
 session_start();
+if (!isset($_SESSION['status']) || ($_SESSION['status'] != 'approved')) {
+    header("Location: ./sign-up.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -32,13 +36,14 @@ session_start();
             <li><a class="menu" href="index.php">Home</a></li>
             <li><a class="menu" href="find-a-room.php">Rooms</a></li>
             <li><a class="menu" href="more.php">Information</a></li>
-
+            
             <?php if (isset($_SESSION['user_id'])) { ?>
                 <li><a class="menu" href="control-panel.php">Control Panel</a></li>
                 <li><a class="menu" href="./server/log-out.php">Log out</a></li>
             <?php } else { ?>
                 <li><a class="menu" href="sign-up.php">Sign Up/Log in</a></li>
             <?php } ?>
+
         </ul>
     </nav>
     <main>
@@ -47,13 +52,12 @@ session_start();
             <div class="profile">
                 <div class="profile__info">
                 <p>Name: <?php echo $_SESSION['first_name'] . ' ' . $_SESSION['last_name']; ?></p>
-                <p>Email: <?php echo $_SESSION['email']; ?></p>
                 <p>Created At: <?php echo $_SESSION['created_at']; ?></p>
-                <p>User ID: <?php echo $_SESSION['user_id']; ?> </p>
+                <p>User ID: <span id='userID'><?php echo $_SESSION['user_id']; ?></span></p>
 
-                    <?php if ($_SESSION['username'] == 'HASH') { ?>
-                        <li><a href="admin_panel.php">Admin Panel</a></li>
-                    <?php } ?>
+                <?php if ($_SESSION['role'] == 'admin') { ?>
+                    <li><a href="admin_panel.php">Admin Panel</a></li>
+                <?php } ?>
 
                     <div class="btn_container">
                         <div class="btn">

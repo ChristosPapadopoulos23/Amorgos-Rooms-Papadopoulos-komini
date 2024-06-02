@@ -1,6 +1,7 @@
 <?php
 // Include the file containing the database connection
 require_once 'db_connection.php';
+// test
 
 function authenticateUser($username, $password) {
     global $conn;

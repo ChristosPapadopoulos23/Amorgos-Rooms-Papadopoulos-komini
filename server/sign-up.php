@@ -28,18 +28,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $lastname = sanitizeInput($_POST['lastname']);
     $business_name = sanitizeInput($_POST['business_name']);
     $phone = sanitizeInput($_POST['phone']);
+    $business_mobile = sanitizeInput($_POST['business_mobile']); // Corrected variable name
     $email = sanitizeInput($_POST['email']);
     $username = sanitizeInput($_POST['username']);
     $password = sanitizeInput($_POST['password']);
     $cpassword = sanitizeInput($_POST['cpassword']);
     $timestamp = date("Y-m-d H:i:s");
     $business_location = "Some Location";
-    
-    // if (ctype_digit($phone)) {
-    //     header("Location: ../sign-up.php?error=database_error");
-    //     exit();
-    // }
-    // Check if passwords match
+    $status = "unapproved";
+
     if($password != $cpassword) {
         header("Location: ../sign-up.php?error=passwords_mismatch");
         exit();
@@ -71,20 +68,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $hashedPassword = password_hash($password, PASSWORD_BCRYPT, $options);
 
     // Insert user data into UsersTable
-    $sqlUserSignup = "INSERT INTO UsersTable (first_name, last_name, username, password, created_at)
-                        VALUES (?, ?, ?, ?, ?)";
+    $sqlUserSignup = "INSERT INTO UsersTable (first_name, last_name, username, password, created_at, status_code)
+                        VALUES (?, ?, ?, ?, ?, ?)";
     $stmtUserSignup = $conn->prepare($sqlUserSignup);
-    $stmtUserSignup->bind_param("sssss", $name, $lastname, $username, $hashedPassword, $timestamp);
+    $stmtUserSignup->bind_param("ssssss", $name, $lastname, $username, $hashedPassword, $timestamp, $status); // Corrected number of parameters
 
     if ($stmtUserSignup->execute() === TRUE) {
         $user_id = $stmtUserSignup->insert_id;
         $stmtUserSignup->close();
 
         // Insert business data into BusinessTable
-        $sqlBusinessSignup = "INSERT INTO BusinessTable (business_name, business_phone, business_email, location, owner_id, created_at)
-                                VALUES (?, ?, ?, ?, ?, ?)";
+        $sqlBusinessSignup = "INSERT INTO BusinessTable (business_name, business_phone, business_mobile, business_email, location, created_at, owner_id)
+                                VALUES (?, ?, ?, ?, ?, ?, ?)";
         $stmtBusinessSignup = $conn->prepare($sqlBusinessSignup);
-        $stmtBusinessSignup->bind_param("ssssis", $business_name, $phone, $email, $business_location, $user_id, $timestamp);
+        $stmtBusinessSignup->bind_param("ssssssi", $business_name, $phone, $business_mobile, $email, $business_location, $timestamp, $user_id); // Corrected number of parameters
 
         if ($stmtBusinessSignup->execute() === TRUE) {
             header("Location: ../sign-up.php?success=true");

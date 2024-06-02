@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['username'])) { 
+if (!isset($_SESSION['role'] ) || ($_SESSION['role'] != 'admin')) { 
     header("Location: ./sign-up.php");  //Feature is not implemented yet
     exit();
 }
@@ -46,6 +46,7 @@ if (!isset($_SESSION['username'])) {
             <?php } else { ?>
                 <li><a class="menu" href="sign-up.php">Sign Up/Log in</a></li>
             <?php } ?>
+
         </ul>
     </nav>
 <section class="center">      
