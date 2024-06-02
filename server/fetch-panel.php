@@ -17,6 +17,7 @@ if ($user_id > 0) {
                 $imageDir = "../uploads/" . $_SESSION['username'] . "/" . $row['business_name'];
                 $imageDir2 = "uploads/" . $_SESSION['username'] . "/" . $row['business_name'];
                 // Initialize $image as null
+                
                 $image = null;
 
                 // Get the list of files in the directory
