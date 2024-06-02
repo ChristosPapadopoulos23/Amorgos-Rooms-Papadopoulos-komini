@@ -107,23 +107,24 @@ session_start();
             <div class="tag">Χρήστος Παπαδόπουλος-2024</div>
         </div>
     </div>
-    <script src="./scripts/Room_page.js">
+    <script src=".\scripts\Room_page.js">
         function myFunction(x) {
             x.classList.toggle("change");
         }
     </script>
 </body>
 <?php
-require_once 'logs.php';
+require_once '.\server\logs.php';
 
-require_once 'db_connection.php';
+require_once '.\server\db_connection.php';
 
 if(isset($_GET['id'])&& isset($_GET['name'])){
     $id = $_GET['id'];
     $business_name=$_GET['name'];
 }
 $sql = "SELECT * FROM BusinessTable WHERE id=$id";
-
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
 
 $data = array(
     'name' =>  $business_name,

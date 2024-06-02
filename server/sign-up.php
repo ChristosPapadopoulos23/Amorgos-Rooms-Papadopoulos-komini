@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $lastname = sanitizeInput($_POST['lastname']);
     $business_name = sanitizeInput($_POST['business_name']);
     $phone = sanitizeInput($_POST['phone']);
-    $business_mobile = sanitizeInput($_POST['business_mobile']); // Corrected variable name
+    //$business_mobile = sanitizeInput($_POST['business_mobile']); // Corrected variable name
     $email = sanitizeInput($_POST['email']);
     $username = sanitizeInput($_POST['username']);
     $password = sanitizeInput($_POST['password']);

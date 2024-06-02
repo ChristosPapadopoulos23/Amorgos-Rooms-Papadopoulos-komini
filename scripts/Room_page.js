@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (label)    
         label.innerHTML = name;
     $.ajax({
-        url: '..\Room_Page.php',
+        url: '.\Room_Page.php',
         dataType: 'json',
         success: function(data) {
 

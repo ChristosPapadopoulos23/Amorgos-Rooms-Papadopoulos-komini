@@ -3,23 +3,20 @@ session_start();
 
 require_once 'db_connection.php';
 
-// Uncomment the following line if you want to use the session variable
-// $user_id = $_SESSION['user_id'];
-
 $user_id = isset($_GET['user_id']) ? intval($_GET['user_id']) : 0;
+
+$data = array(); // Initialize the $data array here to avoid undefined variable error
 
 if ($user_id > 0) {
     $sql = "SELECT * FROM BusinessTable WHERE owner_id = $user_id";
     $result = $conn->query($sql);
 
-    $data = array();
-
-    $image = "/uploads/" . $_SESSION['username'] . "/" . $row['business_name'];
-
-
     if ($result) {
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
+                // Move the $image initialization here
+                $image = "/uploads/" . $_SESSION['username'] . "/" . $row['business_name'];
+
                 $data[] = array(
                     'name' => $row['business_name'],
                     'location' => $row['location'],
@@ -48,3 +45,4 @@ $response = array(
 
 header('Content-Type: application/json');
 echo json_encode($response);
+?>
