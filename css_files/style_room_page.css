@@ -163,10 +163,6 @@ nav ul li .menu{
 @media(max-width: 1572px){
   .center .text .two{
     flex-direction: column;
-    font-size: 40px;
-  }
-  .center .text .two i{
-    font-size: 40px;
   }
 }
 
@@ -284,7 +280,9 @@ nav ul li .menu{
   .center .text{
     width: 100%;
     padding: 10px;
+    padding-top: 30px;
     flex-direction: column;
+    margin-right: 10px;
   }
 
   .mySlides{
