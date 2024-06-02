@@ -114,6 +114,7 @@ session_start();
         }
     </script>
 </body>
+
 <?php
 require_once '.\server\logs.php';
 
