@@ -93,13 +93,13 @@ $description = ' Τα Julia Rooms είναι μια εταιρία δωματί�
             </div>-->
             <div class="image-slideshow">
                 <div>
-                    <img src="./media/room1.jpg" width="600" height="300" alt="">
+                    <img class="img" src="./media/room1.jpg" width="600" height="300" alt="">
                 </div>
                 <div>
-                    <img src="./media/room2.jpg" width="600" height="300" alt="">
+                    <img class="img" src="./media/room2.jpg" width="600" height="300" alt="">
                 </div>
                 <div>
-                    <img src="./media/room3.jpg" width="600" height="300" alt="">
+                    <img class="img" src="./media/room3.jpg" width="600" height="300" alt="">
                 </div>
             </div>
             <p id="description"><?php echo $description ?>
@@ -108,20 +108,22 @@ $description = ' Τα Julia Rooms είναι μια εταιρία δωματί�
                 <hr>
                 <div class="two">
                     <div class="one">
-                        <i class='bx bx-mobile'></i>
-                        <div id="mobile"><?php echo $mobile ?></div>
+                        <i class='bx bxs-map'></i>
+                        <div id="email" class="last"><?php echo $location ?></div>
                     </div>
                     <div class="one">
-                        <i class='bx bx-phone'></i>
-                        <div id="phone"><?php echo $phone ?></div>
+                        <div class="one">
+                            <i class='bx bx-mobile'></i>
+                            <div id="mobile"><?php echo $mobile ?></div>
+                        </div>
+                        <div class="one">
+                            <i class='bx bx-phone'></i>
+                            <div id="phone"><?php echo $phone ?></div>
+                        </div>
                     </div>
                     <div class="one">
                         <i class='bx bxs-envelope'></i>
                         <div id="email" class="last"><?php echo $email ?></div>
-                    </div>
-                    <div class="one">
-                        <i class='bx bxs-map'></i>
-                        <div id="email" class="last"><?php echo $location ?></div>
                     </div>
                 </div>
             </div>

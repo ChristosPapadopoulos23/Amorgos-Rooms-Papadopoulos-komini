@@ -160,7 +160,15 @@ nav ul li .menu{
   display: none;
 }
 
-
+@media(max-width: 1572px){
+  .center .text .two{
+    flex-direction: column;
+    font-size: 40px;
+  }
+  .center .text .two i{
+    font-size: 40px;
+  }
+}
 
 @media(max-width: 972px){
   label.logo{
@@ -199,11 +207,11 @@ nav ul li .menu{
     line-height: 30px;
   }
   nav ul li .menu{
-      font-size: 20px;
+    font-size: 20px;
   }
   .menu{
-      background: none;
-      color: black;
+    background: none;
+    color: black;
   }
   .menu:hover,.menu.active{
     background: none;
@@ -228,21 +236,11 @@ nav ul li .menu{
     margin-right: auto;
   }
 
- 
-
   .footer .info{
     margin-bottom: 100px;
   }
   .center .room .room-info{
     font-size: 20px;
-  }
-
-  .center .text .two{
-    flex-direction: column;
-    font-size: 20px;
-  }
-  .center .text .two i{
-    font-size: 30px;
   }
 
   .center .text{
@@ -420,8 +418,8 @@ i{
 .one  i{
   margin-left: 20px;
   margin-right: 5px;
-  font-size: 40px;
-  transform: translateY(-3px);
+  font-size: 30px;
+  transform: translateY(3px);
 }
 
 .one{
@@ -455,6 +453,10 @@ button .right{
   font-size: 40px;
   transform: translateY(-0px);
   transform: translateX(2px);
+}
+
+.img{
+  width: 80%; ;
 }
 
 .image-slideshow {
