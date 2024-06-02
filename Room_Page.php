@@ -67,6 +67,7 @@ if (isset($_GET['id']) && isset($_GET['name'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title> Amorgos-rooms</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&display=swap"
         rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -113,16 +114,15 @@ if (isset($_GET['id']) && isset($_GET['name'])) {
                 <img class="room1 invisible" src="./media/room2.jpg">
                 <img class="room1 invisible" src="./media/room2.jpg">
             </div>-->
-            <div class="image-slideshow">
-                <div>
-                    <img class="img" src="./media/room1.jpg" width="600" height="300" alt="">
-                </div>
-                <div>
-                    <img class="img" src="./media/room2.jpg" width="600" height="300" alt="">
-                </div>
-                <div>
-                    <img class="img" src="./media/room3.jpg" width="600" height="300" alt="">
-                </div>
+         
+            <div class="w3-content w3-display-container"> 
+                <img class="mySlides" src="./media/room1.jpg" width="600" height="300" alt="">
+            
+                <img class="mySlides" src="./media/room2.jpg" width="600" height="300" alt="">
+            
+                <img class="mySlides" src="./media/room3.jpg" width="600" height="300" alt="">
+                <button class="w3-button w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+                <button class="w3-button w3-display-right" onclick="plusDivs(+1)">&#10095;</button>
             </div>
             <p id="description"><?php echo $description ?>
             </p>
@@ -173,6 +173,24 @@ if (isset($_GET['id']) && isset($_GET['name'])) {
     <script>
         function myFunction(x) {
             x.classList.toggle("change");
+        }
+
+        var slideIndex = 1;
+        showDivs(slideIndex);
+
+        function plusDivs(n) {
+        showDivs(slideIndex += n);
+        }
+
+        function showDivs(n) {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        if (n > x.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = x.length} ;
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        x[slideIndex-1].style.display = "block";
         }
     </script>
 </body>
