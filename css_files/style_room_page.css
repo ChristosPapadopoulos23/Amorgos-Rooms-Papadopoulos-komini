@@ -280,6 +280,10 @@ nav ul li .menu{
     width: 200px;
     height: auto;
   }
+
+  .center .text{
+    width: 100%;
+  }
 }
 
 .container {

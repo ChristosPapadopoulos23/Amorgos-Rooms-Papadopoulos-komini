@@ -14,8 +14,8 @@ if ($user_id > 0) {
     if ($result) {
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                $imageDir = "uploads/" . $_SESSION['username'] . "/" . $row['business_name'];
-
+                $imageDir = "../uploads/" . $_SESSION['username'] . "/" . $row['business_name'];
+                $imageDir2 = "uploads/" . $_SESSION['username'] . "/" . $row['business_name'];
                 // Initialize $image as null
                 $image = null;
 
@@ -27,7 +27,7 @@ if ($user_id > 0) {
                     foreach ($files as $file) {
                         if (is_file($imageDir . '/' . $file) && getimagesize($imageDir . '/' . $file)) {
                             // Found the first image file, construct the path and break the loop
-                            $image = $imageDir . '/' . $file;
+                            $image = $imageDir2 . '/' . $file;
                             break;
                         }
                     }
