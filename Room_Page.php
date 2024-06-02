@@ -1,5 +1,40 @@
 <?php
 session_start();
+require_once '.\server\logs.php';
+
+require_once '.\server\db_connection.php';
+
+if(isset($_GET['id'])&& isset($_GET['name'])){
+    $id = $_GET['id'];
+    $business_name=$_GET['name'];
+}
+$sql = "SELECT * FROM BusinessTable WHERE id=$id";
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
+
+
+$phone = $row['business_phone'];
+$mobile = $row['business_mobile'];
+$email =$row['business_email'];
+$location = $row['location'];
+$description = ' Τα Julia Rooms είναι μια εταιρία δωματίων που προσφέρει μια μοναδική εμπειρία φιλοξενίας στην όμορφη
+τοποθεσία των Καταπολων, στο νησί της Αμοργού. Βρίσκονται σε μια από τις πιο γραφικές περιοχές του
+νησιού, περιβάλλοντας τους επισκέπτες με τη φυσική ομορφιά και την ειρηνική ατμόσφαιρα που χαρακτηρίζει
+την Αμοργό.
+
+Τα δωμάτια μας διαθέτουν όλες τις σύγχρονες ανέσεις που χρειάζεστε για ένα άνετο και ευχάριστο διαμονή.
+Κάθε δωμάτιο είναι λειτουργικά σχεδιασμένο και διακοσμημένο με γούστο, προσφέροντας έναν ζεστό και
+φιλόξενο χώρο για να αναπαυθείτε μετά από μια μέρα γεμάτη περιπέτειες στο νησί.
+
+Επιπλέον, οι επισκέπτες μας μπορούν να απολαύσουν τις υπηρεσίες μας όπως η πρωινή καφές στον κήπο μας,
+προσωπική εξυπηρέτηση από το φιλόξενο προσωπικό μας, και προσφορές για εκδρομές και δραστηριότητες στο
+νησί.
+
+Τα Julia Rooms δεσμεύονται να προσφέρουν στους επισκέπτες τους μια αξέχαστη εμπειρία διακοπών στην
+Αμοργό, γεμάτη φιλοξενία, άνεση και ευεξία. Είτε επισκέπτεστε το νησί για ξεκούραστες διακοπές στην
+παραλία, είτε για να εξερευνήσετε την υπέροχη φύση και τον πολιτισμό του, τα Julia Rooms είναι ο
+ιδανικός προορισμός για τη διαμονή σας.';
+
 ?>
 
 <!DOCTYPE html>
@@ -46,7 +81,7 @@ session_start();
 
     
     <section class="center">
-        <label class="room_name"></label>
+        <label class="room_name"> <?php echo $business_name ?></label>
         <div class="text">
 
            <!-- <div class="image-container">
@@ -67,22 +102,26 @@ session_start();
                     <img src="./media/room3.jpg" width="600" height="300" alt="">
                 </div>
             </div>
-            <p id="description">
+            <p id="description"><?php echo $description ?>
             </p>
             <div class="under">
                 <hr>
                 <div class="two">
                     <div class="one">
                         <i class='bx bx-mobile'></i>
-                        <div id="location"></div>
+                        <div id="mobile"><?php echo $mobile ?></div>
                     </div>
                     <div class="one">
                         <i class='bx bx-phone'></i>
-                        <div id="phone"></div>
+                        <div id="phone"><?php echo $phone ?></div>
                     </div>
                     <div class="one">
                         <i class='bx bxs-envelope'></i>
-                        <div id="email" class="last"></div>
+                        <div id="email" class="last"><?php echo $email ?></div>
+                    </div>
+                    <div class="one">
+                        <i class='bx bxs-map'></i>
+                        <div id="email" class="last"><?php echo $location ?></div>
                     </div>
                 </div>
             </div>
@@ -107,51 +146,11 @@ session_start();
             <div class="tag">Χρήστος Παπαδόπουλος-2024</div>
         </div>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src=".\scripts\Room_page.js">
+    <script>
         function myFunction(x) {
             x.classList.toggle("change");
         }
     </script>
 </body>
-<?php
-require_once '.\server\logs.php';
-
-require_once '.\server\db_connection.php';
-
-if(isset($_GET['id'])&& isset($_GET['name'])){
-    $id = $_GET['id'];
-    $business_name=$_GET['name'];
-}
-$sql = "SELECT * FROM BusinessTable WHERE id=$id";
-$result = $conn->query($sql);
-$row = $result->fetch_assoc();
-
-$data = array(
-    'name' =>  $business_name,
-    'phone' => $row['business_phone'],
-    'email' => $row['business_email'],
-    'location' => $row['location'],
-    'description' => ' Τα Julia Rooms είναι μια εταιρία δωματίων που προσφέρει μια μοναδική εμπειρία φιλοξενίας στην όμορφη
-    τοποθεσία των Καταπολων, στο νησί της Αμοργού. Βρίσκονται σε μια από τις πιο γραφικές περιοχές του
-    νησιού, περιβάλλοντας τους επισκέπτες με τη φυσική ομορφιά και την ειρηνική ατμόσφαιρα που χαρακτηρίζει
-    την Αμοργό.
-
-    Τα δωμάτια μας διαθέτουν όλες τις σύγχρονες ανέσεις που χρειάζεστε για ένα άνετο και ευχάριστο διαμονή.
-    Κάθε δωμάτιο είναι λειτουργικά σχεδιασμένο και διακοσμημένο με γούστο, προσφέροντας έναν ζεστό και
-    φιλόξενο χώρο για να αναπαυθείτε μετά από μια μέρα γεμάτη περιπέτειες στο νησί.
-
-    Επιπλέον, οι επισκέπτες μας μπορούν να απολαύσουν τις υπηρεσίες μας όπως η πρωινή καφές στον κήπο μας,
-    προσωπική εξυπηρέτηση από το φιλόξενο προσωπικό μας, και προσφορές για εκδρομές και δραστηριότητες στο
-    νησί.
-
-    Τα Julia Rooms δεσμεύονται να προσφέρουν στους επισκέπτες τους μια αξέχαστη εμπειρία διακοπών στην
-    Αμοργό, γεμάτη φιλοξενία, άνεση και ευεξία. Είτε επισκέπτεστε το νησί για ξεκούραστες διακοπές στην
-    παραλία, είτε για να εξερευνήσετε την υπέροχη φύση και τον πολιτισμό του, τα Julia Rooms είναι ο
-    ιδανικός προορισμός για τη διαμονή σας.',
-);
-$json = json_encode($data);
-echo"$json";
-?>
 
 </html>
