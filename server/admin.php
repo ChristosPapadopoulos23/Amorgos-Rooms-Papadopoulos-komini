@@ -76,12 +76,13 @@ $hasMore = ($offset + $batchSize) < $totalRows;
 if ($result->num_rows > 0) {
 
     while ($row = $result->fetch_assoc()) {
+
         $data[] = array(
             'name' => $row['business_name'],
             'location' => $row['location'],
             'phone' => $row['business_phone'],
             'email' => $row['business_email'],
-            'image' => 'images/island.jpg' // Example image URL
+            'image' => $image // Example image URL
         );
     }
 }

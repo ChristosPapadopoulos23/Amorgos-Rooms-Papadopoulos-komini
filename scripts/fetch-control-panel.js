@@ -42,9 +42,6 @@ function createRoomElement(room) {
             <p><b>Email:</b> ${room.email}</p>
             <p id="Description"><b>Description:</b><br>${room.description}</p>
             <div class="btn">
-                <button class="approve">
-                    <i class="fa-solid fa-check"></i>
-                </button>
                 <button class="edit">
                     <i class="fa-solid fa-edit"></i>
                 </button>
