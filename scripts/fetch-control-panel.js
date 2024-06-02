@@ -43,11 +43,6 @@ function createRoomElement(room) {
             <p id="Description"><b>Description:</b><br>${room.description}</p>
             <div class="btn_container2">
                 <div class="btn">
-                    <button class="approve">
-                        <i class="fa-solid fa-check"></i>
-                    </button>
-                </div>
-                <div class="btn">
                     <button class="edit">
                         <i class="fa-solid fa-edit"></i>
                     </button>

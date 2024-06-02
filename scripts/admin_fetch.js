@@ -57,7 +57,7 @@ function createRoomElement(room) {
     const roomElement = document.createElement('div');
     roomElement.classList.add('room');
     roomElement.innerHTML = `
-        <img src="media/church.jpg" alt="room1">
+        <img src="${room.image}" alt="room1">
         <div class="room-info">
             <h3>${room.name}</h3>
             <p><b>Location:</b> ${room.location}</p>
