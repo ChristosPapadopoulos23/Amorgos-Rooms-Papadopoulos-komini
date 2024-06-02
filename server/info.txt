@@ -7,7 +7,8 @@ CREATE TABLE UsersTable(
     username VARCHAR(255) NOT NULL,
     PASSWORD VARCHAR(255) NOT NULL,
     role ENUM('admin', 'user') DEFAULT 'user',
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status VARCHAR(255) NOT NULL
 ); CREATE TABLE BusinessTable(
     id INT PRIMARY KEY AUTO_INCREMENT,
     business_name VARCHAR(255) NOT NULL,
@@ -18,7 +19,8 @@ CREATE TABLE UsersTable(
     url VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     owner_id INT NOT NULL,
-    FOREIGN KEY(owner_id) REFERENCES UsersTable(id) ON DELETE CASCADE
+    FOREIGN KEY(owner_id) REFERENCES UsersTable(id) ON DELETE CASCADE,
+    description TEXT NOT NULL
 );
 
  -->
