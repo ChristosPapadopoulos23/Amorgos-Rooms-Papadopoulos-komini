@@ -283,6 +283,17 @@ nav ul li .menu{
 
   .center .text{
     width: 100%;
+    padding: 10px;
+    flex-direction: column;
+  }
+
+  .mySlides{
+    height: auto;
+    max-height: 700px;
+  }
+
+  .center .w3-content{
+    float: none;
   }
 }
 
