@@ -81,6 +81,7 @@ function createRoomElement(room) {
                     </button>
                 </div>
             </div>
+        </div>
     `;
     return roomElement;
 }
