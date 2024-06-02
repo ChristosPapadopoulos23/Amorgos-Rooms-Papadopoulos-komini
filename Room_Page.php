@@ -107,6 +107,7 @@ session_start();
             <div class="tag">Χρήστος Παπαδόπουλος-2024</div>
         </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src=".\scripts\Room_page.js">
         function myFunction(x) {
             x.classList.toggle("change");
@@ -150,7 +151,7 @@ $data = array(
     ιδανικός προορισμός για τη διαμονή σας.',
 );
 $json = json_encode($data);
-
+echo"$json";
 ?>
 
 </html>

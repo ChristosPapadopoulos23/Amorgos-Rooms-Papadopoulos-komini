@@ -12,23 +12,25 @@ document.addEventListener('DOMContentLoaded', function() {
     var label = document.querySelector('.room_name');
     if (label)    
         label.innerHTML = name;
-    $.ajax({
-        url: '.\Room_Page.php',
-        dataType: 'json',
-        success: function(data) {
-
-            console.log(data); 
-            var name = data.name;
-            var phone = data.phone;
-            var email = data.email;
-            var location = data.location;
-            var description = data.description;
-            
-        },
-        error: function(xhr, status, error) {
-
-            console.error(error);
+    fetch('./Room_Page.php')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
         }
+        return response.json();
+    })
+    .then(data => {
+        renderRoomBatch(data.rooms);
+        console.log(data); 
+        var name = data.name;
+        var phone = data.phone;
+        var email = data.email;
+        var location = data.location;
+        var description = data.description;
+    })
+    .catch(error => {
+        console.error('Fetch request failed:', error);
+        isFetching = false;
     });
 });
 /*
