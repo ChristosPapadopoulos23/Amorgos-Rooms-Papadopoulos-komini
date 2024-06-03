@@ -282,7 +282,7 @@ p {
 .room img {
     width: 280px;
     height: 280px;
-    border-radius: 10%;
+    border-radius: 20px;
     margin-right: 20px;
 }
 
@@ -393,6 +393,7 @@ p {
     .panel {
         flex-direction: column;
         margin: 10px;
+        margin-top: 25px;
         padding: 10px;
     }
 
@@ -505,6 +506,7 @@ p {
         flex-direction: column;
         margin: 5px;
         padding: 5px;
+        margin-top: 20px;
     }
 
     .profile {
@@ -522,7 +524,6 @@ p {
 
     .room-list {
         width: 95%;
-        /* height: calc(100vh - 100px); */
         height: auto;
         margin: 10px;
         padding: 10px;
