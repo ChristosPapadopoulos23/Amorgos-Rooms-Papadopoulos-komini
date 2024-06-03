@@ -5,6 +5,7 @@ const Fieldcommentslabel = document.getElementById('desc');
 const Fieldemail = document.getElementById('email');
 const Fieldphone = document.getElementById('phone');
 const Fieldmobile = document.getElementById('mobile');
+const Fieldarea = document.getElementById('area');
 var commentLabel = Fieldcommentslabel.textContent;
 
 Fieldphone.addEventListener('input', function(event) {
@@ -36,7 +37,7 @@ Fieldcomments.addEventListener('input', function(event) {
         Fieldcommentslabel.textContent = commentLabel + " | " + Fieldcomments.value.length;
     else
         Fieldcommentslabel.textContent = commentLabel;
-    
+
     if ( event.target.value.length<100 && event.target.value.length>0) {
         Fieldcomments.style.border = "1px solid red";
         return false;
@@ -67,6 +68,11 @@ function validateForm() {
         Fieldcomments.style.border = "1px solid red";
         Fieldcomments.value = ""; 
         Fieldcomments.placeholder = "Εάν επιθυμείτε να χρησιμοποιήσετε περιγραφή, τότε πρέπει να είναι τουλάχιστον 100 χαρακτήρες.";
+        temp=1;
+    }
+    
+    if(Fieldarea.value=='0'){
+        Fieldarea.style.border = "1px solid red";
         temp=1;
     }
     if(temp==1){

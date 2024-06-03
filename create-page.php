@@ -53,14 +53,13 @@ if (!isset($_SESSION['user_id'])) {
 
         <div class="main">
             <div class="contact">
-                <form action="./server/create.php" method="POST" onsubmit="return validateForm();" enctype="multipart/form-data"> 
+                <form class="cont" action="./server/create.php" method="POST" onsubmit="return validateForm();" enctype="multipart/form-data"> 
                     <label class="form" for="chk" aria-hidden="true"> Δημιουργία σελίδας</label>
 
                     <input type="text" name="name" id="name" placeholder="Επωνυμία επιχείρησης..." required="">
                     <div class="num">
                         <label id="desc">Περιγραφή επιχείρησης</label>
-                        <textarea class="txtfield" rows="15" id="comments" name="comments" placeholder="Περιγραφή επιχείρησης...."
-                            required=""></textarea>
+                        <textarea class="txtfield" rows="15" id="comments" name="comments" placeholder="Περιγραφή επιχείρησης...."></textarea>
                     </div>
                     <div class="one">
                         <input type="email" name="email" id="email" placeholder="Email.." required="">
@@ -93,10 +92,32 @@ if (!isset($_SESSION['user_id'])) {
                 <div class="url">
                     <form>
                         <label class="form" for="chk" aria-hidden="true">Υπάρχουσα σελίδα;</label>
+                        <input type="text" name="name" id="name" placeholder="Επωνυμία επιχείρησης..." required="">
+                        <div class="one">
+                            <input type="email" name="email" id="email" placeholder="Email.." required="">
+                            <input class="four" type="text" name="phone" id="phone" placeholder="Τηλέφωνο.." required="">
+                        </div>
+                        <input class="four" type="text" name="mobile" id="mobile" placeholder="Κινητό τηλέφωνο.." required="">
+                        <div class="num">
+                            <label for="poster">Φωτογραφία δωματίου:</label>
+                            <label class="pic2">
+                                <input class="pic_input" type="file" id="room_pic" name="pic" accept="image/png, image/*"
+                                    multiple />
+                                Επιλογή αρχείου
+                            </label>
+                            <label for="poster">Επιλογή τοποθεσίας:</label>
+                            <select class="area2" id="area" name='area'>
+                                <option value="0">Διαλέξτε περιοχή</option>
+                                <option value="Χώρα Αμοργού">Χώρα Αμοργού</option>
+                                <option value="Αιγιάλη">Αιγιάλη</option>
+                                <option value="Κατάπολα">Κατάπολα</option>
+                                <option value="Άλλος">Άλλο</option>
+                            </select>
+                        </div>
                         <input type="text" name="link"
                             placeholder="Link προς εξωτερικό URL, π.χ., Facebook/Instagram/Επίσημο site, κτλ"
                             required="">
-                        <div class="one">
+                        <div class="one temp">
                             <label>Επιθυμώ σύνδεση με το παραπάνω URL</label>
                             <input class="chkbtn" type="checkbox" name="flexibility">
                         </div>

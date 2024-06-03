@@ -155,7 +155,11 @@ a:hover{
 #check{
     display: none;
 }
-
+@media(max-width: 500px){
+  .center .main{
+    width: 97%;
+  }
+}
 @media(max-width: 1300px){
   label.logo{
     font-size: 28px;
@@ -233,10 +237,18 @@ a:hover{
   }
 
   .center .main .url{
-    height: 650px;
+    height: 850px;
   }
+  .center .url:hover{
+    transform: translateY(-800px);
+}
+
   .center .main .contact .form{
-    font-size: 25px;
+    font-size: 20px;
+  }
+
+  .center .num label{
+    font-size: 15px;
   }
 
   .center .main .contact .url .one .chkbtn{
@@ -386,6 +398,7 @@ i{
 
 .main{
   height: 1000px;
+  width: 500px;
   background: rgba(255, 255, 255, 0.15);
   border: 3px solid rgba(255, 2255, 255, 0.3);
   backdrop-filter: blur(25px);
@@ -456,11 +469,11 @@ button:hover{
 }
 .url label{
 	color: #00a2ff;
-	transform: scale(.6);
+  font-size: 20px;
 }
 
 .url:hover{
-    transform: translateY(-500px);
+    transform: translateY(-720px);
 }
 
 
@@ -492,7 +505,7 @@ button:hover{
   width: fit-content;
 }
 
-.num label{
+.cont .num label{
   color: white;
   font-size: 15px;
   margin-top: 10px;
@@ -579,12 +592,32 @@ button:hover{
   box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.15);
   transition: all .5s;
 }
-
 .pic:hover{
   padding-left: 17px;
   padding-right: 17px;
   transition: all .5s;
 }
+
+.num .pic2{
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 10px;
+  cursor: pointer;  
+  background: rgba(114, 171, 211, 0.69);
+  border: 3px solid rgba(255, 2255, 255, 0.3);
+  backdrop-filter: blur(25px);
+  border-radius: 20px;
+  box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.15);
+  transition: all .5s;
+  color: rgb(0, 0, 0);
+}
+
+.pic2:hover{
+  padding-left: 17px;
+  padding-right: 17px;
+  transition: all .5s;
+}
+
 
 form{
   padding-bottom: 20px;
@@ -620,7 +653,7 @@ form{
 
 .url .one label{
   color: black;
-  font-size: 25px;
+  font-size: 15px;
 }
 
 .url .email{
@@ -641,7 +674,25 @@ form{
   outline: none;
 }
 
+
+.area2{
+  position: relative;
+  clear: both;
+  background: rgba(114, 171, 211, 0.69);
+  border: 3px solid rgba(255, 2255, 255, 0.3);
+  backdrop-filter: blur(25px);
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.15);
+  color: rgb(0, 0, 0);
+  outline: none;
+}
+
 .area option{
   background-color: #0082e6;
   padding-bottom: 10px;
+}
+.center .url .temp{
+  width: 70%;
+  flex-direction: row;
 }
