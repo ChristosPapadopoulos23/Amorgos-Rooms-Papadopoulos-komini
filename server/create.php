@@ -31,6 +31,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mobile = sanitizeInput($_POST['mobile']);
     $area = sanitizeInput($_POST['area']);
 
+    if(strlen($b_name)<1 || strlen($comments)<1 ||   strlen($phone)!=10)
+    exit(0);
+
+
     // $url = sanitizeInput($_POST['url']);
     
     $created_at = date("Y-m-d H:i:s");

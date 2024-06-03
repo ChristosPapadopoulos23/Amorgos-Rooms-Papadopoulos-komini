@@ -68,6 +68,12 @@ Fieldreturn.addEventListener('click', function(event) {
 
 Fieldphone.addEventListener('input', function(event) {
     console.log('User is typing: ', event.target.value);
+    if (!/^\d+$/.test(event.target.value)) {
+        number.style.border = "1px solid red";
+        number.value = ""; 
+        number.placeholder = "Only numbers are allowed";
+        return false;
+    }
     if((event.target.value.length<10 || event.target.value.length>15) && event.target.value.length>0){
         event.target.style.borderColor = 'red';
         event.target.style.borderStyle = 'solid';
