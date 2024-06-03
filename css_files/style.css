@@ -177,6 +177,7 @@ a:hover{
     display: none;
 }
 
+
 @media(max-width: 1300px){
   label.logo{
     font-size: 28px;
@@ -234,7 +235,7 @@ a:hover{
       left: 0;
   }
   .big_logo{
-    font-size: 30px;
+    font-size: 45ιγιάληpx;
   }
   .information .img1{
     margin-bottom: 20px;
@@ -455,4 +456,11 @@ i{
 .footer i{
   transform: translateY(25%);
   color: white;
+}
+
+
+@media(max-width: 800px){
+  .big_logo {
+    font-size: 30px;
+  }
 }

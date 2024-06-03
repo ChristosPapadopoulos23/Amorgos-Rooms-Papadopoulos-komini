@@ -46,8 +46,8 @@ if ($location == 'all' && $roomName == '') {
     $sql = "SELECT * FROM BusinessTable WHERE location = '$location' LIMIT $batchSize OFFSET $offset";
     $countSql = "SELECT COUNT(*) as total FROM BusinessTable WHERE location = '$location'";
 } else {
-    $sql = "SELECT * FROM BusinessTable WHERE location = '$location' AND business_name = '$roomName' LIMIT $batchSize OFFSET $offset";
-    $countSql = "SELECT COUNT(*) as total FROM BusinessTable WHERE location = '$location' AND business_name = '$roomName'";
+    $sql = "SELECT * FROM BusinessTable WHERE location = '$location' AND business_name LIKE '$roomName%' LIMIT $batchSize OFFSET $offset";
+    $countSql = "SELECT COUNT(*) as total FROM BusinessTable WHERE location = '$location' AND business_name LIKE '$roomName%'";
 }
 
 $result = $conn->query($sql);
