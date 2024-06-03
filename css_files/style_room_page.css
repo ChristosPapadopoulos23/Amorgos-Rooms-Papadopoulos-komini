@@ -491,6 +491,12 @@ button:hover{
 
 .mySlides {display:none;}
 
+#description {
+  word-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
+}
+
 @keyframes move {
 	0%,30% { transform: translateX(0); }
   40%,70% { transform: translateX(-600px); }
