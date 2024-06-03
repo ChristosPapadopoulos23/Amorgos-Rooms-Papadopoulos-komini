@@ -62,16 +62,38 @@ $hasMore = ($offset + $batchSize) < $totalRows;
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
 
+        $imageDir = "../uploads/" . "/" . $row['id'];
+        $imageDir2 = "uploads/" . "/" . $row['id'];
+        // Initialize $image as null
+        
+        $image = null;
 
+        // Get the list of files in the directory
+        if (is_dir($imageDir)) {
+            $files = scandir($imageDir);
 
-        $image = "uploads/" . $row['id'];
+            // Iterate through the files to find the first image file
+            foreach ($files as $file) {
+                if (is_file($imageDir . '/' . $file) && getimagesize($imageDir . '/' . $file)) {
+                    // Found the first image file, construct the path and break the loop
+                    $image = $imageDir2 . '/' . $file;
+                    break;
+                }
+            }
+        }
+
+        // If no image is found, you can set a default image or handle it accordingly
+        if ($image === null) {
+            $image = 'media/church.jpg'; // Adjust this path to your default image
+        }
+
         $data[] = array(
             'name' => $row['business_name'],
             'location' => $row['location'],
             'phone' => $row['business_phone'],
             'email' => $row['business_email'],
             'id' => $row['id'],
-            'image' => 'images/island.jpg' // Example image URL
+            'image' => $image // Example image URL
         );
     }
 }
