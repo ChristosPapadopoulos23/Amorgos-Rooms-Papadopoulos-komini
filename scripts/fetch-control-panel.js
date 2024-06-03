@@ -40,7 +40,7 @@ function createRoomElement(room) {
             <p><b>Location:</b> ${room.location}</p>
             <p><b>Phone:</b> ${room.phone}</p>
             <p><b>Email:</b> ${room.email}</p>
-            <p id="Description"><b>Description:</b><br>${room.description}</p>
+            <p class="description" id="Description"><b>Description:</b><br>${room.description}</p>
             <div class="btn_container2">
                 <div class="btn">
                     <button class="edit">

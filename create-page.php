@@ -53,20 +53,20 @@ if (!isset($_SESSION['user_id'])) {
 
         <div class="main">
             <div class="contact">
-                <form action="./server/create.php" method="POST" enctype="multipart/form-data"> 
+                <form action="./server/create.php" method="POST" onsubmit="return validateForm();" enctype="multipart/form-data"> 
                     <label class="form" for="chk" aria-hidden="true"> Δημιουργία σελίδας</label>
 
-                    <input type="text" name="name" placeholder="Επωνυμία επιχείρησης..." required="">
+                    <input type="text" name="name" id="name" placeholder="Επωνυμία επιχείρησης..." required="">
                     <div class="num">
-                        <label>Περιγραφή επιχείρησης</label>
-                        <textarea class="txtfield" rows="15" name="comments" placeholder="Περιγραφή επιχείρησης...."
+                        <label id="desc">Περιγραφή επιχείρησης</label>
+                        <textarea class="txtfield" rows="15" id="comments" name="comments" placeholder="Περιγραφή επιχείρησης...."
                             required=""></textarea>
                     </div>
                     <div class="one">
-                        <input type="email" name="email" placeholder="Email.." required="">
-                        <input class="four" type="text" name="phone" placeholder="Τηλέφωνο.." required="">
+                        <input type="email" name="email" id="email" placeholder="Email.." required="">
+                        <input class="four" type="text" name="phone" id="phone" placeholder="Τηλέφωνο.." required="">
                     </div>
-                    <input class="four" type="text" name="mobile" placeholder="Κινητό τηλέφωνο.." required="">
+                    <input class="four" type="text" name="mobile" id="mobile" placeholder="Κινητό τηλέφωνο.." required="">
                         <div class="num">
                             <label for="poster">Φωτογραφία δωματίου:</label>
                             <label class="pic">
@@ -131,7 +131,7 @@ if (!isset($_SESSION['user_id'])) {
         </div>
     </div>
 </body>
-    <script>
+    <script  src="./scripts/create_page.js">
         function myFunction(x) {
             x.classList.toggle("change");
         }
