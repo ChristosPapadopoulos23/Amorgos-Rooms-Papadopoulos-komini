@@ -9,7 +9,7 @@ main {
     height: 100vh;
 }
 
-nav{
+nav {
     position: fixed;
     z-index: 100001;
     top: 0;
@@ -19,29 +19,30 @@ nav{
     width: 100%;
 }
 
-  label.logo{
+label.logo {
     color: #0082e6;
     font-size: 35px;
     line-height: 80px;
     padding: 0 50px;
     font-weight: bold;
 }
-nav ul{
+
+nav ul {
     list-style: none;
     float: right;
     margin-right: 20px
 }
 
-nav ul li{
+nav ul li {
     position: relative;
     float: left;
     display: inline-ecc 0;
     line-height: 80px;
     margin: 0 5px;
 }
-  
-  nav ul li .menu{
-    font-size: 1vw; 
+
+nav ul li .menu {
+    font-size: 1vw;
     padding: 7px 13px;
     border-radius: 99px;
     text-transform: uppercase;
@@ -49,35 +50,39 @@ nav ul li{
     transition: all .5s
 }
 
-  .menu{
-    color:#ffffff;
+.menu {
+    color: #ffffff;
     background: #0082e6;
 }
-  .menu.active, .menu:hover{
+
+.menu.active,
+.menu:hover {
     background: #02406e;
     transition: .5s;
-     
+
 }
-.menu:hover{
-    
+
+.menu:hover {
+
     font-size: 1.2vw;
     transition: all .5s
 }
-  
-.active{
+
+.active {
     font-size: 50px
 }
 
 @import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
+
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
 }
 
-.checkbtn{
-    font-size: 30px;  
+.checkbtn {
+    font-size: 30px;
     color: #0082e6;
     float: right;
     line-height: 80px;
@@ -87,7 +92,7 @@ nav ul li{
     display: none;
 }
 
-#check{
+#check {
     display: none;
 }
 
@@ -97,7 +102,9 @@ nav ul li{
     cursor: pointer;
 }
 
-.bar1, .bar2, .bar3 {
+.bar1,
+.bar2,
+.bar3 {
     width: 35px;
     height: 5px;
     background-color: #0082e6;
@@ -105,7 +112,7 @@ nav ul li{
     transition: 0.4s;
 }
 
-.container:hover{
+.container:hover {
     opacity: calc(60%);
 }
 
@@ -113,7 +120,9 @@ nav ul li{
     transform: translate(0, 11px) rotate(-45deg);
 }
 
-.change .bar2 {opacity: 0;}
+.change .bar2 {
+    opacity: 0;
+}
 
 .change .bar3 {
     transform: translate(0, -11px) rotate(45deg);
@@ -172,7 +181,8 @@ nav ul li{
     margin-bottom: 10px;
 }
 
-.profile h3 , p {
+.profile h3,
+p {
     margin: 5px;
 }
 
@@ -188,12 +198,12 @@ nav ul li{
     scrollbar-width: none;
 }
 
-.btn_container{
+.btn_container {
     display: flex;
     height: 80px;
 }
 
-.btn_container2{
+.btn_container2 {
     display: flex;
     height: 80px;
     float: left;
@@ -219,6 +229,13 @@ nav ul li{
     transition: padding .5s;
 }
 
+#Description {
+    word-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
+}
+
+
 .approve:active {
     outline: 2px solid black;
     background-color: rgb(10, 151, 43);
@@ -229,17 +246,17 @@ nav ul li{
     background-color: rgb(0, 140, 255);
 }
 
-.edit:hover{
+.edit:hover {
     padding: 15px;
     transition: padding .5s;
 }
 
-.delete:hover{
+.delete:hover {
     padding: 15px;
     transition: padding .5s;
 }
 
-.approve:hover{
+.approve:hover {
     padding: 15px;
     transition: padding .5s;
 }
@@ -279,17 +296,17 @@ nav ul li{
     text-align: center;
 }
 
-.create-room button{
+.create-room button {
     background-color: rgba(192, 192, 192, 0.5);
     border: 3px solid rgba(255, 2255, 255, 0.3);
     backdrop-filter: blur(25px);
     border-radius: 30px;
     width: 98%;
     padding: 10px;
-    
+
 }
 
-.create-room button:hover{
+.create-room button:hover {
     background-color: rgba(22, 155, 196, 0.5);
 }
 
@@ -300,14 +317,14 @@ nav ul li{
     height: fit-content;
     min-height: 93vh;
     background: #ffffff;
-    background: linear-gradient(to bottom, white 10%,rgb(0, 174, 255) );
+    background: linear-gradient(to bottom, white 10%, rgb(0, 174, 255));
     background-image: url(../media/img2.jpg);
     background-size: cover;
-    background-attachment:fixed;
+    background-attachment: fixed;
 }
 
-.area{
-  
+.area {
+
     margin-right: 10px;
     font-size: 17px;
     position: relative;
@@ -322,42 +339,45 @@ nav ul li{
     outline: none;
 }
 
-.area option{
+.area option {
     background-color: #00c4e6;
     padding-bottom: 10px;
 }
 
-.profile__info{
+.profile__info {
     color: white;
 }
 
-.profile__info h2{
+.profile__info h2 {
     margin-bottom: 10px;
 }
 
 
 @keyframes animateWaves {
-0% {
-    background-position-x: 1000px;
-}
-100% {
-    background-positon-x: 0px;
-}
+    0% {
+        background-position-x: 1000px;
+    }
+
+    100% {
+        background-positon-x: 0px;
+    }
 }
 
 @keyframes animate {
-0% {
-    background-position-x: -1000px;
-}
-100% {
-    background-positon-x: 0px;
-}
+    0% {
+        background-position-x: -1000px;
+    }
+
+    100% {
+        background-positon-x: 0px;
+    }
 }
 
 @media (max-width: 1080px) {
-    .room{
+    .room {
         height: fit-content;
     }
+
     .panel {
         flex-direction: column;
         margin: 10px;
@@ -384,30 +404,36 @@ nav ul li{
         padding: 10px;
     }
 
-    .search{
+    .search {
         width: 60%;
     }
+
     .btn button {
         width: 50px;
     }
-    label.logo{
+
+    label.logo {
         font-size: 28px;
         padding-left: 25px;
         padding-right: 0;
         margin-right: 0;
-      }
-      .head{
+    }
+
+    .head {
         font-size: 25px;
-      }
-      .center{
-       height: fit-content;
+    }
+
+    .center {
+        height: fit-content;
         background-image: url(../media/img2.jpg);
         background-size: cover;
-      }
-      .checkbtn{
-          display: block;
-      }
-      ul{
+    }
+
+    .checkbtn {
+        display: block;
+    }
+
+    ul {
         position: fixed;
         width: 100%;
         height: 100vh;
@@ -417,43 +443,52 @@ nav ul li{
         text-align: center;
         z-index: 1000001;
         backdrop-filter: blur(50px);
-        transition:all .5s;
-      }
-      nav ul li{
+        transition: all .5s;
+    }
+
+    nav ul li {
         position: none;
         float: none;
         display: block;
         margin: 50px 0;
         line-height: 30px;
-      }
-      nav ul li .menu{
-          font-size: 20px;
-      }
-      .menu{
-          background: none;
-          color: black;
-      }
-      .menu:hover,.menu.active{
+    }
+
+    nav ul li .menu {
+        font-size: 20px;
+    }
+
+    .menu {
+        background: none;
+        color: black;
+    }
+
+    .menu:hover,
+    .menu.active {
         background: none;
         color: #ffffff;
-      }
-      .menu:hover{
+    }
+
+    .menu:hover {
         font-size: 25px;
         transition: .5s;
-      }
-      #check:checked ~ ul{
-          left: 0;
-      }
-      .big_logo{
+    }
+
+    #check:checked~ul {
+        left: 0;
+    }
+
+    .big_logo {
         font-size: 30px;
-      }
+    }
 }
 
 @media (max-width: 670px) {
 
-    .room{
+    .room {
         height: fit-content;
     }
+
     .panel {
         flex-direction: column;
         margin: 5px;
