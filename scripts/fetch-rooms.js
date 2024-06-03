@@ -64,7 +64,7 @@ function renderRoomBatch(data) {
                 <div class="ln"><a class="link" href="contact.php?value=${room.email}">Επικοινωνήστε απευθείας</a></div>
             </div>
             <a href="Room_Page.php?name=${room.name}&id=${room.id}">
-                <img class="room1-pic" src="./media/room1.jpg">
+                <img class="room1-pic" src="${room.image}">
             </a>
         `;
 

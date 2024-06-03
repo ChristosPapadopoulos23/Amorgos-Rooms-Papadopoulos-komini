@@ -15,8 +15,8 @@ if ($user_id > 0) {
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
 
-                $imageDir = "../uploads/" . $_SESSION['username'] . "/" . $row['id'];
-                $imageDir2 = "uploads/" . $_SESSION['username'] . "/" . $row['id'];
+                $imageDir = "../uploads/" . "/" . $row['id'];
+                $imageDir2 = "uploads/" . "/" . $row['id'];
                 // Initialize $image as null
                 
                 $image = null;

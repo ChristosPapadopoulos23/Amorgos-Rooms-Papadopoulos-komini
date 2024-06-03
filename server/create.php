@@ -73,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($fileError === 0) {
             if ($fileSize < $MAX_FILE_SIZE) {
                 $fileNameNew = uniqid('', true) . "." . $fileActualExt;
-                $directory = '../uploads/' . $_SESSION['username'] . '/' . $b_id;
+                $directory = '../uploads/' . '/' . $b_id;
                 if (!file_exists($directory)) {
                     if (!mkdir($directory, 0777, true)) {
                         die('Failed to create folders...');
