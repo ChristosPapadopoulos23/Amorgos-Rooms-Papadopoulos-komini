@@ -254,13 +254,13 @@ nav ul li{
     border-radius: 30px;
     padding: 20px;
     margin: 10px;
-    height: 310px;
+    height: 350px;
     display: flex;
 }
 
 .room img {
-    width: 250px;
-    height: 250px;
+    width: 280px;
+    height: 280px;
     border-radius: 10%;
     margin-right: 20px;
 }
@@ -270,6 +270,16 @@ nav ul li{
     margin-top: 0px;
     margin-bottom: 10px;
 }
+
+.description{
+    max-height: 90px;
+    overflow: scroll;
+    scrollbar-width: 0px;
+}
+.description::-webkit-scrollbar {
+    display: none; /* Hide scrollbar */
+}
+
 
 .create-room {
     text-align: center;
