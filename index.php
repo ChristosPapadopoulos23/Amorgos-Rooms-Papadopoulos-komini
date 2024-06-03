@@ -46,7 +46,7 @@ session_start();
         </ul>
     </nav>
     <section class="center">
-        <a class="log" href="find-a-room.html">
+        <a class="log" href="find-a-room.php">
             <div class="big_logo">AMORGOS ROOMS</div>
         </a>
         <div class="wave" id="wave1" style="--i: 1;"></div>

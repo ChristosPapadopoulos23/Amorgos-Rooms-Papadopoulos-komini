@@ -5,6 +5,10 @@
     text-decoration: none;
 }
 
+main {
+    height: 100vh;
+}
+
 nav{
     position: fixed;
     z-index: 100001;
@@ -291,10 +295,10 @@ nav ul li{
 
 .center {
     position: absolute;
-    top: 80px;
+    top: 65px;
     width: 100vw;
     height: fit-content;
-    min-height: 80vh;
+    min-height: 93vh;
     background: #ffffff;
     background: linear-gradient(to bottom, white 10%,rgb(0, 174, 255) );
     background-image: url(../media/img2.jpg);
