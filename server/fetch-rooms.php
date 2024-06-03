@@ -57,8 +57,14 @@ $totalRows = $countResult->fetch_assoc()['total'];
 $data = array();
 $hasMore = ($offset + $batchSize) < $totalRows;
 
+
+
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
+
+
+
+        $image = "uploads/" . $row['id'];
         $data[] = array(
             'name' => $row['business_name'],
             'location' => $row['location'],
