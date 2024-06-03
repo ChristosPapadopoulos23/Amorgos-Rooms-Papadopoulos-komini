@@ -51,12 +51,12 @@ session_start();
                     <input class="txtfield" type="text" id="fname" name="fname" placeholder="Search...">
                 </div>
                 <div class="custom-select" id="Location">
-                    <select class="area">
-                        <option value="0">Διαλέξτε περιοχή</option>
+                    <select class="area" id="area">
+                        <option value="all">Διαλέξτε περιοχή</option>
                         <option value="Χώρα Αμοργού">Χώρα Αμοργού</option>
                         <option value="Αιγιάλη">Αιγιάλη</option>
                         <option value="Κατάπολα">Κατάπολα</option>
-                        <option value="Άλλος">Άλλο</option>
+                        <option value="Άλλο">Άλλο</option>
                     </select>
                 </div>
             </div>

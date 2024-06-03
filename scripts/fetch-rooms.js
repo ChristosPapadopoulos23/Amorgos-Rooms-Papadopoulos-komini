@@ -11,6 +11,9 @@ function fetchNextBatch() {
 
     isFetching = true;
     SearchName = document.getElementById('fname').value;
+    console.log(SearchName);
+    SearchLocation = document.getElementById('area').value;
+    console.log(SearchLocation);
 
     if (SearchName !== '' && currentPage > 1) {
         isFetching = false;
@@ -79,6 +82,13 @@ document.getElementById('fname').addEventListener('keydown', function(event) {
         hasMore = true; // Reset the hasMore flag for new search
         fetchNextBatch();
     }
+});
+
+document.getElementById('area').addEventListener('change', function() {
+    currentPage = 1;
+    document.getElementById('roomsContainer').innerHTML = '';
+    hasMore = true; // Reset the hasMore flag for new search
+    fetchNextBatch();
 });
 
 
