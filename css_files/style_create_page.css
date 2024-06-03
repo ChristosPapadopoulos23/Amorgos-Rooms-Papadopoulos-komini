@@ -634,3 +634,9 @@ form{
   background-color: #0082e6;
   padding-bottom: 10px;
 }
+
+#description {
+  word-wrap: break-word;
+word-break: break-word;
+white-space: normal;
+}
