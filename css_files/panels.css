@@ -231,8 +231,8 @@ p {
 
 #Description {
     word-wrap: break-word;
-  word-break: break-word;
-  white-space: normal;
+    word-break: break-word;
+    white-space: normal;
 }
 
 
@@ -292,13 +292,15 @@ p {
     margin-bottom: 10px;
 }
 
-.description{
+.description {
     max-height: 90px;
     overflow: scroll;
     scrollbar-width: 0px;
 }
+
 .description::-webkit-scrollbar {
-    display: none; /* Hide scrollbar */
+    display: none;
+    /* Hide scrollbar */
 }
 
 
