@@ -248,6 +248,17 @@ a:hover{
     margin-left: auto;
     margin-right: auto;
   }
+
+  .center input{
+    width: 90%;
+  }
+  .center .txtfield{
+    width: 90%;
+  }
+  .center .one{
+    width: 100%;
+  }
+
 }
 
 .container {
