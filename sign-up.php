@@ -101,7 +101,7 @@ session_start();
                     <div class="one">
                         <input class="three" type="text" id="business_name" name="business_name"
                             placeholder="Όνομα επιχείρησης" required="">
-                        <input class="four" type="text" id="phone" name="phone" maxlength="15" minlength="10" placeholder="Τηλέφωνο επιχείρησης"
+                        <input class="four" type="text" id="phone" name="phone" maxlength="15" minlength="10" placeholder="Τηλέφωνο"
                             required="">
                     </div>
                     <div class="one">

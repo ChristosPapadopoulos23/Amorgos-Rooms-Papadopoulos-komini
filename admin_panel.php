@@ -60,16 +60,16 @@ if (!isset($_SESSION['role'] ) || ($_SESSION['role'] != 'admin')) {
                         <label for="search">Search:</label>
                         <input type="text" name="search" id="search" class="search">
                         <div class="custom-select">
-                            <select class="area" id="Location">
+                            <select class="area" id="area">
                                 <option value="all">Διαλέξτε περιοχή</option>
-                                <option value="aijialh">Χώρα Αμοργού</option>
-                                <option value="thalaria">Αιγιάλη</option>
-                                <option value="lagkada">Κατάπολα</option>
-                                <option value="Άλλος">Άλλο</option>
+                                <option value="Χώρα Αμοργού">Χώρα Αμοργού</option>
+                                <option value="Αιγιάλη">Αιγιάλη</option>
+                                <option value="Κατάπολα">Κατάπολα</option>
+                                <option value="Άλλο">Άλλο</option>
                             </select>
                         </div>
                         <div class="custom-select">
-                            <select class="area" id="State">
+                            <select class="area" id="state">
                                 <option value="unapproved">Un-Approved</option>
                                 <option value="approved">Approved</option>
                                 <option value="all">All</option>

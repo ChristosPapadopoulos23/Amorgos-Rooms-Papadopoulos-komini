@@ -8,10 +8,11 @@ let hasMore = true;
 
 function fetchNextBatch() {
     if (isFetching || !hasMore) return;
+
     isFetching = true;
     searchName = document.getElementById('search').value;
-    searchLocation = document.getElementById('Location').value;
-    state = document.getElementById('State').value;
+    searchLocation = document.getElementById('area').value;
+    state = document.getElementById('state').value;
     
     if (searchName !== '' && currentPage > 1) {
         isFetching = false;
@@ -23,15 +24,12 @@ function fetchNextBatch() {
     fetch(url)
         .then(response => {
             if (!response.ok) {
-                return response.text().then(text => {
-                    console.error('Response text:', text);
-                    throw new Error('Network response was not ok');
-                });
+                throw new Error('Network response was not ok');
             }
             return response.json();
         })
         .then(data => {
-            renderRoomBatch(data.rooms);
+            createRoomElement(data.rooms); // Use createRoomElement instead of renderRoomBatch
             hasMore = data.hasMore;
             currentPage++;
             isFetching = false;
@@ -44,46 +42,44 @@ function fetchNextBatch() {
     console.log('Fetching next batch...');
 }
 
-function renderRoomBatch(data) {
+function createRoomElement(data) {
     const roomsContainer = document.getElementById('roomsContainer');
 
     data.forEach(room => {
-        const roomElement = createRoomElement(room);
-        roomsContainer.appendChild(roomElement);
-    });
-}
-
-function createRoomElement(room) {
-    const roomElement = document.createElement('div');
-    roomElement.classList.add('room');
-    roomElement.innerHTML = `
-        <img src="${room.image}" alt="room1">
-        <div class="room-info">
-            <h3>${room.name}</h3>
-            <p><b>Location:</b> ${room.location}</p>
-            <p><b>Phone:</b> ${room.phone}</p>
-            <p><b>Email:</b> ${room.email}</p>
-            <p id="Description"><b>Description:</b><br>${room.description}</p>
-            <div class="btn_container2">
-                <div class="btn">
-                    <button class="approve">
-                        <i class="fa-solid fa-check"></i>
-                    </button>
-                </div>
-                <div class="btn">
-                    <button class="edit">
-                        <i class="fa-solid fa-edit"></i>
-                    </button>
-                </div>
-                <div class="btn">
-                    <button class="delete">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
+        const roomElement = document.createElement('div');
+        roomElement.classList.add('room');
+        let link = room.url ? room.url : `Room_Page.php?name=${room.name}&id=${room.id}`;
+        
+        roomElement.innerHTML = `
+            <img src="${room.image}" alt="room1">
+            <div class="room-info">
+                <h3>${room.name}</h3>
+                <p><b>Location:</b> ${room.location}</p>
+                <p><b>Phone:</b> ${room.phone}</p>
+                <p><b>Email:</b> ${room.email}</p>
+                <p id="Description"><b>Description:</b><br>${room.description}</p>
+                <div class="btn_container2">
+                    <div class="btn">
+                        <button class="approve">
+                            <i class="fa-solid fa-check"></i>
+                        </button>
+                    </div>
+                    <div class="btn">
+                        <button class="edit">
+                            <i class="fa-solid fa-edit"></i>
+                        </button>
+                    </div>
+                    <div class="btn">
+                        <button class="delete">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-    `;
-    return roomElement;
+        `;
+
+        roomsContainer.appendChild(roomElement);
+    });
 }
 
 document.getElementById('search').addEventListener('keydown', function(event) {
@@ -95,14 +91,14 @@ document.getElementById('search').addEventListener('keydown', function(event) {
     }
 });
 
-document.getElementById('Location').addEventListener('change', function() {
+document.getElementById('area').addEventListener('change', function() {
     currentPage = 1;
     document.getElementById('roomsContainer').innerHTML = '';
     hasMore = true;
     fetchNextBatch();
 });
 
-document.getElementById('State').addEventListener('change', function() {
+document.getElementById('state').addEventListener('change', function() {
     currentPage = 1;
     document.getElementById('roomsContainer').innerHTML = '';
     hasMore = true;

@@ -31,11 +31,8 @@ function fetchNextBatch() {
         })
         .then(data => {
             renderRoomBatch(data.rooms);
-
             // Update hasMore flag based on response
             hasMore = data.hasMore;
-
-            // Increment the current page for the next batch
             currentPage++;
             isFetching = false;
         })

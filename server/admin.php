@@ -37,7 +37,6 @@ $location = isset($_GET['location']) ? $_GET['location'] : 'all'; // Set default
 $roomName = isset($_GET['roomName']) ? $_GET['roomName'] : '';
 $user_state = isset($_GET['state']) ? $_GET['state'] : '';
 
-
 $offset = ($page - 1) * $batchSize;
 
 // Build SQL query based on location and roomName
@@ -64,7 +63,6 @@ if ($roomName != '') {
 
 $sql .= " LIMIT $batchSize OFFSET $offset";
 
-
 // Execute queries
 $result = $conn->query($sql);
 $countResult = $conn->query($countSql);
@@ -74,15 +72,41 @@ $data = array();
 $hasMore = ($offset + $batchSize) < $totalRows;
 
 if ($result->num_rows > 0) {
-
     while ($row = $result->fetch_assoc()) {
+
+        $imageDir = "../uploads/" . "/" . $row['id'];
+        $imageDir2 = "uploads/" . "/" . $row['id'];
+        // Initialize $image as null
+        
+        $image = null;
+
+        // Get the list of files in the directory
+        if (is_dir($imageDir)) {
+            $files = scandir($imageDir);
+
+            // Iterate through the files to find the first image file
+            foreach ($files as $file) {
+                if (is_file($imageDir . '/' . $file) && getimagesize($imageDir . '/' . $file)) {
+                    // Found the first image file, construct the path and break the loop
+                    $image = $imageDir2 . '/' . $file;
+                    break;
+                }
+            }
+        }
+
+        // If no image is found, you can set a default image or handle it accordingly
+        if ($image === null) {
+            $image = 'media/church.jpg'; // Adjust this path to your default image
+        }
 
         $data[] = array(
             'name' => $row['business_name'],
             'location' => $row['location'],
             'phone' => $row['business_phone'],
             'email' => $row['business_email'],
-            'image' => $image // Example image URL
+            'image' => $image, // Replace with actual image URL logic
+            'url' => $row['url'] ?? null,
+            'description' => $row['description']
         );
     }
 }
@@ -97,4 +121,4 @@ $response = array(
 // Send JSON response
 header('Content-Type: application/json');
 echo json_encode($response);
-
+?>
