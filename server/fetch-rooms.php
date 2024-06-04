@@ -93,7 +93,8 @@ if ($result->num_rows > 0) {
             'phone' => $row['business_phone'],
             'email' => $row['business_email'],
             'id' => $row['id'],
-            'image' => $image // Example image URL
+            'image' => $image, // Example image URL
+            'url' => $row['url']
         );
     }
 }

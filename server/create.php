@@ -31,6 +31,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mobile = sanitizeInput($_POST['mobile']);
     $area = sanitizeInput($_POST['area']);
 
+    if(strlen($comments)<1){
+        $comments=0;
+    }
+
     if(strlen($b_name)<1 || strlen($phone)!=10 || strlen($mobile)!=10 )
     exit(0);
 
