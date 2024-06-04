@@ -53,8 +53,8 @@ if (!isset($_SESSION['user_id'])) {
 
         <div class="main">
             <div class="contact">
-                <form class="cont" action="./server/create.php" method="POST" onsubmit="return validateForm();" enctype="multipart/form-data"> 
-                    <label class="form" for="chk" aria-hidden="true"> Δημιουργία σελίδας</label>
+                <form id="create" class="cont" action="./server/create.php" method="POST" onsubmit="return validateForm();" enctype="multipart/form-data"> 
+                    <label class="form"> Δημιουργία σελίδας</label>
 
                     <input type="text" name="name" id="name" placeholder="Επωνυμία επιχείρησης..." required="">
                     <div class="num">
@@ -89,24 +89,24 @@ if (!isset($_SESSION['user_id'])) {
                     <button>Ready!</button>
                 </form>
 
-                <div class="url">
-                    <form>
-                        <label class="form" for="chk" aria-hidden="true">Υπάρχουσα σελίδα;</label>
-                        <input type="text" name="name" id="name" placeholder="Επωνυμία επιχείρησης..." required="">
+                <div id="url" class="url">
+                    <form action="./server/create.php" method="POST" onsubmit="return validateLogin();" enctype="multipart/form-data">
+                        <label id="url_lbl" class="form">Υπάρχουσα σελίδα;</label>
+                        <input type="text" name="name_l" id="name_l" placeholder="Επωνυμία επιχείρησης..." required="">
                         <div class="one">
-                            <input type="email" name="email" id="email" placeholder="Email.." required="">
-                            <input class="four" type="text" name="phone" id="phone" placeholder="Τηλέφωνο.." required="">
+                            <input type="email" name="email_l" id="email_l" placeholder="Email.." required="">
+                            <input class="four" type="text" name="phone_l" id="phone_l" placeholder="Τηλέφωνο.." required="">
                         </div>
-                        <input class="four" type="text" name="mobile" id="mobile" placeholder="Κινητό τηλέφωνο.." required="">
+                        <input class="four" type="text" name="mobile_l" id="mobile_l" placeholder="Κινητό τηλέφωνο.." required="">
                         <div class="num">
-                            <label class="login_labels" for="poster">Φωτογραφία δωματίου:</label>
+                            <label class="url_labels" for="poster">Φωτογραφία δωματίου:</label>
                             <label class="pic2">
-                                <input class="pic_input" type="file" id="room_pic" name="pic" accept="image/png, image/*"
+                                <input class="pic_input" type="file" id="room_pic_l" name="pic" accept="image/png, image/*"
                                     multiple />
                                 Επιλογή αρχείου
                             </label>
-                            <label class="login_labels" for="poster">Επιλογή τοποθεσίας:</label>
-                            <select class="area2" id="area" name='area'>
+                            <label class="url_labels" for="poster">Επιλογή τοποθεσίας:</label>
+                            <select class="area2" id="area_l" name='area_l'>
                                 <option value="0">Διαλέξτε περιοχή</option>
                                 <option value="Χώρα Αμοργού">Χώρα Αμοργού</option>
                                 <option value="Αιγιάλη">Αιγιάλη</option>
@@ -114,12 +114,12 @@ if (!isset($_SESSION['user_id'])) {
                                 <option value="Άλλος">Άλλο</option>
                             </select>
                         </div>
-                        <input type="text" name="link"
+                        <input type="url" name="link" id="link"
                             placeholder="Link προς εξωτερικό URL, π.χ., Facebook/Instagram/Επίσημο site, κτλ"
                             required="">
                         <div class="one temp">
                             <label>Επιθυμώ σύνδεση με το παραπάνω URL</label>
-                            <input class="chkbtn" type="checkbox" name="flexibility">
+                            <input class="chkbtn" value="yes" type="checkbox" id="link_confirmation" name="use_url">
                         </div>
                         <div class="text-xs-center">
                             <div class="g-recaptcha" data-sitekey="6LfbXNIpAAAAABFh4_XvMajKo0wEkQIS1JCyhQfJ"></div>
@@ -157,5 +157,6 @@ if (!isset($_SESSION['user_id'])) {
             x.classList.toggle("change");
         }
     </script>
+    <script  src="./scripts/create_page_login.js"></script>
 
 </html>

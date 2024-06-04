@@ -471,10 +471,10 @@ button:hover{
 	color: #00a2ff;
   font-size: 20px;
 }
-
+/*
 .url:hover{
-    transform: translateY(-720px);
-}
+  transform: translateY(-720px);
+}*/
 
 
 .one{
@@ -697,7 +697,7 @@ form{
   flex-direction: row;
 }
 
-.login_labels{
+.url_labels{
   color: black;
   margin-top: 5px;
   margin-bottom: 5px;
