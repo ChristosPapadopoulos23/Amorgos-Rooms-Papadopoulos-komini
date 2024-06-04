@@ -99,13 +99,13 @@ if (!isset($_SESSION['user_id'])) {
                         </div>
                         <input class="four" type="text" name="mobile" id="mobile" placeholder="Κινητό τηλέφωνο.." required="">
                         <div class="num">
-                            <label for="poster">Φωτογραφία δωματίου:</label>
+                            <label class="login_labels" for="poster">Φωτογραφία δωματίου:</label>
                             <label class="pic2">
                                 <input class="pic_input" type="file" id="room_pic" name="pic" accept="image/png, image/*"
                                     multiple />
                                 Επιλογή αρχείου
                             </label>
-                            <label for="poster">Επιλογή τοποθεσίας:</label>
+                            <label class="login_labels" for="poster">Επιλογή τοποθεσίας:</label>
                             <select class="area2" id="area" name='area'>
                                 <option value="0">Διαλέξτε περιοχή</option>
                                 <option value="Χώρα Αμοργού">Χώρα Αμοργού</option>
