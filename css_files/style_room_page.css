@@ -284,7 +284,7 @@ nav ul li .menu{
     flex-direction: column;
   }
 
-  .mySlides{
+  .center .w3-content .mySlides{
     height: auto;
     max-height: 700px;
   }
@@ -487,10 +487,9 @@ button:hover{
   margin: 0 0 10px 10px;
   margin-right: 20px;
   border-radius: 50px;
-  
 }
 
-.mySlides {display:none;}
+.mySlides {display:none;  aspect-ratio: 1/1;}
 
 #description {
   word-wrap: break-word;
