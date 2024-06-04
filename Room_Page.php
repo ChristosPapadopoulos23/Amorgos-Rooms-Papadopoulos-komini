@@ -108,7 +108,7 @@ if (isset($_GET['id']) && isset($_GET['name'])) {
                 <button class="w3-button w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
                 <button class="w3-button w3-display-right" onclick="plusDivs(+1)">&#10095;</button>
             </div>
-            <p id="description"><?php echo $description ?>
+            <p id="description"><?php if($description!='0'){echo $description;} ?>
             </p>
             <div class="under">
                 <hr>
@@ -163,19 +163,37 @@ if (isset($_GET['id']) && isset($_GET['name'])) {
         showDivs(slideIndex);
 
         function plusDivs(n) {
-        showDivs(slideIndex += n);
+            showDivs(slideIndex += n);
         }
 
         function showDivs(n) {
-        var i;
-        var x = document.getElementsByClassName("mySlides");
-        if (n > x.length) {slideIndex = 1}
-        if (n < 1) {slideIndex = x.length} ;
-        for (i = 0; i < x.length; i++) {
-            x[i].style.display = "none";
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            if (n > x.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = x.length} ;
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            x[slideIndex-1].style.display = "block";
         }
-        x[slideIndex-1].style.display = "block";
-        }
+        var pic_style2 = document.getElementsByClassName('w3-content');
+        var pic_style = document.getElementsByClassName('mySlides');
+        var text = document.getElementsByClassName('text');
+        const FieldDescription = document.getElementById('description');
+        window.onload = function() {
+            console.log('User is typing: ',"<?php echo $description; ?>");
+            if( "<?php echo $description; ?>"==0){
+                FieldDescription.innerHTML = '';
+                for (var i = 0; i < pic_style.length; i++) {
+                    pic_style[i].style.width = '100%';
+                    pic_style[i].style.height = '100%';
+                }
+                text[0].style.width = 'auto';
+                pic_style2[0].style.marginRight = '0px';
+            }
+           
+        };
+
     </script>
 </body>
 
