@@ -17,7 +17,7 @@ function checkAndUpdateRequestCount() {
     $max_requests = 200; // Adjust this value as needed (e.g., 60 requests per minute)
     if ($_SESSION['request_count'] >= $max_requests) {
         http_response_code(429); // HTTP 429 Too Many Requests
-        exit("Rate limit exceeded. Please try again later.");
+        exit(json_encode(array("error" => "Rate limit exceeded. Please try again later.")));
     }
 
     $_SESSION['request_count']++;
@@ -33,32 +33,29 @@ require_once 'db_connection.php';
 // Set default values for parameters
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 $batchSize = isset($_GET['batchSize']) ? intval($_GET['batchSize']) : 6;
-$location = isset($_GET['location']) ? $_GET['location'] : 'all'; // Set default location to 'all'
-$roomName = isset($_GET['roomName']) ? $_GET['roomName'] : '';
+$userName = isset($_GET['userName']) ? $_GET['userName'] : '';
 $user_state = isset($_GET['state']) ? $_GET['state'] : '';
 
 $offset = ($page - 1) * $batchSize;
 
-// Build SQL query based on location and roomName
-$sql = "SELECT * FROM BusinessTable WHERE 1=1"; // Initial query
-$countSql = "SELECT COUNT(*) as total FROM BusinessTable WHERE 1=1"; // Initial count query
+// Build SQL query based on userName and state
+$sql = "SELECT * FROM UsersTable WHERE 1=1"; // Initial query
+$countSql = "SELECT COUNT(*) as total FROM UsersTable WHERE 1=1"; // Initial count query
 
 if ($user_state == 'unapproved') {
-    $sql .= " AND location = 'Some Location'";
-    $countSql .= " AND location = 'Some Location'";
+    $sql .= " AND status_code = 'unapproved'";
+    $countSql .= " AND status_code = 'unapproved'";
 } else if ($user_state == 'approved') {
-    if ($location != 'all') {
-        $sql .= " AND location = '$location'";
-        $countSql .= " AND location = '$location'";
-    }
+    $sql .= " AND status_code = 'approved'";
+    $countSql .= " AND status_code = 'approved'";
 } else if ($user_state == 'rejected') {
-    $sql .= " AND location = 'rejected'";
-    $countSql .= " AND location = 'rejected'";
+    $sql .= " AND status_code = 'rejected'";
+    $countSql .= " AND status_code = 'rejected'";
 }
 
-if ($roomName != '') {
-    $sql .= " AND business_name LIKE '$roomName%'";
-    $countSql .= " AND business_name LIKE '$roomName%'";
+if ($userName != '') {
+    $sql .= " AND business_name LIKE '$userName%'";
+    $countSql .= " AND business_name LIKE '$userName%'";
 }
 
 $sql .= " LIMIT $batchSize OFFSET $offset";
@@ -73,40 +70,12 @@ $hasMore = ($offset + $batchSize) < $totalRows;
 
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-
-        $imageDir = "../uploads/" . "/" . $row['id'];
-        $imageDir2 = "uploads/" . "/" . $row['id'];
-        // Initialize $image as null
-        
-        $image = null;
-
-        // Get the list of files in the directory
-        if (is_dir($imageDir)) {
-            $files = scandir($imageDir);
-
-            // Iterate through the files to find the first image file
-            foreach ($files as $file) {
-                if (is_file($imageDir . '/' . $file) && getimagesize($imageDir . '/' . $file)) {
-                    // Found the first image file, construct the path and break the loop
-                    $image = $imageDir2 . '/' . $file;
-                    break;
-                }
-            }
-        }
-
-        // If no image is found, you can set a default image or handle it accordingly
-        if ($image === null) {
-            $image = 'media/church.jpg'; // Adjust this path to your default image
-        }
-
         $data[] = array(
-            'name' => $row['business_name'],
-            'location' => $row['location'],
-            'phone' => $row['business_phone'],
-            'email' => $row['business_email'],
-            'image' => $image, // Replace with actual image URL logic
-            'url' => $row['url'] ?? null,
-            'description' => $row['description']
+            'name' => $row['first_name'] . ' ' . $row['last_name'],
+            'phone' => $row['phone'],
+            'email' => $row['email'],
+            'business_name' => $row['business_name'], // Adjusted to match the structure
+            'created_at' => $row['created_at'] // Assuming you have a created_at field
         );
     }
 }
@@ -114,7 +83,7 @@ if ($result->num_rows > 0) {
 $conn->close();
 
 $response = array(
-    'rooms' => $data,
+    'users' => $data,
     'hasMore' => $hasMore
 );
 

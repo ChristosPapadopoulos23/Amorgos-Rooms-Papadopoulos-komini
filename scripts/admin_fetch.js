@@ -1,6 +1,5 @@
 let currentPage = 1;
 const batchSize = 6;
-let searchLocation = "all";
 let searchName = 'all';
 let state = 'all';
 let isFetching = false;
@@ -11,7 +10,6 @@ function fetchNextBatch() {
 
     isFetching = true;
     searchName = document.getElementById('search').value;
-    searchLocation = document.getElementById('area').value;
     state = document.getElementById('state').value;
     
     if (searchName !== '' && currentPage > 1) {
@@ -19,7 +17,7 @@ function fetchNextBatch() {
         return;
     }
 
-    const url = `./server/admin.php?page=${currentPage}&batchSize=${batchSize}&location=${searchLocation}&roomName=${searchName}&state=${state}`;
+    const url = `./server/admin.php?page=${currentPage}&batchSize=${batchSize}&userName=${searchName}&state=${state}`;
 
     fetch(url)
         .then(response => {
@@ -29,9 +27,14 @@ function fetchNextBatch() {
             return response.json();
         })
         .then(data => {
-            createRoomElement(data.rooms); // Use createRoomElement instead of renderRoomBatch
-            hasMore = data.hasMore;
-            currentPage++;
+            console.log('Data received:', data); // Debugging line
+            if (data && data.users) { // Check if data and data.users are defined
+                createUserElement(data.users);
+                hasMore = data.hasMore;
+                currentPage++;
+            } else {
+                console.error('Invalid data structure:', data);
+            }
             isFetching = false;
         })
         .catch(error => {
@@ -42,22 +45,20 @@ function fetchNextBatch() {
     console.log('Fetching next batch...');
 }
 
-function createRoomElement(data) {
+function createUserElement(data) {
     const roomsContainer = document.getElementById('roomsContainer');
 
-    data.forEach(room => {
-        const roomElement = document.createElement('div');
-        roomElement.classList.add('room');
-        let link = room.url ? room.url : `Room_Page.php?name=${room.name}&id=${room.id}`;
+    data.forEach(user => {
+        const userElement = document.createElement('div');
+        userElement.classList.add('room');
         
-        roomElement.innerHTML = `
-            <img src="${room.image}" alt="room1">
+        userElement.innerHTML = `
             <div class="room-info">
-                <h3>${room.name}</h3>
-                <p><b>Location:</b> ${room.location}</p>
-                <p><b>Phone:</b> ${room.phone}</p>
-                <p><b>Email:</b> ${room.email}</p>
-                <p id="Description"><b>Description:</b><br>${room.description}</p>
+                <h3>${user.name}</h3>
+                <p><b>Business Name:</b> ${user.business_name}</p>
+                <p><b>Phone:</b> ${user.phone}</p>
+                <p><b>Email:</b> ${user.email}</p>
+                <p><b>Created At:</b> ${user.created_at}</p>
                 <div class="btn_container2">
                     <div class="btn">
                         <button class="approve">
@@ -78,7 +79,7 @@ function createRoomElement(data) {
             </div>
         `;
 
-        roomsContainer.appendChild(roomElement);
+        roomsContainer.appendChild(userElement);
     });
 }
 
@@ -89,13 +90,6 @@ document.getElementById('search').addEventListener('keydown', function(event) {
         hasMore = true;
         fetchNextBatch();
     }
-});
-
-document.getElementById('area').addEventListener('change', function() {
-    currentPage = 1;
-    document.getElementById('roomsContainer').innerHTML = '';
-    hasMore = true;
-    fetchNextBatch();
 });
 
 document.getElementById('state').addEventListener('change', function() {

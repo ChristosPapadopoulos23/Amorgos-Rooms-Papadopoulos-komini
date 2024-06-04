@@ -30,6 +30,7 @@ function fetchNextBatch() {
             return response.json();
         })
         .then(data => {
+            console.log('Data received:', data);
             renderRoomBatch(data.rooms);
             // Update hasMore flag based on response
             hasMore = data.hasMore;
@@ -42,6 +43,7 @@ function fetchNextBatch() {
         });
 
     console.log('Fetching next batch...');
+
 }
 
 // Function to render a batch of room elements based on fetched data
