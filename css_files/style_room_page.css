@@ -291,6 +291,8 @@ nav ul li .menu{
 
   .center .w3-content{
     float: none;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
