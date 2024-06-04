@@ -90,7 +90,7 @@ if (!isset($_SESSION['user_id'])) {
                 </form>
 
                 <div id="url" class="url">
-                    <form action="./server/create.php" method="POST" onsubmit="return validateLogin();" enctype="multipart/form-data">
+                    <form action="./server/create_url.php" method="POST" onsubmit="return validateLogin();" enctype="multipart/form-data">
                         <label id="url_lbl" class="form">Υπάρχουσα σελίδα;</label>
                         <input type="text" name="name_l" id="name_l" placeholder="Επωνυμία επιχείρησης..." required="">
                         <div class="one">
@@ -101,7 +101,7 @@ if (!isset($_SESSION['user_id'])) {
                         <div class="num">
                             <label class="url_labels" for="poster">Φωτογραφία δωματίου:</label>
                             <label class="pic2">
-                                <input class="pic_input" type="file" id="room_pic_l" name="pic" accept="image/png, image/*"
+                                <input class="pic_input" type="file" id="room_pic" name="pic" accept="image/png, image/*"
                                     multiple />
                                 Επιλογή αρχείου
                             </label>
@@ -119,7 +119,7 @@ if (!isset($_SESSION['user_id'])) {
                             required="">
                         <div class="one temp">
                             <label>Επιθυμώ σύνδεση με το παραπάνω URL</label>
-                            <input class="chkbtn" value="yes" type="checkbox" id="link_confirmation" name="use_url">
+                            <input class="chkbtn" value="yes" type="checkbox" id="link_confirmation" name="link_confirmation" name="use_url">
                         </div>
                         <div class="text-xs-center">
                             <div class="g-recaptcha" data-sitekey="6LfbXNIpAAAAABFh4_XvMajKo0wEkQIS1JCyhQfJ"></div>
