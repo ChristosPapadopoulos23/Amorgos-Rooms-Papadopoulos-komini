@@ -82,8 +82,9 @@ if ($result->num_rows > 0) {
             'name' => $row['first_name'] . ' ' . $row['last_name'],
             'phone' => $row['phone'],
             'email' => $row['email'],
-            'business_name' => $row['business_name'], // Adjusted to match the structure
-            'created_at' => $row['created_at'] // Assuming you have a created_at field
+            'business_name' => $row['business_name'], 
+            'created_at' => $row['created_at'], 
+            'id' => $row['id']
         );
     }
 }
