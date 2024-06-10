@@ -35,6 +35,7 @@ $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 $batchSize = isset($_GET['batchSize']) ? intval($_GET['batchSize']) : 6;
 $userName = isset($_GET['userName']) ? $_GET['userName'] : '';
 $user_state = isset($_GET['state']) ? $_GET['state'] : '';
+$order = isset($_GET['order']) ? $_GET['order'] : 'DESC';
 
 $offset = ($page - 1) * $batchSize;
 
@@ -56,6 +57,13 @@ if ($user_state == 'unapproved') {
 if ($userName != '') {
     $sql .= " AND business_name LIKE '$userName%'";
     $countSql .= " AND business_name LIKE '$userName%'";
+}
+
+
+if ($order != 'DESC') {
+    $sql .= " ORDER BY created_at ASC";
+} else {
+    $sql .= " ORDER BY created_at DESC";
 }
 
 $sql .= " LIMIT $batchSize OFFSET $offset";

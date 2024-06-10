@@ -70,9 +70,17 @@ if (!isset($_SESSION['role'] ) || ($_SESSION['role'] != 'admin')) {
                         </div>
                         <div class="custom-select">
                             <select class="area" id="state">
-                                <option value="unapproved">Un-Approved</option>
-                                <option value="approved">Approved</option>
-                                <option value="all">All</option>
+                                <option value="unapproved">Mη εγκεκριμένος</option>
+                                <option value="approved">Εγκρίθηκε</option>
+                                <option value="rejected">Απορρίφθηκε</option>
+                                <option value="all">Ολοι</option>
+                            </select>
+                        </div>
+
+                        <div class="custom-select">
+                            <select class="area" id="order">
+                                <option value="DESC">Φθίνουσα σειρά</option>
+                                <option value="ASC">Αύξουσα σειρά</option>
                             </select>
                         </div>
 

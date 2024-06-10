@@ -2,6 +2,7 @@ let currentPage = 1;
 const batchSize = 6;
 let searchName = 'all';
 let state = 'all';
+let ord = 'DESC';
 let isFetching = false;
 let hasMore = true;
 
@@ -9,6 +10,7 @@ function fetchNextBatch() {
     if (isFetching || !hasMore) return;
 
     isFetching = true;
+    ord = document.getElementById('order').value;
     searchName = document.getElementById('search').value;
     state = document.getElementById('state').value;
     
@@ -17,7 +19,7 @@ function fetchNextBatch() {
         return;
     }
 
-    const url = `./server/admin.php?page=${currentPage}&batchSize=${batchSize}&userName=${searchName}&state=${state}`;
+    const url = `./server/admin.php?page=${currentPage}&batchSize=${batchSize}&userName=${searchName}&state=${state}&order=${ord}`;
 
     fetch(url)
         .then(response => {
@@ -93,6 +95,13 @@ document.getElementById('search').addEventListener('keydown', function(event) {
 });
 
 document.getElementById('state').addEventListener('change', function() {
+    currentPage = 1;
+    document.getElementById('roomsContainer').innerHTML = '';
+    hasMore = true;
+    fetchNextBatch();
+});
+
+document.getElementById('order').addEventListener('change', function() {
     currentPage = 1;
     document.getElementById('roomsContainer').innerHTML = '';
     hasMore = true;
