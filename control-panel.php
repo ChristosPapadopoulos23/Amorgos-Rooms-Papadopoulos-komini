@@ -4,6 +4,8 @@ if (!isset($_SESSION['status']) || ($_SESSION['status'] != 'approved')) {
     header("Location: ./sign-up.php");
     exit();
 }
+require_once './server/logs.php';
+require_once './server/db_connection.php';
 ?>
 
 <!DOCTYPE html>
@@ -47,7 +49,23 @@ if (!isset($_SESSION['status']) || ($_SESSION['status'] != 'approved')) {
         </ul>
     </nav>
     <main>
-    <section class="center">       
+    <section class="center">   
+
+        <div id="dlt_user" class="overlay">
+            <div class="popup">
+                <h2>ΠΡΟΣΟΧΗ!</h2>
+                <a class="close" href="#">&times;</a>
+                <div class="content">
+                   Διαγραφή του λογαριασμού σας;
+                </div>
+                <div class="btn">
+                    <button id="dlt" class="delete">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+        </div>   
+
         <div class="panel">
             <div class="profile">
                 <div class="profile__info">
@@ -66,7 +84,7 @@ if (!isset($_SESSION['status']) || ($_SESSION['status'] != 'approved')) {
                             </button>
                         </div>
                         <div class="btn">
-                            <button class="delete">
+                            <button id="delete" class="delete">
                                 <i class="fa-solid fa-trash"></i>
                             </button>
                         </div>
@@ -91,9 +109,28 @@ if (!isset($_SESSION['status']) || ($_SESSION['status'] != 'approved')) {
 </body>
 <script src="./scripts/fetch-control-panel.js"></script>
 <script>
-    function myFunction(x) {
-        x.classList.toggle("change");
-    }
+
+document.getElementById('delete').addEventListener('click', function(event) {
+    document.getElementById('dlt_user').style.visibility = 'visible';
+    document.getElementById('dlt_user').style.opacity = '100';
+
+});
+function closePopup() {
+    document.getElementById('dlt_user').style.visibility = 'hidden';
+    document.getElementById('dlt_user').style.opacity = '0';
+}
+document.querySelectorAll('.close').forEach(closeAnchor => {
+    closeAnchor.addEventListener('click', closePopup);
+});
+
+document.getElementById('dlt').addEventListener('click', function(event) {
+    const user_id = document.getElementById('userID').textContent;
+    window.location.href="./server/user_options.php?id="+user_id+"&action=0";
+});
+
+function myFunction(x) {
+    x.classList.toggle("change");
+}
 </script>
 
 </html>

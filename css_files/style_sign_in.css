@@ -387,7 +387,6 @@ i{
 	height: 530px;
   background: rgba(255, 255, 255, 0.15);
   border: 3px solid rgba(255, 2255, 255, 0.3);
-  border-width: 3px 3px 0 3px;
   backdrop-filter: blur(25px);
 	overflow: hidden;
 	border-radius: 40px;

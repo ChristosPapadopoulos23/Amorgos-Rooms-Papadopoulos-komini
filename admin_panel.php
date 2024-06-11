@@ -72,7 +72,6 @@ if (!isset($_SESSION['role'] ) || ($_SESSION['role'] != 'admin')) {
                             <select class="area" id="state">
                                 <option value="unapproved">Mη εγκεκριμένος</option>
                                 <option value="approved">Εγκρίθηκε</option>
-                                <option value="rejected">Απορρίφθηκε</option>
                                 <option value="all">Ολοι</option>
                             </select>
                         </div>

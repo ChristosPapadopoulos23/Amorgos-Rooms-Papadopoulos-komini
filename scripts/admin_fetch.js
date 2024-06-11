@@ -68,7 +68,7 @@ function createUserElement(data) {
                         </button>
                     </div>
                     <div class="btn">
-                        <button id="edit" class="edit"><a href="./server/sign_up.php?id=${user.id}&action=1">
+                        <button id="edit" class="edit"><a href="./sign-up.php?id=${user.id}&action=1">
                             <i class="fa-solid fa-edit"></i></a>
                         </button>
                     </div>

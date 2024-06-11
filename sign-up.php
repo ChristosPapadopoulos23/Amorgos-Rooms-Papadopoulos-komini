@@ -1,5 +1,24 @@
 <?php
 session_start();
+$action = isset($_GET['action']) ? (int)$_GET['action'] : null;
+if( isset($_GET['id']) &&  isset($_GET['action'])){
+    $uid = isset($_GET['id']) ? (int)$_GET['id'] : null;
+    if (!isset($_SESSION['role']) || (($_SESSION['role'] != 'admin') && ($_SESSION['id'] != $uid))) { 
+        header("Location: ./sign-up.php");  // Feature is not implemented yet
+        exit(0);
+    }
+    require_once './server/logs.php';
+    require_once './server/db_connection.php';
+
+    $sql = "SELECT * FROM UsersTable WHERE id=$uid";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+    $phone=$row['phone'];
+    $email=$row['email'];
+    $user=$row['username'];
+    $name=$row['first_name'];
+    $surname=$row['last_name'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -48,13 +67,13 @@ session_start();
 
         </ul>
     </nav>
-    <section class="center">
+    <section id=center class="center">
         <div id="succes-sign-up" class="overlay">
             <div class="popup">
                 <h2>Επιτυχία!</h2>
                 <a class="close" href="#">&times;</a>
                 <div class="content">
-                    Σας ευχαριστούμε για την εγγραφή σας! Θα σας σταλουμε email οταν ένας απο τους διαχειρηστές μας σας εκγρίνει!
+                    Σας ευχαριστούμε για την εγγραφή σας! Θα σας σταλεί email οταν ένας απο τους διαχειρηστές μας σας εκγρίνει!
                 </div>
             </div>
         </div>
@@ -88,12 +107,12 @@ session_start();
             </div>
         </div>
 
-        <div class="main">
+        <div id="main" class="main">
             <input type="checkbox" id="chk" aria-hidden="true">
 
             <div class="signup">
                 <form action="./server/sign-up.php" method="POST" onsubmit="return validateSignUp();" id="signup-form">
-                    <label class="form" for="chk" aria-hidden="true">Sign up</label>
+                    <label id="sign_in_lbl" class="form" for="chk" aria-hidden="true">Sign up</label>
                     <div class="one">
                         <input type="text" id="name" name="name" placeholder="Όνομα" required="">
                         <input type="text" id="lastname" name="lastname" placeholder="Επώνυμο" required="">
@@ -113,12 +132,12 @@ session_start();
                         <input type="password" id="cpassword" name="cpassword" placeholder="Confirm password" required="">
                     </div>
                     <div id="loginMessage"></div>
-                    <button type="submit">Sign up</button>  
+                    <button id="sign_in_btn" type="submit">Sign up</button>  
 
                 </form>
             </div>
 
-            <div class="login">
+            <div id="lgn_frm" class="login">
                 <form action="./server/log-in.php" method="POST" id="login-form">
                     <label class="form" for="chk" aria-hidden="true">Login</label>
                     <input type="text" id="username" name="username" placeholder="Username" required="">
@@ -150,5 +169,23 @@ session_start();
         </div>
     </div>
 </body>
+<script>
+    function change_values() {
+        document.getElementById('name').value="<?php echo $name;?>";
+        document.getElementById('lastname').value="<?php echo $surname;?>";
+        document.getElementById('phone').value="<?php echo $phone;?>";
+        document.getElementById('username').value="<?php echo $user;?>";
+        document.getElementById('email').value="<?php echo $email;?>";
+        document.getElementById('username').disabled=true;
+        document.getElementById('password').style.display="none";
+        document.getElementById('cpassword').style.display="none";
+        document.getElementById('lgn_frm').style.display="none";
+        document.getElementById('main').style.height="fit-content";
+        document.getElementById('sign_in_lbl').innerHTML="Edit Info";
+        document.getElementById('sign_in_btn').innerHTML="Confirm changes";
+        document.getElementById('sign_in_btn').style.marginBottom="20px";
+    };
+    window.addEventListener('load', change_values);
+</script>
 <script src="./scripts/sing_up.js"></script>
 </html>

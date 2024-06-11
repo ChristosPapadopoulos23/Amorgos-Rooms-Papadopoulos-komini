@@ -9,6 +9,10 @@ main {
     height: 100vh;
 }
 
+body{
+    background: #033e6a;
+}
+
 nav {
     position: fixed;
     z-index: 100001;
@@ -328,8 +332,7 @@ p {
     width: 100vw;
     height: fit-content;
     min-height: 93vh;
-    background: #ffffff;
-    background: linear-gradient(to bottom, white 10%, rgb(0, 174, 255));
+    background:#0082e6;
     background-image: url(../media/img2.jpg);
     background-size: cover;
     background-attachment: fixed;
@@ -545,3 +548,68 @@ p {
         height: auto;
     }
 }
+
+.overlay {
+    z-index: 99999;
+    position: fixed;
+    top: 50px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+  }
+  
+  .popup {
+    margin: 270px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    min-height:200px ;
+    width: 30%;
+    position: relative;
+  }
+  
+  .popup h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #333;
+    font-family: Tahoma, Arial, sans-serif;
+  }
+  .popup .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+    background: white;
+  }
+  .popup .close:hover {
+    color:#0082e6;
+  }
+  .popup .content {
+    max-height: 30%;
+    overflow: auto;
+  }
+
+  .confirm{
+    margin-top: 30px;
+    margin-left: 40px;
+    background: rgb(0, 136, 255);
+    border: 3px solid rgba(255, 2255, 255, 0.3);
+    backdrop-filter: blur(25px);
+    border-radius: 20px;
+    padding: 10px;
+    box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.15);
+    transition: all .5s;
+  }
+
+  .confirm:hover{
+    padding: 15px;
+    transition: all .5s;
+  }

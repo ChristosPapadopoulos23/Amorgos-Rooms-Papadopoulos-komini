@@ -11,7 +11,7 @@ CREATE TABLE UsersTable(
     email VARCHAR(255) NOT NULL,
     role ENUM('admin', 'user') DEFAULT 'user',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    status VARCHAR(255) NOT NULL
+    status_code VARCHAR(255) NOT NULL
 ); CREATE TABLE BusinessTable(
     id INT PRIMARY KEY AUTO_INCREMENT,
     business_name VARCHAR(255) NOT NULL,
