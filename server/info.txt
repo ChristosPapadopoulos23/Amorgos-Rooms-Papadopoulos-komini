@@ -6,6 +6,9 @@ CREATE TABLE UsersTable(
     last_name VARCHAR(255) NOT NULL,
     username VARCHAR(255) NOT NULL,
     PASSWORD VARCHAR(255) NOT NULL,
+    phone VARCHAR(255) NOT NULL,
+    business_name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
     role ENUM('admin', 'user') DEFAULT 'user',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     status VARCHAR(255) NOT NULL
