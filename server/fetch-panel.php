@@ -46,7 +46,8 @@ if ($user_id > 0) {
                     'phone' => $row['business_phone'],
                     'email' => $row['business_email'],
                     'description' => $row['description'],
-                    'image' => $image
+                    'image' => $image,
+                    'id' => $row['id']
                 );
             }
         }
