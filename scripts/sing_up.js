@@ -13,20 +13,21 @@ function validateSignUp() {
         number.placeholder = "Only numbers are allowed";
         return false;
     }
-
-    if (password !== cpassword) {
-        passwordError.textContent = "";
-        passwordInput.style.border = "1px solid red";
-        passwordInput.fontSize = ".5rem";
-        passwordInput.value = "";
-        passwordInput.placeholder = "Passwords do not match!";
-        cpasswordInput.style.border = "1px solid red";
-        cpasswordInput.value = "";
-        cpasswordInput.placeholder = "Passwords don't match!";
-        return false; // Prevent form submission
-    } else {
-        passwordError.textContent = ""; // Clear error message if passwords match
-        return true; // Allow form submission
+    if(actionn!=1){
+        if (password !== cpassword) {
+            passwordError.textContent = "";
+            passwordInput.style.border = "1px solid red";
+            passwordInput.fontSize = ".5rem";
+            passwordInput.value = "";
+            passwordInput.placeholder = "Passwords do not match!";
+            cpasswordInput.style.border = "1px solid red";
+            cpasswordInput.value = "";
+            cpasswordInput.placeholder = "Passwords don't match!";
+            return false; // Prevent form submission
+        } else {
+            passwordError.textContent = ""; // Clear error message if passwords match
+            return true; // Allow form submission
+        }
     }
 }
 

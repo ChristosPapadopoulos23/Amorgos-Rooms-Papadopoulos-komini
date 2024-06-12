@@ -111,21 +111,21 @@ if( isset($_GET['id']) &&  isset($_GET['action'])){
             <input type="checkbox" id="chk" aria-hidden="true">
 
             <div class="signup">
-                <form action="./server/sign-up.php" method="POST" onsubmit="return validateSignUp();" id="signup-form">
+                <form id="edit" action="./server/sign-up.php" method="POST" onsubmit="return validateSignUp();" id="signup-form">
                     <label id="sign_in_lbl" class="form" for="chk" aria-hidden="true">Sign up</label>
                     <div class="one">
                         <input type="text" id="name" name="name" placeholder="Όνομα" required="">
                         <input type="text" id="lastname" name="lastname" placeholder="Επώνυμο" required="">
                     </div>
-                    <div class="one">
-                        <input class="three" type="text" id="business_name" name="business_name"
-                            placeholder="Όνομα επιχείρησης" required="">
-                        <input class="four" type="text" id="phone" name="phone" maxlength="15" minlength="10" placeholder="Τηλέφωνο"
-                            required="">
-                    </div>
+                   <!-- <div class="one">-->
+                      <!--  <input class="three" type="text" id="business_name" name="business_name"
+                            placeholder="Όνομα επιχείρησης" required="" -->
+                        <input class="four" type="email" id="email" name="email" placeholder="Email" required="">
+                   <!-- </div>-->
                     <div class="one">
                         <input type="text" id="username" name="username" placeholder="User name" required="">
-                        <input type="email" id="email" name="email" placeholder="Email" required="">
+                        <input type="text" id="phone" name="phone" maxlength="15" minlength="10" placeholder="Τηλέφωνο"
+                            required="">
                     </div>
                     <div class="one">
                         <input type="password" id="password" name="password" placeholder="Password" required="">
@@ -171,19 +171,24 @@ if( isset($_GET['id']) &&  isset($_GET['action'])){
 </body>
 <script>
     function change_values() {
+        id="<?php echo $uid;?>"
         document.getElementById('name').value="<?php echo $name;?>";
         document.getElementById('lastname').value="<?php echo $surname;?>";
         document.getElementById('phone').value="<?php echo $phone;?>";
         document.getElementById('username').value="<?php echo $user;?>";
         document.getElementById('email').value="<?php echo $email;?>";
+        action = "<?php echo $action;?>";
         document.getElementById('username').disabled=true;
         document.getElementById('password').style.display="none";
+        document.getElementById('password').removeAttribute('required');
         document.getElementById('cpassword').style.display="none";
+        document.getElementById('cpassword').removeAttribute('required');
         document.getElementById('lgn_frm').style.display="none";
         document.getElementById('main').style.height="fit-content";
         document.getElementById('sign_in_lbl').innerHTML="Edit Info";
         document.getElementById('sign_in_btn').innerHTML="Confirm changes";
         document.getElementById('sign_in_btn').style.marginBottom="20px";
+        document.getElementById('edit').action="./server/edit_user.php?id="+id;
     };
     window.addEventListener('load', change_values);
 </script>

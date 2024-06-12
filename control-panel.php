@@ -4,6 +4,7 @@ if (!isset($_SESSION['status']) || ($_SESSION['status'] != 'approved')) {
     header("Location: ./sign-up.php");
     exit();
 }
+$uid=$_SESSION['user_id'];
 require_once './server/logs.php';
 require_once './server/db_connection.php';
 ?>
@@ -66,6 +67,17 @@ require_once './server/db_connection.php';
             </div>
         </div>   
 
+        <div id="edit_success" class="overlay">
+            <div class="popup">
+                <h2>ΠΡΟΣΟΧΗ!</h2>
+                <a class="close" href="#">&times;</a>
+                <div class="content">
+                   Επιτυχής αλλαγή στοιχείων!
+                </div>
+            </div>
+        </div>   
+
+
         <div class="panel">
             <div class="profile">
                 <div class="profile__info">
@@ -79,8 +91,8 @@ require_once './server/db_connection.php';
 
                     <div class="btn_container">
                         <div class="btn">
-                            <button class="edit">
-                                <i class="fa-solid fa-edit"></i>
+                            <button class="edit"><a href="./sign-up.php?id=<?php echo $uid;?>&action=1">
+                                <i class="fa-solid fa-edit"></i></a>
                             </button>
                         </div>
                         <div class="btn">
@@ -110,6 +122,18 @@ require_once './server/db_connection.php';
 <script src="./scripts/fetch-control-panel.js"></script>
 <script>
 
+function edit_popup(){
+    const urlParams = new URLSearchParams(window.location.search);
+    const error = urlParams.get('error');
+    console.log('closePopup'+error);
+    if(error=="success_edit"){
+        document.getElementById('edit_success').style.visibility = 'visible';
+        document.getElementById('edit_success').style.opacity = '100';
+    }
+
+}
+window.addEventListener('load', edit_popup);
+
 document.getElementById('delete').addEventListener('click', function(event) {
     document.getElementById('dlt_user').style.visibility = 'visible';
     document.getElementById('dlt_user').style.opacity = '100';
@@ -118,6 +142,8 @@ document.getElementById('delete').addEventListener('click', function(event) {
 function closePopup() {
     document.getElementById('dlt_user').style.visibility = 'hidden';
     document.getElementById('dlt_user').style.opacity = '0';
+    document.getElementById('edit_success').style.visibility = 'hidden';
+        document.getElementById('edit_success').style.opacity = '0';
 }
 document.querySelectorAll('.close').forEach(closeAnchor => {
     closeAnchor.addEventListener('click', closePopup);
