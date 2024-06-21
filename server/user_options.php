@@ -1,4 +1,33 @@
 <?php
+
+function deleteDirectory($dir) {
+    // Check if the directory exists
+    if (!file_exists($dir)) {
+        return false;
+    }
+
+    // Check if the path is a directory
+    if (!is_dir($dir)) {
+        return false;
+    }
+
+    // Open the directory
+    $items = new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS);
+    $files = new RecursiveIteratorIterator($items, RecursiveIteratorIterator::CHILD_FIRST);
+
+    // Iterate over files and directories
+    foreach ($files as $fileinfo) {
+        $operation = ($fileinfo->isDir() ? 'rmdir' : 'unlink');
+        if (!$operation($fileinfo->getRealPath())) {
+            echo "Failed to delete " . $fileinfo->getRealPath() . "<br>";
+            return false;
+        }
+    }
+
+    // Remove the now-empty directory
+    return rmdir($dir);
+}
+
 session_start();
 if (!isset($_SESSION['role'])) { 
     header("Location: ./sign-up.php");  // Feature is not implemented yet
@@ -15,18 +44,35 @@ echo " $action";
 
 if ($uid !== null && $action !== null) {
     if ($action == 0) {
-        $sql = "DELETE FROM userstable WHERE id=$uid";
+        $sql = "DELETE FROM UsersTable WHERE id=$uid";
+        // delete all the user's room images
+        $sql1 = "SELECT id FROM BusinessTable WHERE owner_id=$uid";
+        $result = $conn->query($sql1);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $dir = "../uploads/" . $row['id'];
+                if (!deleteDirectory($dir)) {
+                    echo "Failed to delete directory $dir";
+                }
+            }
+        }
+        // delete all the user's rooms
+        $sql2 = "DELETE FROM BusinessTable WHERE user_id=$uid";
     }
 
     // Execute the query
     if (isset($sql)) {
-        if ($conn->query($sql) === TRUE) {
-            echo "Record updated/deleted successfully";
-            header("Location: ./sign-up.php");
+        if ($conn->query($sql) === TRUE) { 
+            // kick the user out
+            session_unset();
+            session_destroy();
+            header("Location: ../sign-up.php");
+
         } else {
             echo "Error: " . $conn->error;
         }
     }
+
 } else {
     echo "Invalid parameters.";
 }
