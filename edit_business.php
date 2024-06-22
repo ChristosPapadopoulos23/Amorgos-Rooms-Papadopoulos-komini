@@ -8,14 +8,10 @@ if (!isset($_SESSION['user_id'])) {
 
 $action = isset($_GET['action']) ? (int)$_GET['action'] : null;
 if( isset($_GET['id']) &&  isset($_GET['action'])){
-    $uid = isset($_GET['id']) ? (int)$_GET['id'] : null;
-    if (!isset($_SESSION['role']) || (($_SESSION['role'] != 'admin') && ($_SESSION['id'] != $uid))) { 
-        header("Location: ./sign-up.php");  // Feature is not implemented yet
-        exit(0);
-    }
+    $id = isset($_GET['id']) ? (int)$_GET['id'] : null;
     require_once './server/logs.php';
     require_once './server/db_connection.php';
-    $sql = "SELECT * FROM BusinessTable WHERE id=$uid";
+    $sql = "SELECT * FROM BusinessTable WHERE id=$id";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
     $phone=$row['business_phone'];
@@ -25,6 +21,11 @@ if( isset($_GET['id']) &&  isset($_GET['action'])){
     $name=$row['business_name'];
     $description=$row['description'];
     $url=$row['url'];
+    $uid=$row['owner_id'];
+    if (!isset($_SESSION['role']) || (($_SESSION['role'] != 'admin') && ($_SESSION['id'] != $uid))) { 
+        header("Location: ./sign-up.php");  // Feature is not implemented yet
+        exit(0);
+    }
 }
 
 ?>
