@@ -59,45 +59,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $b_id = $conn->insert_id;
     
 
-    $files = $_FILES['pic'];
-    $fileName = $_FILES['pic']['name'];
-    $fileTmpName = $_FILES['pic']['tmp_name'];
-    $fileSize = $_FILES['pic']['size'];
-    $fileError = $_FILES['pic']['error'];
-    $fileType = $_FILES['pic']['type'];
+        $files = $_FILES['pic'];
+        $fileName = $_FILES['pic']['name'];
+        $fileTmpName = $_FILES['pic']['tmp_name'];
+        $fileSize = $_FILES['pic']['size'];
+        $fileError = $_FILES['pic']['error'];
+        $fileType = $_FILES['pic']['type'];
 
-    $fileExt = explode('.', $fileName);
-    $fileActualExt = strtolower(end($fileExt));
+        $fileExt = explode('.', $fileName);
+        $fileActualExt = strtolower(end($fileExt));
 
-    $allowed = array('jpg', 'jpeg', 'png');
+        $allowed = array('jpg', 'jpeg', 'png');
 
-    $MAX_FILE_SIZE = 20000000; // 20MB
+        $MAX_FILE_SIZE = 20000000; // 20MB
 
-    if (in_array($fileActualExt, $allowed)) {
-        if ($fileError === 0) {
-            if ($fileSize < $MAX_FILE_SIZE) {
-                $fileNameNew = uniqid('', true) . "." . $fileActualExt;
-                $directory = '../uploads/' . '/' . $b_id;
-                if (!file_exists($directory)) {
-                    if (!mkdir($directory, 0777, true)) {
-                        die('Failed to create folders...');
+        if (in_array($fileActualExt, $allowed)) {
+            if ($fileError === 0) {
+                if ($fileSize < $MAX_FILE_SIZE) {
+                    $fileNameNew = uniqid('', true) . "." . $fileActualExt;
+                    $directory = '../uploads/' . '/' . $b_id;
+                    if (!file_exists($directory)) {
+                        if (!mkdir($directory, 0777, true)) {
+                            die('Failed to create folders...');
+                        }
                     }
+                    $fileDestination = $directory . '/' . $fileNameNew;
+                    if (!move_uploaded_file($fileTmpName, $fileDestination)) {
+                        die('Failed to move uploaded file...');
+                    }
+        
+                } else {
+                    header("Location: ../create-page.php?error=file_too_big");
+                    exit();
                 }
-                $fileDestination = $directory . '/' . $fileNameNew;
-                if (!move_uploaded_file($fileTmpName, $fileDestination)) {
-                    die('Failed to move uploaded file...');
-                }
-    
-            } else {
-                header("Location: ../create-page.php?error=file_too_big");
-                exit();
-            }
         } else {
             header("Location: ../create-page.php?error=upload_error");
             exit();
         }
         } else {
-            header("Location: ../create-page.php?error=wrong_file_type");
+            header("Location: ../control-panel.php?error=created");
             exit();
         }
 

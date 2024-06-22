@@ -29,43 +29,41 @@ function deleteDirectory($dir) {
 }
 
 session_start();
-if (!isset($_SESSION['role']) || ($_SESSION['user_id'] !=$_GET['id']) ) { 
+
+
+if (!isset($_SESSION['role']) || ($_SESSION['user_id'] !=$_GET['uid'] ) ) { 
     header("Location: ./sign-up.php");  // Feature is not implemented yet
     exit();
 }
+
+$id = isset($_GET['id']) ? (int)$_GET['id'] : null;
+$uid = isset($_GET['uid']) ? (int)$_GET['uid'] : null;
+
 require_once 'logs.php';
 require_once 'db_connection.php';
 
-$action = isset($_GET['action']) ? (int)$_GET['action'] : null;
-$uid = isset($_GET['id']) ? (int)$_GET['id'] : null;
 
-echo "$uid";
-echo " $action";
 
-if ($uid !== null && $action !== null) {
-    if ($action == 0) {
-        $sql = "DELETE FROM UsersTable WHERE id=$uid";
-        // delete all the user's room images
-        $sql1 = "SELECT id FROM BusinessTable WHERE owner_id=$uid";
-        $result = $conn->query($sql1);
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $dir = "../uploads/" . $row['id'];
-                if (!deleteDirectory($dir)) {
-                    echo "Failed to delete directory $dir";
-                }
+
+if ($uid !== null) {
+    // delete all the user's room images
+    $sql1 = "SELECT id FROM BusinessTable WHERE id=$id";
+    $result = $conn->query($sql1);
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $dir = "../uploads/" . $row['id'];
+            if (!deleteDirectory($dir)) {
+                echo "Failed to delete directory $dir";
             }
         }
     }
-
+    // delete all the user's rooms
+    $sql2 = "DELETE FROM BusinessTable WHERE id=$id";
+    header("Location: ../control-panel.php");
     // Execute the query
-    if (isset($sql)) {
-        if ($conn->query($sql) === TRUE) { 
-            // kick the user out
-            session_unset();
-            session_destroy();
-            header("Location: ../sign-up.php");
-
+    if (isset($sql2)) {
+        if ($conn->query($sql2) === TRUE) {
+            echo "Record updated/deleted successfully";
         } else {
             echo "Error: " . $conn->error;
         }

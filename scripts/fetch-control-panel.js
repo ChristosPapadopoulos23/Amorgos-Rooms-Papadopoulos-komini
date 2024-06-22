@@ -48,9 +48,9 @@ function createRoomElement(room) {
                     </button></a>
                 </div>
                 <div class="btn">
-                    <button class="delete">
+                    <a href="./server/delete_business.php?id=${room.id}&uid=${user_id}"><button class="delete">
                         <i class="fa-solid fa-trash"></i>
-                    </button>
+                    </button></a>
                 </div>
             </div>
         </div>

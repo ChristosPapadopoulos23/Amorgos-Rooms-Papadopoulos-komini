@@ -1,4 +1,33 @@
 <?php
+
+function deleteDirectory($dir) {
+    // Check if the directory exists
+    if (!file_exists($dir)) {
+        return false;
+    }
+
+    // Check if the path is a directory
+    if (!is_dir($dir)) {
+        return false;
+    }
+
+    // Open the directory
+    $items = new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS);
+    $files = new RecursiveIteratorIterator($items, RecursiveIteratorIterator::CHILD_FIRST);
+
+    // Iterate over files and directories
+    foreach ($files as $fileinfo) {
+        $operation = ($fileinfo->isDir() ? 'rmdir' : 'unlink');
+        if (!$operation($fileinfo->getRealPath())) {
+            echo "Failed to delete " . $fileinfo->getRealPath() . "<br>";
+            return false;
+        }
+    }
+
+    // Remove the now-empty directory
+    return rmdir($dir);
+}
+
 session_start();
 
 ini_set('display_errors', 1);
@@ -73,6 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if ($fileSize < $MAX_FILE_SIZE) {
                     $fileNameNew = uniqid('', true) . "." . $fileActualExt;
                     $directory = '../uploads/' . '/' . $uid;
+                    deleteDirectory($directory);
                     if (!file_exists($directory)) {
                         if (!mkdir($directory, 0777, true)) {
                             die('Failed to create folders...');
@@ -92,7 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 exit();
             }
         } else {
-            header("Location: ../control-panel.php?error=wrong_file_type");
+            header("Location: ../control-panel.php?status=updated");
             exit();
         }
 
@@ -109,4 +139,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header("Location: ../control-panel.php?error=invalid_request");
     exit();
 }
+
 ?>
