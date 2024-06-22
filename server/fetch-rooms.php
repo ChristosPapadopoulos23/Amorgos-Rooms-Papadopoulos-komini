@@ -84,13 +84,14 @@ if ($result->num_rows > 0) {
 
         // If no image is found, you can set a default image or handle it accordingly
         if ($image === null) {
-            $image = 'media/church.jpg'; // Adjust this path to your default image
+            $image = '0'; // Adjust this path to your default image
         }
 
         $data[] = array(
             'name' => $row['business_name'],
             'location' => $row['location'],
             'phone' => $row['business_phone'],
+            'mobile' => $row['business_mobile'],
             'email' => $row['business_email'],
             'id' => $row['id'],
             'image' => $image, // Example image URL

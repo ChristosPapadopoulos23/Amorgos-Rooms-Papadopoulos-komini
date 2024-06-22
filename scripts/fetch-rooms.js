@@ -57,22 +57,44 @@ function renderRoomBatch(data) {
         if(room.url==null){
             $link=`Room_Page.php?name=${room.name}&id=${room.id}`;
         }
-        roomElement.innerHTML = `
+        if(room.image=='0'){
+            roomElement.innerHTML = `
             <div class="room-info">
                 <div class="room-name">${room.name}</div>
+                <i class='bx bxs-map'></i>
+                <div>&nbsp;&nbsp;${room.location}</div>
                 <i class='bx bx-phone'></i>
-                <div>${room.location}</div>
-                <i class='bx bx-mobile'></i>
                 <div>: ${room.phone}</div>
+                <i class='bx bx-mobile'></i>
+                <div>: ${room.mobile}</div>
                 <i class='bx bxs-envelope'></i>
                 <div>: ${room.email}</div>
                 <div class="ln"><a class="link" href="contact.php?value=${room.email}">Επικοινωνήστε απευθείας</a></div>
             </div>
             <a href="${$link}">
-                <img class="room1-pic" src="${room.image}">
+               <label class="morelbl">Περισσότερα εδώ</label>
             </a>
         `;
-
+        }
+        else{
+            roomElement.innerHTML = `
+                <div class="room-info">
+                    <div class="room-name">${room.name}</div>
+                    <i class='bx bxs-map'></i>
+                    <div>&nbsp;&nbsp;${room.location}</div>
+                    <i class='bx bx-phone'></i>
+                    <div>: ${room.phone}</div>
+                    <i class='bx bx-mobile'></i>
+                    <div>: ${room.mobile}</div>
+                    <i class='bx bxs-envelope'></i>
+                    <div>: ${room.email}</div>
+                    <div class="ln"><a class="link" href="contact.php?value=${room.email}">Επικοινωνήστε απευθείας</a></div>
+                </div>
+                <a href="${$link}">
+                    <img class="room1-pic" src="${room.image}">
+                </a>
+            `;
+        }
         roomsContainer.appendChild(roomElement);
     });
 }
