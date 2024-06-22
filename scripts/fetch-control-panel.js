@@ -43,9 +43,9 @@ function createRoomElement(room) {
             <p class="description" id="Description"><b>Description:</b><br>${room.description}</p>
             <div class="btn_container2">
                 <div class="btn">
-                    <button class="edit"><a href="./edit_business.php?id=${room.id}&action=1">
+                <a href="./edit_business.php?id=${room.id}&action=1"><button class="edit">
                         <i class="fa-solid fa-edit"></i>
-                    </button>
+                    </button></a>
                 </div>
                 <div class="btn">
                     <button class="delete">

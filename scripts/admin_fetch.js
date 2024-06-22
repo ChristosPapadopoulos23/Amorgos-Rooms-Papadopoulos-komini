@@ -63,14 +63,14 @@ function createUserElement(data) {
                 <p><b>Created At:</b> ${user.created_at}</p>
                 <div class="btn_container2">
                     <div class="btn">
-                        <button id="approve" class="approve"><a href="./server/admin_options.php?id=${user.id}&action=0">
-                            <i class="fa-solid fa-check"></i></a>
-                        </button>
+                        <a href="./server/admin_options.php?id=${user.id}&action=0"><button id="approve" class="approve">
+                            <i class="fa-solid fa-check"></i>
+                        </button></a>
                     </div>
                     <div class="btn">
-                        <button id="edit" class="edit"><a href="./sign-up.php?id=${user.id}&action=1">
-                            <i class="fa-solid fa-edit"></i></a>
-                        </button>
+                         <a href="./sign-up.php?id=${user.id}&action=1"><button id="edit" class="edit">
+                            <i class="fa-solid fa-edit"></i>
+                        </button></a>
                     </div>
                     <div class="btn">
                         <button id="delete" class="delete"><a href="./server/admin_options.php?id=${user.id}&action=2">

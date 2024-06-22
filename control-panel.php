@@ -91,9 +91,9 @@ require_once './server/db_connection.php';
 
                     <div class="btn_container">
                         <div class="btn">
-                            <button class="edit"><a href="./sign-up.php?id=<?php echo $uid;?>&action=1">
-                                <i class="fa-solid fa-edit"></i></a>
-                            </button>
+                            <a href="./sign-up.php?id=<?php echo $uid;?>&action=1"><button class="edit">
+                                <i class="fa-solid fa-edit"></i>
+                            </button></a>
                         </div>
                         <div class="btn">
                             <button id="delete" class="delete">

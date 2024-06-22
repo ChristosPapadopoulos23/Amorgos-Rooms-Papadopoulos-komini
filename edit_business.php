@@ -75,7 +75,7 @@ if( isset($_GET['id']) &&  isset($_GET['action'])){
 
         <div class="main">
             <div class="contact">
-                <form id="create" class="cont" action="./server/create.php" method="POST" onsubmit="return validateForm();" enctype="multipart/form-data"> 
+                <form id="create" class="cont" action="./server/edit_business.php?uid=<?php echo $id;?>" method="POST" onsubmit="return validateForm();" enctype="multipart/form-data"> 
                     <label class="form"> Τοποποίηση στοιχείων</label>
 
                     <input type="text" name="name" id="name" placeholder="Επωνυμία επιχείρησης..." required="">
@@ -112,7 +112,7 @@ if( isset($_GET['id']) &&  isset($_GET['action'])){
                 </form>
 
                 <div id="url" class="url">
-                    <form action="./server/create_url.php" method="POST" onsubmit="return validateLogin();" enctype="multipart/form-data">
+                    <form action="./server/edit_business.php?uid=<?php echo $id;?>" method="POST" onsubmit="return validateLogin();" enctype="multipart/form-data">
                         <label id="url_lbl" class="form">Υπάρχουσα σελίδα;</label>
                         <input type="text" name="name_l" id="name_l" placeholder="Επωνυμία επιχείρησης..." required="">
                         <div class="one">
