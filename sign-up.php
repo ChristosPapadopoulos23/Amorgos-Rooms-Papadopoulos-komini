@@ -170,6 +170,7 @@ if( isset($_GET['id']) &&  isset($_GET['action'])){
     </div>
 </body>
 <script>
+     action = "<?php echo $action;?>";
     function change_values() {
         id="<?php echo $uid;?>"
         document.getElementById('name').value="<?php echo $name;?>";
@@ -177,7 +178,6 @@ if( isset($_GET['id']) &&  isset($_GET['action'])){
         document.getElementById('phone').value="<?php echo $phone;?>";
         document.getElementById('username').value="<?php echo $user;?>";
         document.getElementById('email').value="<?php echo $email;?>";
-        action = "<?php echo $action;?>";
         document.getElementById('username').disabled=true;
         document.getElementById('password').style.display="none";
         document.getElementById('password').removeAttribute('required');

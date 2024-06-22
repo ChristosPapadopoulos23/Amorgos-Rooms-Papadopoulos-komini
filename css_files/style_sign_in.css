@@ -256,6 +256,10 @@ a:hover{
   .center .popup .close{
     font-size: 30px;
   }
+
+  .center .four{
+    width: 55%;
+  }
 }
 
 .container {
