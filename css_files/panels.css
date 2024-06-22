@@ -497,6 +497,19 @@ p {
     .big_logo {
         font-size: 30px;
     }
+
+    .center .popup {
+        width: 90%;
+        font-size: 20px;
+      }
+    
+      .center .popup h2{
+        width: 90%;
+      }
+      
+      .center .popup .close{
+        font-size: 30px;
+      }
 }
 
 @media (max-width: 670px) {

@@ -73,9 +73,9 @@ function createUserElement(data) {
                         </button></a>
                     </div>
                     <div class="btn">
-                        <button id="delete" class="delete"><a href="./server/admin_options.php?id=${user.id}&action=2">
-                            <i class="fa-solid fa-trash"></i></a>
-                        </button>
+                        <a href="./server/admin_options.php?id=${user.id}&action=2"><button id="delete" class="delete">
+                            <i class="fa-solid fa-trash"></i>
+                        </button></a>
                     </div>
                 </div>
             </div>
