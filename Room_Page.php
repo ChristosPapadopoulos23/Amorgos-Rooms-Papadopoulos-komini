@@ -99,15 +99,7 @@ if (isset($_GET['id']) && isset($_GET['name'])) {
                 <img class="room1 invisible" src="./media/room2.jpg">
             </div>-->
          
-            <div class="w3-content w3-display-container"> 
-                <img class="mySlides" src="./media/room1.jpg" width="600" height="300" alt="">
-            
-                <img class="mySlides" src="./media/room2.jpg" width="600" height="300" alt="">
-            
-                <img class="mySlides" src="./media/room3.jpg" width="600" height="300" alt="">
-                <button class="w3-button w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
-                <button class="w3-button w3-display-right" onclick="plusDivs(+1)">&#10095;</button>
-            </div>
+            <img src="./media/room1.jpg" class="visible room1">
             <p id="description"><?php if($description!='0'){echo $description;} ?>
             </p>
             <div class="under">
@@ -158,41 +150,6 @@ if (isset($_GET['id']) && isset($_GET['name'])) {
         function myFunction(x) {
             x.classList.toggle("change");
         }
-
-        var slideIndex = 1;
-        showDivs(slideIndex);
-
-        function plusDivs(n) {
-            showDivs(slideIndex += n);
-        }
-
-        function showDivs(n) {
-            var i;
-            var x = document.getElementsByClassName("mySlides");
-            if (n > x.length) {slideIndex = 1}
-            if (n < 1) {slideIndex = x.length} ;
-            for (i = 0; i < x.length; i++) {
-                x[i].style.display = "none";
-            }
-            x[slideIndex-1].style.display = "block";
-        }
-        var pic_style2 = document.getElementsByClassName('w3-content');
-        var pic_style = document.getElementsByClassName('mySlides');
-        var text = document.getElementsByClassName('text');
-        const FieldDescription = document.getElementById('description');
-        window.onload = function() {
-            console.log('User is typing: ',"<?php echo $description; ?>");
-            if( "<?php echo $description; ?>"==0){
-                FieldDescription.innerHTML = '';
-                for (var i = 0; i < pic_style.length; i++) {
-                    pic_style[i].style.width = '100%';
-                    pic_style[i].style.height = '100%';
-                }
-                text[0].style.width = 'auto';
-                pic_style2[0].style.marginRight = '0px';
-            }
-           
-        };
 
     </script>
 </body>
