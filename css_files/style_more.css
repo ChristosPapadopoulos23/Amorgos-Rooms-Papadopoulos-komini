@@ -77,7 +77,6 @@
   .center {
     margin-top: 80px;
     position: relative;
-    width: 100vw;
     min-height: 105vh;
     height: fit-content;
     background: linear-gradient(to bottom, #3ca3f8, #ffffff, #3ca3f8);
