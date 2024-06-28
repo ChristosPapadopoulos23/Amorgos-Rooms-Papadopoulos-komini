@@ -98,8 +98,28 @@ if (isset($_GET['id']) && isset($_GET['name'])) {
                 <img class="room1 invisible" src="./media/room2.jpg">
                 <img class="room1 invisible" src="./media/room2.jpg">
             </div>-->
-         
-            <img src="./media/room1.jpg" class="visible room1">
+
+            // create a the path to the image as /uploads/$id/imagenaem.jpg
+            // and use the path in the img tag
+
+            <?php
+            $dir = "./uploads/$id/";
+            $images = glob($dir . "*.{jpg,jpeg,png,gif}", GLOB_BRACE);
+            if (count($images) > 0) {
+                echo "<div class='image-container'>";
+                echo "<button onclick='previousImage()'><i class='bx bxs-left-arrow left'></i></button>";
+                echo "<button onclick='nextImage()'><i class='bx bxs-right-arrow right'></i></button>";
+                $i = 1;
+                foreach ($images as $image) {
+                    echo "<img src='$image' class='room$i visible'>";
+                    $i++;
+                }
+                echo "</div>";
+            } else {
+                echo "<img src='./media/room1.jpg' class='visible room1'>";
+            }
+            ?>
+            
             <p id="description"><?php if($description!='0'){echo $description;} ?>
             </p>
             <div class="under">
