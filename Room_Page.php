@@ -90,36 +90,23 @@ if (isset($_GET['id']) && isset($_GET['name'])) {
     <section class="center">
         <label class="room_name"> <?php echo $business_name ?></label>
         <div class="text">
-
-           <!-- <div class="image-container">
-                <button onclick="previousImage()"><i class='bx bxs-left-arrow left'></i></button>
-                <button onclick="nextImage()"><i class='bx bxs-right-arrow right'></i></button>
-                <img src="./media/room1.jpg" class="visible room1">
-                <img class="room1 invisible" src="./media/room2.jpg">
-                <img class="room1 invisible" src="./media/room2.jpg">
-            </div>-->
-
-            // create a the path to the image as /uploads/$id/imagenaem.jpg
-            // and use the path in the img tag
-
+            
             <?php
             $dir = "./uploads/$id/";
             $images = glob($dir . "*.{jpg,jpeg,png,gif}", GLOB_BRACE);
             if (count($images) > 0) {
-                echo "<div class='image-container'>";
-                echo "<button onclick='previousImage()'><i class='bx bxs-left-arrow left'></i></button>";
-                echo "<button onclick='nextImage()'><i class='bx bxs-right-arrow right'></i></button>";
-                $i = 1;
+                echo'<div class="w3-content w3-display-container">';
+               
                 foreach ($images as $image) {
-                    echo "<img src='$image' class='room$i visible'>";
-                    $i++;
+                    echo"<img class='mySlides' src='$image' width='600' height='600' alt=''>";       
                 }
-                echo "</div>";
-            } else {
-                echo "<img src='./media/room1.jpg' class='visible room1'>";
+                if (count($images) >1){
+                    echo'<button class="w3-button w3-display-left" onclick="plusDivs(-1)">&#10094;</button>';
+                    echo'<button class="w3-button w3-display-right" onclick="plusDivs(+1)">&#10095;</button>';
+                }
+                echo "</div>"; 
             }
             ?>
-            
             <p id="description"><?php if($description!='0'){echo $description;} ?>
             </p>
             <div class="under">
@@ -163,7 +150,7 @@ if (isset($_GET['id']) && isset($_GET['name'])) {
             <div>: 2xxxxxxxxx</div>
             <i class='bx bxs-envelope'></i>
             <div class="last">: amorgos@geemail.com</div>
-            <div class="tag">Χρήστος Παπαδόπουλος-2024</div>
+            <div class="tag">Παουλιν Κομινι - Χρήστος Παπαδόπουλος-2024</div>
         </div>
     </div>
     <script>
@@ -171,6 +158,40 @@ if (isset($_GET['id']) && isset($_GET['name'])) {
             x.classList.toggle("change");
         }
 
+        var slideIndex = 1;
+        showDivs(slideIndex);
+
+        function plusDivs(n) {
+            showDivs(slideIndex += n);
+        }
+
+        function showDivs(n) {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            if (n > x.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = x.length} ;
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            x[slideIndex-1].style.display = "block";
+        }
+        var pic_style2 = document.getElementsByClassName('w3-content');
+        var pic_style = document.getElementsByClassName('mySlides');
+        var text = document.getElementsByClassName('text');
+        const FieldDescription = document.getElementById('description');
+        window.onload = function() {
+            console.log('User is typing: ',"<?php echo $description; ?>");
+            if( "<?php echo $description; ?>"==0){
+                FieldDescription.innerHTML = '';
+                for (var i = 0; i < pic_style.length; i++) {
+                 
+                    pic_style[i].style.height = '100%';
+                }
+                text[0].style.width = 'auto';
+                pic_style2[0].style.marginRight = '0px';
+            }
+
+        };
     </script>
 </body>
 

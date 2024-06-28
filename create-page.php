@@ -148,7 +148,7 @@ if (!isset($_SESSION['user_id'])) {
             <div>: 2xxxxxxxxx</div>
             <i class='bx bxs-envelope'></i>
             <div class="last">: amorgos@geemail.com</div>
-            <div class="tag">>Παουλιν Κομινι - Χρήστος Παπαδόπουλος-2024</div>
+            <div class="tag">Παουλιν Κομινι - Χρήστος Παπαδόπουλος-2024</div>
         </div>
     </div>
 </body>
