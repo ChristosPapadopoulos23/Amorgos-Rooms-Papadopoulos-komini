@@ -29,8 +29,8 @@ function deleteDirectory($dir) {
 }
 
 session_start();
-if (!isset($_SESSION['role']) || ($_SESSION['user_id'] !=$_GET['id']) ) { 
-    header("Location: ./sign-up.php");  // Feature is not implemented yet
+if (!isset($_SESSION['role']) || ($_SESSION['user_id'] != $_GET['id']) ) { 
+    header("Location: ./sign-up.php");
     exit();
 }
 require_once 'logs.php';
@@ -65,6 +65,7 @@ if ($uid !== null && $action !== null) {
             session_unset();
             session_destroy();
             header("Location: ../sign-up.php");
+            exit();
 
         } else {
             echo "Error: " . $conn->error;

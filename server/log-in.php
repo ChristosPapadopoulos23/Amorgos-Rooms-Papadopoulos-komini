@@ -1,6 +1,5 @@
 <?php
 session_start();
-session_create_id(true);
 
 // Include necessary files  
 require_once 'db_connection.php';
