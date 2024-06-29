@@ -3,6 +3,7 @@ const batchSize = 6;
 let searchName = 'all';
 let state = 'all';
 let ord = 'DESC';
+// let area = '0';
 let isFetching = false;
 let hasMore = true;
 
@@ -13,6 +14,7 @@ function fetchNextBatch() {
     ord = document.getElementById('order').value;
     searchName = document.getElementById('search').value;
     state = document.getElementById('state').value;
+    // area = document.getElementById('area').value;
     
     if (searchName !== '' && currentPage > 1) {
         isFetching = false;
@@ -53,30 +55,46 @@ function createUserElement(data) {
     data.forEach(user => {
         const userElement = document.createElement('div');
         userElement.classList.add('room');
+
+        let style = '';
+        if (user.role == 'admin') {
+            style = 'background-color:lightblue;';
+        }
+
+        console.log(user.role);
         
         userElement.innerHTML = `
             <div class="room-info">
                 <h3>${user.name}</h3>
-                <p><b>Business Name:</b> ${user.business_name}</p>
                 <p><b>Phone:</b> ${user.phone}</p>
                 <p><b>Email:</b> ${user.email}</p>
                 <p><b>Created At:</b> ${user.created_at}</p>
                 <div class="btn_container2">
                     <div class="btn">
-                        <a href="./server/admin_options.php?id=${user.id}&action=0"><button id="approve" class="approve">
+                        <a href="./server/admin_options.php?id=${user.id}&action=0">
+                        <button id="approve" class="approve">
                             <i class="fa-solid fa-check"></i>
                         </button></a>
                     </div>
                     <div class="btn">
-                         <a href="./sign-up.php?id=${user.id}&action=1"><button id="edit" class="edit">
+                         <a href="./sign-up.php?id=${user.id}&action=1">
+                         <button id="edit" class="edit">
                             <i class="fa-solid fa-edit"></i>
                         </button></a>
                     </div>
                     <div class="btn">
-                        <a href="./server/admin_options.php?id=${user.id}&action=2"><button id="delete" class="delete">
+                        <a href="./server/admin_options.php?id=${user.id}&action=2">
+                        <button id="delete" class="delete">
                             <i class="fa-solid fa-trash"></i>
                         </button></a>
                     </div>
+                    <div class="btn">
+                        <a href="./server/admin_options.php?id=${user.id}&action=3">
+                        <button id="admin" class="block" style=${style}>
+                            <i class="fa-solid fa-user"></i>
+                        </button></a>
+                    </div>
+
                 </div>
             </div>
         `;
@@ -102,6 +120,13 @@ document.getElementById('state').addEventListener('change', function() {
 });
 
 document.getElementById('order').addEventListener('change', function() {
+    currentPage = 1;
+    document.getElementById('roomsContainer').innerHTML = '';
+    hasMore = true;
+    fetchNextBatch();
+});
+
+document.getElementById('area').addEventListener('change', function() {
     currentPage = 1;
     document.getElementById('roomsContainer').innerHTML = '';
     hasMore = true;

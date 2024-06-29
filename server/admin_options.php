@@ -15,11 +15,26 @@ echo " $action";
 
 if ($uid !== null && $action !== null) {
     if ($action == 2) {
-        $sql = "DELETE FROM userstable WHERE id=$uid";
+        $sql = "DELETE FROM UsersTable WHERE id=$uid";
     } else if ($action == 1) {
-        $sql = "DELETE FROM userstable WHERE id=$uid";
+        $sql = "DELETE FROM UsersTable WHERE id=$uid";
     } else if ($action == 0) {
-        $sql = "UPDATE userstable SET status_code = 'approved' WHERE id = $uid";
+        $sql = "UPDATE UsersTable SET status_code = 'approved' WHERE id = $uid";
+    } else if ($action == 3) {
+        // works like a switch if is a user it makes it admin and vice versa
+        // make a query to get the role of the user
+        $sql = "SELECT role FROM UsersTable WHERE id = $uid";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+        if ($row['role'] == 'admin') {
+            $sql = "UPDATE UsersTable SET role = 'user' WHERE id = $uid";
+        } else {
+            $sql = "UPDATE UsersTable SET role = 'admin' WHERE id = $uid";
+        }
+    } else if ($action == 4) {
+        $sql = "UPDATE UsersTable SET role = user WHERE id = $uid";
+    } else {
+        echo "Invalid action.";
     }
     header("Location: ../admin_panel.php"); 
 

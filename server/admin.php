@@ -32,6 +32,7 @@ require_once 'db_connection.php';
 
 // Set default values for parameters
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+// $area = isset($_GET['area']) ? intval($_GET['area']) : 0;
 $batchSize = isset($_GET['batchSize']) ? intval($_GET['batchSize']) : 6;
 $userName = isset($_GET['userName']) ? $_GET['userName'] : '';
 $user_state = isset($_GET['state']) ? $_GET['state'] : '';
@@ -59,7 +60,6 @@ if ($userName != '') {
     $countSql .= " AND last_name LIKE '$userName%' OR first_name LIKE '$userName%'";
 }
 
-
 if ($order != 'DESC') {
     $sql .= " ORDER BY created_at ASC";
 } else {
@@ -83,7 +83,8 @@ if ($result->num_rows > 0) {
             'phone' => $row['phone'],
             'email' => $row['email'],
             'created_at' => $row['created_at'], 
-            'id' => $row['id']
+            'id' => $row['id'],
+            'role' => $row['role']
         );
     }
 }
