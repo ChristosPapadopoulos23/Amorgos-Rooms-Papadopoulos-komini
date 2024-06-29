@@ -8,7 +8,7 @@ if(isset($_GET['value']))
         
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
-    $amorg_email="christoszita@gmail.com";
+    $business_email = $conn->real_escape_string($_POST['b_email']);
     $name=$conn->real_escape_string($_POST['name']);
     $sname=$conn->real_escape_string($_POST['sname']);
     $adults=$conn->real_escape_string($_POST['adults']);

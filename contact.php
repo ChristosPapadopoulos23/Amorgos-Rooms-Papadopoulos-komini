@@ -52,6 +52,8 @@ session_start();
             <div class="contact">
                 <form action="./server/contact.php" method="POST">
                     <label class="lbl">Πληροφορίες Επικοινωνίας</label>
+
+                    <input type="email" name="b_email" id="b_email" readonly value="<?php echo $_GET['email']; ?>">
                     <div class="one">
                         <input type="text" id="name" name="name" placeholder="Όνομα" required="">
                         <input type="text" id="sname" name="sname" placeholder="Επίθετο" required="">
@@ -136,8 +138,21 @@ session_start();
 </body>
 <script src="./scripts/contact.js"></script>
 <script>
-    function myFunction(x) {
-        x.classList.toggle("change");
+    // Function to get query parameter value by name
+    function getQueryParam(name) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(name);
     }
+
+    // Get the 'value' parameter from the URL
+    const emailValue = getQueryParam('value');
+
+    // If 'value' parameter exists, set it to the display and hidden email input fields
+    if (emailValue) {
+        document.getElementById('b_email').value = emailValue;
+    }
+
+    console.log(emailValue);
+
 </script>
 </html>

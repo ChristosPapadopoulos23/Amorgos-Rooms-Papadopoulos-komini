@@ -1,7 +1,7 @@
 <?php
 session_start(); // Start the session
 
-// Function to check and update request count
+// Function to check and update request count in session this is for rate limiting
 function checkAndUpdateRequestCount() {
     if (!isset($_SESSION['request_count'])) {
         $_SESSION['request_count'] = 0;
@@ -37,12 +37,14 @@ $userName = isset($_GET['userName']) ? $_GET['userName'] : '';
 $user_state = isset($_GET['state']) ? $_GET['state'] : 'unapproved';
 $order = isset($_GET['order']) ? $_GET['order'] : 'DESC';
 
+// Calculate offset based on page number and batch size
 $offset = ($page - 1) * $batchSize;
 
 // Build SQL query based on userName and state
 $sql = "SELECT * FROM UsersTable WHERE 1=1"; // Initial query
 $countSql = "SELECT COUNT(*) as total FROM UsersTable WHERE 1=1"; // Initial count query
 
+// Add conditions based on parameters
 if ($user_state == 'unapproved') {
     $sql .= " AND status_code = 'unapproved'";
     $countSql .= " AND status_code = 'unapproved'";
@@ -51,17 +53,20 @@ if ($user_state == 'unapproved') {
     $countSql .= " AND status_code = 'approved'";
 }
 
+// Add search condition based on userName
 if ($userName != '') {
     $sql .= " AND last_name LIKE '$userName%' OR first_name LIKE '$userName%'";
     $countSql .= " AND last_name LIKE '$userName%' OR first_name LIKE '$userName%'";
 }
 
+// Add order by clause
 if ($order != 'DESC') {
     $sql .= " ORDER BY created_at ASC";
 } else {
     $sql .= " ORDER BY created_at DESC";
 }
 
+// Add limit and offset
 $sql .= " LIMIT $batchSize OFFSET $offset";
 
 // Execute queries
@@ -72,6 +77,7 @@ $totalRows = $countResult->fetch_assoc()['total'];
 $data = array();
 $hasMore = ($offset + $batchSize) < $totalRows;
 
+// Fetch data from result
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $data[] = array(
@@ -87,11 +93,12 @@ if ($result->num_rows > 0) {
 
 $conn->close();
 
+// Prepare response
 $response = array(
     'users' => $data,
     'hasMore' => $hasMore
 );
 
-// Send JSON response
+// Send JSON response to the client
 header('Content-Type: application/json');
 echo json_encode($response);

@@ -1,6 +1,11 @@
 <?php
 session_start();
-session_create_id(true);
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../login.php");
+    exit();
+}
+
+session_regenerate_id(true);
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -11,9 +16,8 @@ require_once 'db_connection.php';
 require_once 'user_data_validation.php';
 
 // Function to sanitize user input
-function sanitizeInput($input) {
-    global $conn;
-    if (isset($conn)) {
+function sanitizeInput($input, $conn = null) {
+    if ($conn) {
         return $conn->real_escape_string($input);
     } else {
         return htmlspecialchars(trim($input));
@@ -21,19 +25,21 @@ function sanitizeInput($input) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    $b_name = sanitizeInput($_POST['name_l']);
-    $email = sanitizeInput($_POST['email_l']);
-    $phone = sanitizeInput($_POST['phone_l']);
-    $mobile = sanitizeInput($_POST['mobile_l']);
-    $area = sanitizeInput($_POST['area_l']);
-    $url = sanitizeInput($_POST['link']);
-    $url_confirm = sanitizeInput($_POST['link_confirmation']);
+    $b_name = sanitizeInput($_POST['name_l'], $conn);
+    $email = sanitizeInput($_POST['email_l'], $conn);
+    $phone = sanitizeInput($_POST['phone_l'], $conn);
+    $mobile = sanitizeInput($_POST['mobile_l'], $conn);
+    $area = sanitizeInput($_POST['area_l'], $conn);
+    $url = sanitizeInput($_POST['link'], $conn);
+    $url_confirm = sanitizeInput($_POST['link_confirmation'], $conn);
     $comments = "0";
 
-    if (strlen($b_name) < 1 || strlen($phone) != 10 || strlen($mobile) != 10 || strlen($url) < 1 || $url_confirm != "yes")
-        exit(0);
-
+    // Basic validation
+    if (strlen($b_name) < 1 || strlen($phone) != 10 || strlen($mobile) != 10 || strlen($url) < 1 || $url_confirm != "yes") {
+        header("Location: ../create-page.php?error=invalid_input");
+        exit();
+    }
+    
     $created_at = date("Y-m-d H:i:s");
     $owner_id = $_SESSION['user_id'];
 
@@ -48,53 +54,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->execute();
 
     if ($stmt->affected_rows > 0) {
-        header("Location: ../control-panel.php?error=created");
         $b_id = $conn->insert_id;
 
-        // Process multiple files
         $files = $_FILES['pic'];
-        $fileCount = count($files['name']);
+        $fileName = $files['name'];
+        $fileTmpName = $files['tmp_name'];
+        $fileSize = $files['size'];
+        $fileError = $files['error'];
+        $fileType = $files['type'];
+
+        $fileExt = explode('.', $fileName);
+        $fileActualExt = strtolower(end($fileExt));
+
         $allowed = array('jpg', 'jpeg', 'png');
         $MAX_FILE_SIZE = 20000000; // 20MB
-        $directory = '../uploads/' . $b_id;
 
-        if (!file_exists($directory)) {
-            if (!mkdir($directory, 0777, true)) {
-                die('Failed to create folders...');
-            }
-        }
-
-        for ($i = 0; $i < $fileCount; $i++) {
-            $fileName = $files['name'][$i];
-            $fileTmpName = $files['tmp_name'][$i];
-            $fileSize = $files['size'][$i];
-            $fileError = $files['error'][$i];
-            $fileType = $files['type'][$i];
-
-            $fileExt = explode('.', $fileName);
-            $fileActualExt = strtolower(end($fileExt));
-
-            if (in_array($fileActualExt, $allowed)) {
-                if ($fileError === 0) {
-                    if ($fileSize < $MAX_FILE_SIZE) {
-                        $fileNameNew = uniqid('', true) . "." . $fileActualExt;
-                        $fileDestination = $directory . '/' . $fileNameNew;
-
-                        if (!move_uploaded_file($fileTmpName, $fileDestination)) {
-                            die('Failed to move uploaded file...');
+        if (in_array($fileActualExt, $allowed)) {
+            if ($fileError === 0) {
+                if ($fileSize < $MAX_FILE_SIZE) {
+                    $fileNameNew = uniqid('', true) . "." . $fileActualExt;
+                    $directory = '../uploads/' . $b_id;
+                    if (!file_exists($directory)) {
+                        if (!mkdir($directory, 0777, true)) {
+                            die('Failed to create folders...');
                         }
-                    } else {
-                        header("Location: ../create-page.php?error=file_too_big");
-                        exit();
                     }
+                    $fileDestination = $directory . '/' . $fileNameNew;
+                    if (!move_uploaded_file($fileTmpName, $fileDestination)) {
+                        die('Failed to move uploaded file...');
+                    }
+                    header("Location: ../control-panel.php?success=created");
                 } else {
-                    header("Location: ../create-page.php?error=upload_error");
+                    header("Location: ../create-page.php?error=file_too_big");
                     exit();
                 }
             } else {
-                header("Location: ../create-page.php?error=invalid_file_type");
+                header("Location: ../create-page.php?error=upload_error");
                 exit();
             }
+        } else {
+            header("Location: ../create-page.php?error=invalid_file_type");
+            exit();
         }
     } else {
         header("Location: ../create-page.php?error=database_error");
@@ -103,8 +103,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $stmt->close();
     $conn->close();
-
 } else {
     header("Location: ../create-page.php?error=invalid_request");
     exit();
 }
+

@@ -1,8 +1,8 @@
 <?php
 // Include the file containing the database connection
 require_once 'db_connection.php';
-// test
 
+// Function to authenticate a user based on the provided username and password
 function authenticateUser($username, $password) {
     global $conn;
 
