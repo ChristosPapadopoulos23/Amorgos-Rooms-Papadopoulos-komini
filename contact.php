@@ -53,7 +53,7 @@ session_start();
                 <form action="./server/contact.php" method="POST">
                     <label class="lbl">Πληροφορίες Επικοινωνίας</label>
 
-                    <input type="email" name="b_email" id="b_email" readonly value="<?php echo $_GET['email']; ?>">
+                    <input type="email" name="b_email" id="b_email" readonly>
                     <div class="one">
                         <input type="text" id="name" name="name" placeholder="Όνομα" required="">
                         <input type="text" id="sname" name="sname" placeholder="Επίθετο" required="">

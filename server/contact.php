@@ -1,10 +1,6 @@
 <?php
 require_once 'logs.php';
-
 require_once 'db_connection.php';
-
-if(isset($_GET['value']))
-    $email = $_GET['value'];
         
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
@@ -74,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 Με εκτίμηση,
 Η ομάδα της Amorgos Rooms";
 
-    if (mail($user_email, "Νέα κράτηση από πελάτη", $booking_message)) {
+    if (mail($business_email, "Νέα κράτηση από πελάτη", $booking_message)) {
         echo "Email sent successfully!";
         header("Location: ../index.php");
     } else {
@@ -82,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: ../index.php");
     }
 
-    if (mail($amorg_email, "Ευχαριστούμε για την επικοινωνία σας με την Amorgos Rooms", $user_message)) {
+    if (mail($business_email, "Ευχαριστούμε για την επικοινωνία σας με την Amorgos Rooms", $user_message)) {
         echo "Email sent successfully!";
         header("Location: ../index.php");
     } else {
