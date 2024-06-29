@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Sanitize and validate form data
     $name = sanitizeInput($_POST['name']);
     $lastname = sanitizeInput($_POST['lastname']);
-    $business_name = sanitizeInput($_POST['business_name']);
+    // $business_name = sanitizeInput($_POST['business_name']);
     $phone = sanitizeInput($_POST['phone']);
     //$business_mobile = sanitizeInput($_POST['business_mobile']); // Corrected variable name
     $email = sanitizeInput($_POST['email']);
@@ -67,10 +67,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $hashedPassword = password_hash($password, PASSWORD_BCRYPT, $options);
 
     // Insert user data into UsersTable
-    $sqlUserSignup = "INSERT INTO UsersTable (first_name, last_name, username, password, created_at, status_code, phone, business_name, email)
-                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $sqlUserSignup = "INSERT INTO UsersTable (first_name, last_name, username, password, created_at, status_code, phone, email)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     $stmtUserSignup = $conn->prepare($sqlUserSignup);
-    $stmtUserSignup->bind_param("sssssssss", $name, $lastname, $username, $hashedPassword, $timestamp, $status , $phone, $business_name, $email);
+    $stmtUserSignup->bind_param("ssssssss", $name, $lastname, $username, $hashedPassword, $timestamp, $status , $phone, $email);
 
     if ($stmtUserSignup->execute() === TRUE) {
         header("Location: ../sign-up.php?success=true");

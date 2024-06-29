@@ -55,8 +55,8 @@ if ($user_state == 'unapproved') {
 }
 
 if ($userName != '') {
-    $sql .= " AND business_name LIKE '$userName%'";
-    $countSql .= " AND business_name LIKE '$userName%'";
+    $sql .= " AND last_name LIKE '$userName%' OR first_name LIKE '$userName%'";
+    $countSql .= " AND last_name LIKE '$userName%' OR first_name LIKE '$userName%'";
 }
 
 
@@ -82,7 +82,6 @@ if ($result->num_rows > 0) {
             'name' => $row['first_name'] . ' ' . $row['last_name'],
             'phone' => $row['phone'],
             'email' => $row['email'],
-            'business_name' => $row['business_name'], 
             'created_at' => $row['created_at'], 
             'id' => $row['id']
         );
