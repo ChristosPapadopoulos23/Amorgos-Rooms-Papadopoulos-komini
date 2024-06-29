@@ -78,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: ../index.php");
     }
 
-    if (mail($business_email, "Ευχαριστούμε για την επικοινωνία σας με την Amorgos Rooms", $user_message)) {
+    if (mail($user_email, "Ευχαριστούμε για την επικοινωνία σας με την Amorgos Rooms", $user_message)) {
         echo "Email sent successfully!";
         header("Location: ../index.php");
     } else {
