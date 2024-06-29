@@ -59,15 +59,7 @@ if (!isset($_SESSION['role'] ) || ($_SESSION['role'] != 'admin')) {
                     <div class="filters">
                         <label for="search">Search:</label>
                         <input type="text" name="search" id="search" class="search">
-                        <div class="custom-select">
-                            <select class="area" id="area">
-                                <option value="all">Διαλέξτε περιοχή</option>
-                                <option value="Χώρα Αμοργού">Χώρα Αμοργού</option>
-                                <option value="Αιγιάλη">Αιγιάλη</option>
-                                <option value="Κατάπολα">Κατάπολα</option>
-                                <option value="Άλλο">Άλλο</option>
-                            </select>
-                        </div>
+                
                         <div class="custom-select">
                             <select class="area" id="state">
                                 <option value="unapproved">Mη εγκεκριμένος</option>

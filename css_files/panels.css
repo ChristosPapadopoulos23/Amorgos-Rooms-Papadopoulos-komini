@@ -261,6 +261,11 @@ p {
     transition: padding .5s;
 }
 
+.block:hover {
+    padding: 15px;
+    transition: padding .5s;
+}
+
 .delete:active {
     outline: 2px solid black;
     background-color: red;
