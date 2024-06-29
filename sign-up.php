@@ -3,7 +3,7 @@ session_start();
 $action = isset($_GET['action']) ? (int)$_GET['action'] : null;
 if( isset($_GET['id']) &&  isset($_GET['action'])){
     $uid = isset($_GET['id']) ? (int)$_GET['id'] : null;
-    if (!isset($_SESSION['role']) || (($_SESSION['role'] != 'admin') && ($_SESSION['id'] != $uid))) { 
+    if (!isset($_SESSION['role']) || (($_SESSION['role'] != 'admin') && ($_SESSION['user_id'] != $uid))) { 
         header("Location: ./sign-up.php");
         exit(0);
     }   

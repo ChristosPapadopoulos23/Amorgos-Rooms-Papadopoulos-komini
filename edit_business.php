@@ -22,7 +22,7 @@ if( isset($_GET['id']) &&  isset($_GET['action'])){
     $description=$row['description'];
     $url=$row['url'];
     $uid=$row['owner_id'];
-    if (!isset($_SESSION['role']) || (($_SESSION['role'] != 'admin') && ($_SESSION['id'] != $uid))) { 
+    if (!isset($_SESSION['role']) || (($_SESSION['role'] != 'admin') && ($_SESSION['user_id'] != $uid))) { 
         header("Location: ./sign-up.php");  // Feature is not implemented yet
         exit(0);
     }
