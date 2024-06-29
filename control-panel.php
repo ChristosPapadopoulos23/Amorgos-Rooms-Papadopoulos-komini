@@ -139,6 +139,11 @@ document.getElementById('delete').addEventListener('click', function(event) {
     document.getElementById('dlt_user').style.opacity = '100';
 
 });
+document.getElementById('delete').addEventListener('click', function(event) {
+    document.getElementById('dlt_user').style.visibility = 'visible';
+    document.getElementById('dlt_user').style.opacity = '100';
+
+});
 function closePopup() {
     document.getElementById('dlt_user').style.visibility = 'hidden';
     document.getElementById('dlt_user').style.opacity = '0';
