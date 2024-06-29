@@ -86,7 +86,8 @@ if ($result->num_rows > 0) {
             'email' => $row['email'],
             'created_at' => $row['created_at'], 
             'id' => $row['id'],
-            'role' => $row['role']
+            'role' => $row['role'],
+            'status_code' => $row['status_code']
         );
     }
 }

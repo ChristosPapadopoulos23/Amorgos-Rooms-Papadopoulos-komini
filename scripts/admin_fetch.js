@@ -59,6 +59,13 @@ function createUserElement(data) {
             style = 'background-color: lightblue;';
         }
 
+        let state = '';
+        let admin = 'hidden';
+        if (user.status_code == 'approved') {
+            state = 'hidden';
+            admin = '';
+        }
+
         userElement.innerHTML = `
             <div class="room-info">
                 <h3>${user.name}</h3>
@@ -68,7 +75,7 @@ function createUserElement(data) {
                 <div class="btn_container2">
                     <div class="btn">
                         <a href="./server/admin_options.php?id=${user.id}&action=0">
-                            <button id="approve" class="approve">
+                            <button id="approve" class="approve" ${state}>
                                 <i class="fa-solid fa-check"></i>
                             </button>
                         </a>
@@ -89,7 +96,7 @@ function createUserElement(data) {
                     </div>
                     <div class="btn">
                         <a href="./server/admin_options.php?id=${user.id}&action=3">
-                            <button id="admin" class="block" style="${style}">
+                            <button id="admin" class="block" style="${style}" ${admin}>
                                 <i class="fa-solid fa-user"></i>
                             </button>
                         </a>
