@@ -191,6 +191,7 @@ if( isset($_GET['id']) &&  isset($_GET['action'])){
         document.getElementById('sign_in_btn').style.marginBottom="20px";
         document.getElementById('edit').action="./server/edit_user.php?id="+id;
     };
+     System.out.println(action);
     if(action!=null)
     window.addEventListener('load', change_values);
 </script>

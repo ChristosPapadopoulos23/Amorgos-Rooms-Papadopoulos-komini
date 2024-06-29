@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (strlen($b_name) < 1 || strlen($phone) != 10 || strlen($mobile) != 10) {
-        exit(0);
+        exit("Invalid input data");
     }
 
     $created_at = date("Y-m-d H:i:s");
@@ -52,8 +52,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->execute();
 
     if ($stmt->affected_rows > 0) {
-        header("Location: ../control-panel.php?error=created");
         $b_id = $conn->insert_id;
+        $directory = '../uploads/' . $b_id;
+        if (!file_exists($directory)) {
+            if (!mkdir($directory, 0777, true)) {
+                die('Failed to create folders...');
+            }
+        }
 
         $files = $_FILES['pic'];
         $fileNames = $files['name'];
@@ -64,13 +69,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $allowed = array('jpg', 'jpeg', 'png');
         $MAX_FILE_SIZE = 20000000; // 20MB
-
-        $directory = '../uploads/' . $b_id;
-        if (!file_exists($directory)) {
-            if (!mkdir($directory, 0777, true)) {
-                die('Failed to create folders...');
-            }
-        }
 
         for ($i = 0; $i < count($fileNames); $i++) {
             $fileName = $fileNames[$i];
@@ -88,22 +86,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $fileNameNew = uniqid('', true) . "." . $fileActualExt;
                         $fileDestination = $directory . '/' . $fileNameNew;
                         if (!move_uploaded_file($fileTmpName, $fileDestination)) {
-                            die('Failed to move uploaded file...');
+                            die('Failed to move uploaded file: ' . $fileName);
                         }
                     } else {
-                        header("Location: ../create-page.php?error=file_too_big");
+                        header("Location: ../create-page.php?error=file_too_big&file=$fileName");
                         exit();
                     }
                 } else {
-                    header("Location: ../create-page.php?error=upload_error");
+                    header("Location: ../create-page.php?error=upload_error&file=$fileName");
                     exit();
                 }
             } else {
-                header("Location: ../create-page.php?error=invalid_file_type");
+                header("Location: ../create-page.php?error=invalid_file_type&file=$fileName");
                 exit();
             }
         }
 
+        header("Location: ../control-panel.php?error=created");
         exit();
     } else {
         header("Location: ../create-page.php?error=database_error");
@@ -112,7 +111,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $stmt->close();
     $conn->close();
-
 } else {
     header("Location: ../create-page.php?error=invalid_request");
     exit();
