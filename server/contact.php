@@ -76,14 +76,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (mail($user_email, "Νέα κράτηση από πελάτη", $booking_message)) {
         echo "Email sent successfully!";
+        header("Location: ../index.php");
     } else {
         echo "Email sending failed.";
+        header("Location: ../index.php");
     }
 
     if (mail($amorg_email, "Ευχαριστούμε για την επικοινωνία σας με την Amorgos Rooms", $user_message)) {
         echo "Email sent successfully!";
+        header("Location: ../index.php");
     } else {
         echo "Email sending failed.";
+        header("Location: ../index.php");
     }
 
 }
