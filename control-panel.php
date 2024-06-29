@@ -5,8 +5,7 @@ if (!isset($_SESSION['status']) || ($_SESSION['status'] != 'approved')) {
     exit();
 }
 $uid=$_SESSION['user_id'];
-require_once './server/logs.php';
-require_once './server/db_connection.php';
+
 ?>
 
 <!DOCTYPE html>

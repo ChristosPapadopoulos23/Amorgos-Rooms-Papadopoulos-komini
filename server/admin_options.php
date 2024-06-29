@@ -22,7 +22,6 @@ if ($uid !== null && $action !== null) {
     } else if ($action == 1) {
         $sql = "DELETE FROM UsersTable WHERE id=$uid";
     } else if ($action == 0) {
-        $sql = "UPDATE UsersTable SET status_code = 'approved' WHERE id = $uid";
         // send email to the user the account is approved
         $sql = "SELECT email FROM UsersTable WHERE id = $uid";
         $result = $conn->query($sql);
@@ -31,6 +30,9 @@ if ($uid !== null && $action !== null) {
         $subject = "Amorgos Rooms Account approved";
         $message = "Your account in Amorgos Rooms has been approved. You can now log in.";
         mail($email, $subject, $message);
+        
+        // and lastly update the status of the user
+        $sql = "UPDATE UsersTable SET status_code = 'approved' WHERE id = $uid";
     } else if ($action == 3) {
         // works like a switch if is a user make him an admin and vice versa
         // make a query to get the role of the user

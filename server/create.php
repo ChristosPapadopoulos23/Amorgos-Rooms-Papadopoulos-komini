@@ -21,7 +21,6 @@ function sanitizeInput($input) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
     $b_name = sanitizeInput($_POST['name']);
     $comments = sanitizeInput($_POST['comments']);
     $email = sanitizeInput($_POST['email']);
@@ -56,63 +55,75 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $directory = '../uploads/' . $b_id;
         if (!file_exists($directory)) {
             if (!mkdir($directory, 0777, true)) {
+                $stmt->close();
                 die('Failed to create folders...');
             }
         }
 
-        $files = $_FILES['pic'];
-        $fileNames = $files['name'];
-        $fileTmpNames = $files['tmp_name'];
-        $fileSizes = $files['size'];
-        $fileErrors = $files['error'];
-        $fileTypes = $files['type'];
+        if (isset($_FILES['pic']) && !empty($_FILES['pic']['name'][0])) {
+            $files = $_FILES['pic'];
+            $fileNames = $files['name'];
+            $fileTmpNames = $files['tmp_name'];
+            $fileSizes = $files['size'];
+            $fileErrors = $files['error'];
+            $fileTypes = $files['type'];
 
-        $allowed = array('jpg', 'jpeg', 'png');
-        $MAX_FILE_SIZE = 20000000; // 20MB
+            $allowed = array('jpg', 'jpeg', 'png');
+            $MAX_FILE_SIZE = 20000000; // 20MB
 
-        for ($i = 0; $i < count($fileNames); $i++) {
-            $fileName = $fileNames[$i];
-            $fileTmpName = $fileTmpNames[$i];
-            $fileSize = $fileSizes[$i];
-            $fileError = $fileErrors[$i];
-            $fileType = $fileTypes[$i];
+            for ($i = 0; $i < count($fileNames); $i++) {
+                $fileName = $fileNames[$i];
+                $fileTmpName = $fileTmpNames[$i];
+                $fileSize = $fileSizes[$i];
+                $fileError = $fileErrors[$i];
+                $fileType = $fileTypes[$i];
 
-            $fileExt = explode('.', $fileName);
-            $fileActualExt = strtolower(end($fileExt));
+                $fileExt = explode('.', $fileName);
+                $fileActualExt = strtolower(end($fileExt));
 
-            if (in_array($fileActualExt, $allowed)) {
-                if ($fileError === 0) {
-                    if ($fileSize < $MAX_FILE_SIZE) {
-                        $fileNameNew = uniqid('', true) . "." . $fileActualExt;
-                        $fileDestination = $directory . '/' . $fileNameNew;
-                        if (!move_uploaded_file($fileTmpName, $fileDestination)) {
-                            die('Failed to move uploaded file: ' . $fileName);
+                if (in_array($fileActualExt, $allowed)) {
+                    if ($fileError === 0) {
+                        if ($fileSize < $MAX_FILE_SIZE) {
+                            $fileNameNew = uniqid('', true) . "." . $fileActualExt;
+                            $fileDestination = $directory . '/' . $fileNameNew;
+                            if (!move_uploaded_file($fileTmpName, $fileDestination)) {
+                                $stmt->close();
+                                die('Failed to move uploaded file: ' . $fileName);
+                            }
+                        } else {
+                            header("Location: ../create-page.php?error=file_too_big&file=$fileName");
+                            $stmt->close();
+                            exit();
                         }
                     } else {
-                        header("Location: ../create-page.php?error=file_too_big&file=$fileName");
+                        header("Location: ../create-page.php?error=upload_error&file=$fileName");
+                        $stmt->close();
                         exit();
                     }
                 } else {
-                    header("Location: ../create-page.php?error=upload_error&file=$fileName");
+                    header("Location: ../create-page.php?error=invalid_file_type&file=$fileName");
+                    $stmt->close();
                     exit();
                 }
-            } else {
-                header("Location: ../create-page.php?error=invalid_file_type&file=$fileName");
-                exit();
             }
         }
 
         header("Location: ../control-panel.php?error=created");
+        $stmt->close();
         exit();
     } else {
         header("Location: ../create-page.php?error=database_error");
+        $stmt->close();
         exit();
     }
 
-    $stmt->close();
-    $conn->close();
 } else {
     header("Location: ../create-page.php?error=invalid_request");
+    $stmt->close();
     exit();
 }
-?>
+
+// Ensure connection is always closed
+if (isset($conn) && $conn->ping()) {
+    $conn->close();
+}

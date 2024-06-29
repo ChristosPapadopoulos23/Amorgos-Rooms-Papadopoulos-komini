@@ -170,10 +170,10 @@ if( isset($_GET['id']) &&  isset($_GET['action'])){
     </div>
 </body>
 <script>
-    let action = "<?php echo $action;?>";
+    action = "<?php echo $action;?>";
     console.log(action);
     function change_values() {
-        let id="<?php echo $uid;?>"
+        id="<?php echo $uid;?>"
         document.getElementById('name').value="<?php echo $name;?>";
         document.getElementById('lastname').value="<?php echo $surname;?>";
         document.getElementById('phone').value="<?php echo $phone;?>";

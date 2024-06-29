@@ -74,17 +74,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($stmtUserSignup->execute() === TRUE) {
         header("Location: ../sign-up.php?success=true");
+        $stmtUserSignup->close();
+        $conn->close();
         exit();
     } else {
         header("Location: ../sign-up.php?error=database_error");
+        $stmtUserSignup->close();
+        $conn->close();
         exit();
     }
-
-    $stmtUserSignup->close();
-    $conn->close();
 
 } else {
     header("Location: ../sign-up.php");
     exit();
 }
-?>
+
