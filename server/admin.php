@@ -32,10 +32,9 @@ require_once 'db_connection.php';
 
 // Set default values for parameters
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
-// $area = isset($_GET['area']) ? intval($_GET['area']) : 0;
 $batchSize = isset($_GET['batchSize']) ? intval($_GET['batchSize']) : 6;
 $userName = isset($_GET['userName']) ? $_GET['userName'] : '';
-$user_state = isset($_GET['state']) ? $_GET['state'] : '';
+$user_state = isset($_GET['state']) ? $_GET['state'] : 'unapproved';
 $order = isset($_GET['order']) ? $_GET['order'] : 'DESC';
 
 $offset = ($page - 1) * $batchSize;
@@ -50,9 +49,6 @@ if ($user_state == 'unapproved') {
 } else if ($user_state == 'approved') {
     $sql .= " AND status_code = 'approved'";
     $countSql .= " AND status_code = 'approved'";
-} else if ($user_state == 'rejected') {
-    $sql .= " AND status_code = 'rejected'";
-    $countSql .= " AND status_code = 'rejected'";
 }
 
 if ($userName != '') {
@@ -99,4 +95,3 @@ $response = array(
 // Send JSON response
 header('Content-Type: application/json');
 echo json_encode($response);
-?>

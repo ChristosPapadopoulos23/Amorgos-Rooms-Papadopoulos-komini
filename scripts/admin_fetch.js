@@ -3,7 +3,6 @@ const batchSize = 6;
 let searchName = 'all';
 let state = 'all';
 let ord = 'DESC';
-// let area = '0';
 let isFetching = false;
 let hasMore = true;
 
@@ -11,10 +10,9 @@ function fetchNextBatch() {
     if (isFetching || !hasMore) return;
 
     isFetching = true;
-    ord = document.getElementById('order').value;
+    ord = document.getElementById('order').value; 
     searchName = document.getElementById('search').value;
     state = document.getElementById('state').value;
-    // area = document.getElementById('area').value;
     
     if (searchName !== '' && currentPage > 1) {
         isFetching = false;
@@ -32,7 +30,7 @@ function fetchNextBatch() {
         })
         .then(data => {
             console.log('Data received:', data); // Debugging line
-            if (data && data.users) { // Check if data and data.users are defined
+            if (data && data.users) {
                 createUserElement(data.users);
                 hasMore = data.hasMore;
                 currentPage++;
@@ -58,11 +56,9 @@ function createUserElement(data) {
 
         let style = '';
         if (user.role == 'admin') {
-            style = 'background-color:lightblue;';
+            style = 'background-color: lightblue;';
         }
 
-        console.log(user.role);
-        
         userElement.innerHTML = `
             <div class="room-info">
                 <h3>${user.name}</h3>
@@ -72,29 +68,32 @@ function createUserElement(data) {
                 <div class="btn_container2">
                     <div class="btn">
                         <a href="./server/admin_options.php?id=${user.id}&action=0">
-                        <button id="approve" class="approve">
-                            <i class="fa-solid fa-check"></i>
-                        </button></a>
+                            <button id="approve" class="approve">
+                                <i class="fa-solid fa-check"></i>
+                            </button>
+                        </a>
                     </div>
                     <div class="btn">
-                         <a href="./sign-up.php?id=${user.id}&action=1">
-                         <button id="edit" class="edit">
-                            <i class="fa-solid fa-edit"></i>
-                        </button></a>
+                        <a href="./sign-up.php?id=${user.id}&action=1">
+                            <button id="edit" class="edit">
+                                <i class="fa-solid fa-edit"></i>
+                            </button>
+                        </a>
                     </div>
                     <div class="btn">
                         <a href="./server/admin_options.php?id=${user.id}&action=2">
-                        <button id="delete" class="delete">
-                            <i class="fa-solid fa-trash"></i>
-                        </button></a>
+                            <button id="delete" class="delete">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </a>
                     </div>
                     <div class="btn">
                         <a href="./server/admin_options.php?id=${user.id}&action=3">
-                        <button id="admin" class="block" style=${style}>
-                            <i class="fa-solid fa-user"></i>
-                        </button></a>
+                            <button id="admin" class="block" style="${style}">
+                                <i class="fa-solid fa-user"></i>
+                            </button>
+                        </a>
                     </div>
-
                 </div>
             </div>
         `;
@@ -126,27 +125,16 @@ document.getElementById('order').addEventListener('change', function() {
     fetchNextBatch();
 });
 
-document.getElementById('area').addEventListener('change', function() {
-    currentPage = 1;
-    document.getElementById('roomsContainer').innerHTML = '';
-    hasMore = true;
+// Use plain JavaScript for window.onload, not jQuery
+window.onload = function() {
     fetchNextBatch();
+    console.log('Page loaded');
+};
+
+// Use plain JavaScript for scroll event, not jQuery
+window.addEventListener('scroll', function() {
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500) {
+        fetchNextBatch();
+    }
 });
 
-$(document).ready(function() {
-    const debounce = (func, wait) => {
-        let timeout;
-        return function(...args) {
-            clearTimeout(timeout);
-            timeout = setTimeout(() => func.apply(this, args), wait);
-        };
-    };
-
-    $(window).scroll(debounce(function() {
-        if ($(window).scrollTop() + $(window).height() >= $(document).height() - 100) {
-            fetchNextBatch();
-        }
-    }, 200));
-});
-
-fetchNextBatch();

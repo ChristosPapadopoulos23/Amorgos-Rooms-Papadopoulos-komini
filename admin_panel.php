@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['role'] ) || ($_SESSION['role'] != 'admin')) { 
+if (!isset($_SESSION['role']) || ($_SESSION['role'] != 'admin')) {
     header("Location: ./sign-up.php");  //Feature is not implemented yet
     exit();
 }
@@ -49,51 +49,51 @@ if (!isset($_SESSION['role'] ) || ($_SESSION['role'] != 'admin')) {
 
         </ul>
     </nav>
-<section class="center">      
-    <main>
-        <div class="panel">
-            <div class="profile">
-                <div class="profile__info">
-                    <h2>Admin Panel</h2>
+    <section class="center">
+        <main>
+            <div class="panel">
+                <div class="profile">
+                    <div class="profile__info">
+                        <h2>Admin Panel</h2>
 
-                    <div class="filters">
-                        <label for="search">Search:</label>
-                        <input type="text" name="search" id="search" class="search">
-                
-                        <div class="custom-select">
-                            <select class="area" id="state">
-                                <option value="unapproved">Mη εγκεκριμένος</option>
-                                <option value="approved">Εγκρίθηκε</option>
-                                <option value="all">Ολοι</option>
-                            </select>
+                        <div class="filters">
+                            <label for="search">Search:</label>
+                            <input type="text" name="search" id="search" class="search">
+
+                            <div class="custom-select">
+                                <select class="area" id="state">
+                                    <option value="unapproved">Mη εγκεκριμένος</option>
+                                    <option value="approved">Εγκρίθηκε</option>
+                                    <option value="all">Ολοι</option>
+                                </select>
+                            </div>
+
+                            <div class="custom-select">
+                                <select class="area" id="order">
+                                    <option value="DESC">Φθίνουσα σειρά</option>
+                                    <option value="ASC">Αύξουσα σειρά</option>
+                                </select>
+                            </div>
+
                         </div>
-
-                        <div class="custom-select">
-                            <select class="area" id="order">
-                                <option value="DESC">Φθίνουσα σειρά</option>
-                                <option value="ASC">Αύξουσα σειρά</option>
-                            </select>
-                        </div>
-
                     </div>
                 </div>
-            </div>
-            <div class="room-list">
+                <div class="room-list">
 
-                <!-- <div class="create-room">
+                    <!-- <div class="create-room">
                     <a href="./create_page.html"><button><i class="fa-solid fa-plus"></i></button></a>
                 </div> -->
 
-                <div id="roomsContainer" class="rooms"></div>
+                    <div id="roomsContainer" class="rooms"></div>
+
+                </div>
 
             </div>
 
-        </div>
-
-    </main>
-</section>
-
+        </main>
+    </section>
 </body>
+
 <script src="./scripts/admin_fetch.js"></script>
 <script>
     function myFunction(x) {

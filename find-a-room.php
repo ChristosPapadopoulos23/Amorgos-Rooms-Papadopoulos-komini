@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 ?>
@@ -11,11 +10,12 @@ session_start();
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Amorgos-rooms</title>
-    <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&display=swap"
+        rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    
+
     <link rel="stylesheet" href="css_files/style_rooms.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
@@ -85,16 +85,13 @@ session_start();
             <div class="tag">Παουλιν Κομινι - Χρήστος Παπαδόπουλος-2024</div>
         </div>
     </div>
-
-    <script src="./scripts/fetch-rooms.js"></script>
-
 </body>
-    <script>
-        function myFunction(x) {
-            x.classList.toggle("change");
-        }
-    </script>
 
-
+<script src="./scripts/fetch-rooms.js"></script>
+<script>
+    function myFunction(x) {
+        x.classList.toggle("change");
+    }
+</script>
 
 </html>
