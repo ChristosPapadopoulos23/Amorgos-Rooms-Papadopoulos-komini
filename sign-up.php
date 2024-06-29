@@ -155,7 +155,6 @@ if( isset($_GET['id']) &&  isset($_GET['action'])){
 
     </section>
 
-
     <div class="footer">
         <hr>
         <h2 class="infohead">Contact Information</h2>
@@ -171,9 +170,10 @@ if( isset($_GET['id']) &&  isset($_GET['action'])){
     </div>
 </body>
 <script>
-     action = "<?php echo $action;?>";
+    let action = "<?php echo $action;?>";
+    console.log(action);
     function change_values() {
-        id="<?php echo $uid;?>"
+        let id="<?php echo $uid;?>"
         document.getElementById('name').value="<?php echo $name;?>";
         document.getElementById('lastname').value="<?php echo $surname;?>";
         document.getElementById('phone').value="<?php echo $phone;?>";
@@ -191,8 +191,10 @@ if( isset($_GET['id']) &&  isset($_GET['action'])){
         document.getElementById('sign_in_btn').style.marginBottom="20px";
         document.getElementById('edit').action="./server/edit_user.php?id="+id;
     };
-    if(action!=null)
-    window.addEventListener('load', change_values);
+    // System.out.println(action);
+    if(action != '') {
+        window.addEventListener('load', change_values);
+    }
 </script>
-<script src="./scripts/sing_up.js"></script>
+    <script src="./scripts/sing_up.js"></script>
 </html>
